@@ -165,6 +165,13 @@
       "dependencies": {},
       "hash": "4471007e2ce8c3891e6d1023dad13dc7439832a9"
     },
+    "ie.itcarlow.screentransitions": {
+      "version": "https://github.com/itcgames/RWM-ScreenTransitions.git?path=/Packages/ie.itcarlow.screentransitions#v0.1.0",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "5a4624f2adccf743042fcdc7dcf6edc864e9952c"
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
