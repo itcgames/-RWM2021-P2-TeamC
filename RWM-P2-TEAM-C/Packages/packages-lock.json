@@ -159,11 +159,11 @@
       }
     },
     "ie.itcarlow.2dmovement": {
-      "version": "https://github.com/itcgames/RWM-2DMovement.git?path=/2D%20Movement/Packages/ie.itcarlow.2dmovement#v3.0.0",
+      "version": "https://github.com/itcgames/RWM-2DMovement.git?path=/2D%20Movement/Packages/ie.itcarlow.2dmovement#v3.2.0",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "4471007e2ce8c3891e6d1023dad13dc7439832a9"
+      "hash": "02c1e4e2680b55f561b839eefad597ec5ea57c3c"
     },
     "ie.itcarlow.screentransitions": {
       "version": "https://github.com/itcgames/RWM-ScreenTransitions.git?path=/Packages/ie.itcarlow.screentransitions#v0.1.0",
