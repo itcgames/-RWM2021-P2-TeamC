@@ -162,7 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
   type: 0
-  transitionPoint: {x: 19.935074, y: 0}
+  transitionPoint: {x: 7.99, y: 0}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
