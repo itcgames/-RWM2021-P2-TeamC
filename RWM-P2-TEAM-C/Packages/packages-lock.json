@@ -158,12 +158,19 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
-    "ie.itcarlow.2dmovement": {
-      "version": "https://github.com/itcgames/RWM-2DMovement.git?path=/2D%20Movement/Packages/ie.itcarlow.2dmovement#v3.2.0",
+    "ie.itcarlow.2d.platformer_enemy_behaviour": {
+      "version": "https://github.com/itcgames/RWM-PlatformerEnemyBehaviours.git?path=/Packages/ie.itcarlow.2d.platformer_enemy_behaviours#v1.0.2",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "02c1e4e2680b55f561b839eefad597ec5ea57c3c"
+      "hash": "45f7b52781b2353ec730bf7f16ee47f0e30545b9"
+    },
+    "ie.itcarlow.2dmovement": {
+      "version": "https://github.com/itcgames/RWM-2DMovement.git?path=/2D%20Movement/Packages/ie.itcarlow.2dmovement#v3.3.0",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "e40ced0774ce29e92c79f6b4dafa97e6e4cfee9b"
     },
     "ie.itcarlow.screentransitions": {
       "version": "https://github.com/itcgames/RWM-ScreenTransitions.git?path=/Packages/ie.itcarlow.screentransitions#v0.1.1",
