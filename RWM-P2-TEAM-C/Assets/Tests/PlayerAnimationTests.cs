@@ -13,6 +13,7 @@ namespace Tests
         private Animator _animator;
         private Runtime2DMovement _2dMovement;
         private PlayerController _playerController;
+
         [SetUp]
         public void Setup()
         {
@@ -29,9 +30,10 @@ namespace Tests
         public IEnumerator LeftAnimationTest()
         {
             setUpPlayer();
+            _2dMovement.handleLeftInput();
             _2dMovement.moveLeft();
             _playerController.handleLeftAnimation();
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(1.0f);
             Assert.AreEqual(true, _animator.GetBool("movingLeft"));
         }
 
