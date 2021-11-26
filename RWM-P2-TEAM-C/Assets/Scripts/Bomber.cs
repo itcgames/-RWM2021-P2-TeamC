@@ -24,12 +24,13 @@ public class Bomber : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         health = maxHealth;
+        // Movement
+        rb.velocity = new Vector2(-speed, rb.velocity.y);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Movement
-        rb.velocity = new Vector2(-speed, rb.velocity.y);
+        
     }
 }
