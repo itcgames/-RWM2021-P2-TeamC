@@ -37,6 +37,25 @@ namespace Tests
             Assert.AreEqual(true, _animator.GetBool("movingLeft"));
         }
 
+        [UnityTest]
+        public IEnumerator RightAnimationTest()
+        {
+            setUpPlayer();
+            _2dMovement.handleRightInput();
+            _2dMovement.moveRight();
+            _playerController.handleRightAnimation();
+            yield return new WaitForSeconds(1.0f);
+            Assert.AreEqual(true, _animator.GetBool("movingRight"));
+        }
+
+        [UnityTest]
+        public IEnumerator IdleAnimationTest()
+        {
+            setUpPlayer();
+            yield return new WaitForSeconds(1.0f);
+            Assert.AreEqual(true, _animator.GetBool("idle"));
+        }
+
 
         private void setUpPlayer()
         {
