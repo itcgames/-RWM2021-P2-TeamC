@@ -26,52 +26,94 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_2dMovement.getIsMovingLeft() && !_animator.GetBool("movingLeft"))
+        updatePlayerAnimationStates();
+    }
+
+    void updatePlayerAnimationStates()
+    {
+        if (_2dMovement.getIsMovingLeft() && _2dMovement.getIsGrounded() && !_animator.GetBool("movingLeft"))
         {
             handleLeftAnimation();
         }
-        else if (_2dMovement.getIsMovingRight())
+        else if (_2dMovement.getIsMovingRight() && _2dMovement.getIsGrounded() && !_animator.GetBool("movingRight"))
         {
             handleRightAnimation();
         }
-        else if(_rb.velocity.SqrMagnitude() <= 0 && !_animator.GetBool("idle"))
+        else if (!_2dMovement.getIsGrounded() && _animator.GetBool("idle"))
+        {
+            handleJumpAnimationWhileIdle();
+        }
+        else if ((_2dMovement.getIsMovingRight() || _2dMovement.getIsMovingLeft()) && !_2dMovement.getIsGrounded() && _animator.GetBool("grounded"))
+        {
+            handleJunpAnimationWhileWalking();
+        }
+        else if ((_2dMovement.getIsMovingRight() || _2dMovement.getIsMovingLeft()) && !_animator.GetBool("grounded"))
+        {
+            handleDirectionWhileJumping();
+        }
+        else if ((_rb.velocity.SqrMagnitude() <= 0 && _2dMovement.getIsGrounded()) && !_animator.GetBool("idle"))
         {
             handleIdleAnimation();
         }
     }
+
     public void handleLeftAnimation()
     {
-        if (_2dMovement.getIsMovingLeft() && !_animator.GetBool("movingLeft"))
-        {
-            Vector3 temp = transform.localScale;
-            if (temp.x < 0) { temp.x *= -1; }
-            transform.localScale = temp;
-            _animator.SetBool("movingLeft", true);
-            _animator.SetBool("movingRight", false);
-            _animator.SetBool("idle", false);
-        }
+        Vector3 temp = transform.localScale;
+        if (temp.x < 0) { temp.x *= -1; }
+        transform.localScale = temp;
+        _animator.SetBool("movingLeft", true);
+        _animator.SetBool("movingRight", false);
+        _animator.SetBool("grounded", true);
+        _animator.SetBool("idle", false);
     }
 
     public void handleRightAnimation()
     {
-        if (_2dMovement.getIsMovingRight())
-        {
-            Vector3 temp = transform.localScale;
-            if (temp.x > 0) { temp.x *= -1; }
-            transform.localScale = temp;
-            _animator.SetBool("movingRight", true);
-            _animator.SetBool("movingLeft", false);
-            _animator.SetBool("idle", false);
-        }
+        Vector3 temp = transform.localScale;
+        if (temp.x > 0) { temp.x *= -1; }
+        transform.localScale = temp;
+        _animator.SetBool("movingRight", true);
+        _animator.SetBool("movingLeft", false);
+        _animator.SetBool("grounded", true);
+        _animator.SetBool("idle", false);
+    }
+
+    public void handleJumpAnimationWhileIdle()
+    {
+        _animator.SetBool("grounded", false);
+        _animator.SetBool("idle", false);
     }
 
     public void handleIdleAnimation()
     {
-        if (_rb.velocity.SqrMagnitude() <= 0 && !_animator.GetBool("idle"))
+        _animator.SetBool("movingRight", false);
+        _animator.SetBool("movingLeft", false);
+        _animator.SetBool("grounded", true);
+        _animator.SetBool("idle", true);
+    }
+
+    public void handleJunpAnimationWhileWalking()
+    {
+        _animator.SetBool("movingLeft", false);
+        _animator.SetBool("movingRight", false);
+        _animator.SetBool("grounded", false);
+        _animator.SetBool("idle", false);
+    }
+
+    public void handleDirectionWhileJumping()
+    {
+        if (_2dMovement.getIsMovingLeft())
         {
-            _animator.SetBool("movingRight", false);
-            _animator.SetBool("movingLeft", false);
-            _animator.SetBool("idle", true);
+            Vector3 temp = transform.localScale;
+            if (temp.x < 0) { temp.x *= -1; }
+            transform.localScale = temp;
+        }
+        else if (_2dMovement.getIsMovingRight())
+        {
+            Vector3 temp = transform.localScale;
+            if (temp.x > 0) { temp.x *= -1; }
+            transform.localScale = temp;
         }
     }
 }

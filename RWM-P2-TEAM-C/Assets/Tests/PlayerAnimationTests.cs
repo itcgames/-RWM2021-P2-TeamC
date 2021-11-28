@@ -56,6 +56,13 @@ namespace Tests
             Assert.AreEqual(true, _animator.GetBool("idle"));
         }
 
+        [UnityTest]
+        public IEnumerator JumpAnimationTest()
+        {
+            setUpPlayer();
+            yield return new WaitForSeconds(1.0f);
+
+        }
 
         private void setUpPlayer()
         {
