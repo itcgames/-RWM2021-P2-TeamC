@@ -10,12 +10,12 @@ public class TempInput : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    // when the GameObjects collider arrange for this GameObject to travel to the left of the screen
+    void OnTriggerEnter2D(Collider2D col)
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (col.tag == "Player")
         {
-            GetComponent<CameraMover>().StartMovement();
+            Camera.main.GetComponent<CameraMover>().StartMovement();
         }
     }
 }

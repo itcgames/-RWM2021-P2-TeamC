@@ -8,60 +8,102 @@ public class CameraMover : MonoBehaviour
     public Vector2 transitionPoint;
     public float speed = 0.1f;
 
-    public void StartMovement()
+    private bool m_moving;
+    private List<Behaviour> heldComponents;
+
+    void Start()
     {
         mainCam = Camera.main;
+    }
+
+    public void StartMovement()
+    {
+        
         transitionPoint = GetComponent<ScreenTransition>().transitionPoint;
+
+        foreach (Behaviour behaviour in GetComponents<Behaviour>())
+        {
+            if(behaviour.enabled)
+            {
+                if(behaviour != mainCam)
+                {
+                    behaviour.enabled = false;
+                }
+            }
+        }
+
+        // re-enable these afterwards
+        mainCam.enabled = true;
+        GetComponent<AudioListener>().enabled = true;
+
         StartCoroutine(movement()); 
     }
 
     IEnumerator movement()
     {
-        if(GetComponent<ScreenTransition>().type == ScreenTransition.transitionTypes.HORIZONTAL)
-        {
-            if (mainCam.transform.position.x < transitionPoint.x)
+        bool wentThroughMove = false;
+        if(!m_moving)
+        { // only do this enumerator if it isn't already happening, to stop overlapping
+            m_moving = true;
+            wentThroughMove = true;
+            if (GetComponent<ScreenTransition>().type == ScreenTransition.transitionTypes.HORIZONTAL)
             {
-                while(mainCam.transform.position.x <= transitionPoint.x)
+                if (mainCam.transform.position.x < transitionPoint.x)
                 {
-                    mainCam.transform.position = new Vector3(mainCam.transform.position.x + speed, mainCam.transform.position.y, mainCam.transform.position.z);
+                    while (mainCam.transform.position.x <= transitionPoint.x)
+                    {
+                        mainCam.transform.position = new Vector3(mainCam.transform.position.x + speed, mainCam.transform.position.y, mainCam.transform.position.z);
 
-                    yield return new WaitForSeconds(0.1f);
+                        yield return new WaitForSeconds(0.1f);
+                    }
+                }
+                else if (mainCam.transform.position.x > transitionPoint.x)
+                {
+                    while (mainCam.transform.position.x >= transitionPoint.x)
+                    {
+                        mainCam.transform.position = new Vector3(mainCam.transform.position.x - speed, mainCam.transform.position.y, mainCam.transform.position.z);
+
+                        yield return new WaitForSeconds(0.1f);
+                    }
                 }
             }
-            else if (mainCam.transform.position.x > transitionPoint.x)
+            if (GetComponent<ScreenTransition>().type == ScreenTransition.transitionTypes.HORIZONTAL)
             {
-                while (mainCam.transform.position.x >= transitionPoint.x)
+                if (mainCam.transform.position.y < transitionPoint.y)
                 {
-                    mainCam.transform.position = new Vector3(mainCam.transform.position.x - speed, mainCam.transform.position.y, mainCam.transform.position.z);
+                    while (mainCam.transform.position.y <= transitionPoint.y)
+                    {
+                        mainCam.transform.position = new Vector3(mainCam.transform.position.x, mainCam.transform.position.y + speed, mainCam.transform.position.z);
 
-                    yield return new WaitForSeconds(0.1f);
+                        yield return new WaitForSeconds(0.1f);
+                    }
+                }
+                else if (mainCam.transform.position.y > transitionPoint.y)
+                {
+                    while (mainCam.transform.position.y >= transitionPoint.y)
+                    {
+                        mainCam.transform.position = new Vector3(mainCam.transform.position.x, mainCam.transform.position.y - speed, mainCam.transform.position.z);
+
+                        yield return new WaitForSeconds(0.1f);
+                    }
+                }
+            }
+            Debug.Log("camera reached end");
+        }
+
+        // now that the mover is done, re-enable any disabled components
+
+        foreach (Behaviour behaviour in GetComponents<Behaviour>())
+        {
+            if (behaviour.enabled)
+            {
+                if (behaviour != mainCam)
+                {
+                    behaviour.enabled = true;
                 }
             }
         }
-        if (GetComponent<ScreenTransition>().type == ScreenTransition.transitionTypes.HORIZONTAL)
-        {
-            if (mainCam.transform.position.y < transitionPoint.y)
-            {
-                while (mainCam.transform.position.y <= transitionPoint.y)
-                {
-                    mainCam.transform.position = new Vector3(mainCam.transform.position.x, mainCam.transform.position.y + speed, mainCam.transform.position.z);
 
-                    yield return new WaitForSeconds(0.1f);
-                }
-            }
-            else if (mainCam.transform.position.y > transitionPoint.y)
-            {
-                while (mainCam.transform.position.y >= transitionPoint.y)
-                {
-                    mainCam.transform.position = new Vector3(mainCam.transform.position.x, mainCam.transform.position.y - speed, mainCam.transform.position.z);
-
-                    yield return new WaitForSeconds(0.1f);
-                }
-            }
-        }
-
-
-        Debug.Log("camera reached end");
         yield break;
     }
 }
