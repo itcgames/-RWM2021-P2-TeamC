@@ -9,9 +9,14 @@ public class PlayerController : MonoBehaviour
     private Runtime2DMovement _2dMovement;
     void Start()
     {
-        _animator =   this.GetComponent<Animator>();
+        setUpPlayer();
+    }
+
+    void setUpPlayer()
+    {
+        _animator = this.GetComponent<Animator>();
         _2dMovement = this.GetComponent<Runtime2DMovement>();
-        _rb =         this.GetComponent<Rigidbody2D>();
+        _rb = this.GetComponent<Rigidbody2D>();
         _rb = this.GetComponent<Rigidbody2D>();
         if (!_rb)
         {
