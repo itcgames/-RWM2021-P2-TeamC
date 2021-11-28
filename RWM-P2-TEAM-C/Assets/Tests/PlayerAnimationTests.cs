@@ -57,11 +57,35 @@ namespace Tests
         }
 
         [UnityTest]
-        public IEnumerator JumpAnimationTest()
+        public IEnumerator JumpAnimationTestWhileIdle()
         {
             setUpPlayer();
             yield return new WaitForSeconds(1.0f);
+            _2dMovement.handleJumpInput();
+            _playerController.handleJumpAnimationWhileIdle();
+            yield return new WaitForSeconds(0.2f);
+            Assert.AreEqual(false, _animator.GetBool("grounded"));
+            yield return new WaitForSeconds(0.2f);
+            Assert.AreEqual(true, _animator.GetBool("grounded"));
+            Assert.AreEqual(true, _animator.GetBool("idle"));
+        }
 
+        [UnityTest]
+        public IEnumerator JumpAnimationTestWhileWalking()
+        {
+            setUpPlayer();
+            yield return new WaitForSeconds(1.0f);
+            _2dMovement.moveRight();
+            _playerController.handleRightAnimation();
+            Assert.AreEqual(true, _animator.GetBool("movingRight"));
+            yield return new WaitForSeconds(0.5f);
+            _2dMovement.handleJumpInput();
+            _playerController.handleJumpAnimationWhileIdle();
+            yield return new WaitForSeconds(0.2f);
+            Assert.AreEqual(false, _animator.GetBool("grounded"));
+            yield return new WaitForSeconds(0.2f);
+            Assert.AreEqual(true, _animator.GetBool("grounded"));
+            Assert.AreEqual(true, _animator.GetBool("idle"));
         }
 
         private void setUpPlayer()
