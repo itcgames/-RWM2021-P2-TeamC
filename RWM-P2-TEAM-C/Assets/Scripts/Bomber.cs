@@ -35,6 +35,9 @@ public class Bomber : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Vector2.Distance(rb.position, player.GetComponent<Rigidbody2D>().position) < range)
+        {
+            bomb.GetComponent<Bomb>().dropped = true;
+        }
     }
 }

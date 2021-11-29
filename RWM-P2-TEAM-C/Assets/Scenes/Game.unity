@@ -253,7 +253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   speed: 5
-  player: {fileID: 0}
+  player: {fileID: 706003884}
   range: 5
 --- !u!50 &617379857
 Rigidbody2D:
@@ -595,6 +595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
+  dropped: 0
 --- !u!1 &1325752920
 GameObject:
   m_ObjectHideFlags: 0
