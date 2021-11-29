@@ -39,11 +39,15 @@ public class Bomber : MonoBehaviour
     {
         if (armed)
         {
-            if (Vector2.Distance(rb.position, player.GetComponent<Rigidbody2D>().position) < range && !bomb.GetComponent<Bomb>().dropped)
+            if(player && bomb)
             {
-                bomb.GetComponent<Bomb>().dropped = true;
-                armed = false;
+                if (Vector2.Distance(rb.position, new Vector2(player.transform.position.x, player.transform.position.y)) < range && !bomb.GetComponent<Bomb>().dropped)
+                {
+                    bomb.GetComponent<Bomb>().dropped = true;
+                    armed = false;
+                }
             }
+            
         }
     }
 
