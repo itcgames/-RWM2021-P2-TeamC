@@ -4,7 +4,8 @@
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "Scripts",
-        "2DM"
+        "2DM",
+        "ScreenTransition"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
