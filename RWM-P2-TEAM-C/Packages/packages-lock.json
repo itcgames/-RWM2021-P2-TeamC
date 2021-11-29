@@ -172,6 +172,13 @@
       "dependencies": {},
       "hash": "e40ced0774ce29e92c79f6b4dafa97e6e4cfee9b"
     },
+    "ie.itcarlow.bulletfilter": {
+      "version": "https://github.com/Emma-Conlon/WeaponSystem.git?path=/New Unity Project (2)/Packages/ie.itcarlow.bulletfilter#v1.0.0",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "0b45d30851dff242b2e5f554389a9b9377aa8481"
+    },
     "ie.itcarlow.screentransitions": {
       "version": "https://github.com/itcgames/RWM-ScreenTransitions.git?path=/Packages/ie.itcarlow.screentransitions#v0.1.1",
       "depth": 0,
