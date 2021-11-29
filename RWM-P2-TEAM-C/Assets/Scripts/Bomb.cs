@@ -70,4 +70,9 @@ public class Bomb : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    public float getHealth()
+    {
+        return health;
+    }
 }
