@@ -76,5 +76,15 @@ namespace Tests
             yield return new WaitForSeconds(2.0f);
             Assert.IsNotNull(shrapnel);
         }
+
+        [UnityTest]
+        public IEnumerator BombDamageTest()
+        {
+            bomb = GameObject.Find("Bomb");
+            float initialHealth = bomb.GetComponent<Bomb>().getHealth();
+            bomb.GetComponent<Bomb>().Damage(0.5f);
+            yield return new WaitForSeconds(0.1f);
+            Assert.Less(bomb.GetComponent<Bomb>().getHealth(), initialHealth);
+        }
     }
 }
