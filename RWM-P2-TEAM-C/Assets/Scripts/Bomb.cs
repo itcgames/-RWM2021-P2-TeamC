@@ -13,6 +13,8 @@ public class Bomb : MonoBehaviour
     public float maxHealth = 5.0f;
     // Current Health
     private float health;
+    // Controls id the bomb is dropped;
+    public bool dropped = false;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,9 @@ public class Bomb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(dropped && rb.gravityScale != 1)
+        {
+            rb.gravityScale = 1;
+        }
     }
 }
