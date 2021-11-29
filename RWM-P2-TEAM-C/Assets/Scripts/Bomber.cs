@@ -46,4 +46,21 @@ public class Bomber : MonoBehaviour
             }
         }
     }
+
+    public void Damage(float damage)
+    {
+        if (health > 0)
+        {
+            health -= damage;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    public float getHealth()
+    {
+        return health;
+    }
 }
