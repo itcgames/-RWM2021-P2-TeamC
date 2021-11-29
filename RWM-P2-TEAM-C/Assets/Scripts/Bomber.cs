@@ -21,6 +21,8 @@ public class Bomber : MonoBehaviour
     // Bombing Range
     public float range = 5;
 
+    private bool armed = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,16 +30,20 @@ public class Bomber : MonoBehaviour
         health = maxHealth;
         // Movement
         rb.velocity = new Vector2(-speed, rb.velocity.y);
-        bomb = Instantiate(GameObject.Find("Bomb"), new Vector3(rb.position.x, rb.position.y - 0.5f, 0), Quaternion.identity);
+        bomb = Instantiate(GameObject.Find("Bomb"), new Vector3(rb.position.x, rb.position.y - 0.75f, 0), Quaternion.identity);
         bomb.transform.parent = this.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Vector2.Distance(rb.position, player.GetComponent<Rigidbody2D>().position) < range)
+        if (armed)
         {
-            bomb.GetComponent<Bomb>().dropped = true;
+            if (Vector2.Distance(rb.position, player.GetComponent<Rigidbody2D>().position) < range && !bomb.GetComponent<Bomb>().dropped)
+            {
+                bomb.GetComponent<Bomb>().dropped = true;
+                armed = false;
+            }
         }
     }
 }

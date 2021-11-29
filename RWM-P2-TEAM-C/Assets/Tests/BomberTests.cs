@@ -13,6 +13,8 @@ namespace Tests
         GameObject Enemy;
         // Enemy Bomb Object
         GameObject bomb;
+        // Bomb Shrapnel Object
+        GameObject shrapnel;
         // player Object
         GameObject Player;
 
@@ -63,6 +65,16 @@ namespace Tests
             float initialPos = bomb.GetComponent<Rigidbody2D>().position.x;
             yield return new WaitForSeconds(0.5f);
             Assert.Less(bomb.GetComponent<Rigidbody2D>().position.y, initialPos);
+        }
+
+        [UnityTest]
+        public IEnumerator BombExplosionTest()
+        {
+            bomb = GameObject.Find("Bomb");
+            bomb.GetComponent<Bomb>().dropped = true;
+            shrapnel = GameObject.Find("Shrapnel");
+            yield return new WaitForSeconds(2.0f);
+            Assert.IsNotNull(shrapnel);
         }
     }
 }
