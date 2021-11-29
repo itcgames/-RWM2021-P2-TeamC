@@ -7,8 +7,8 @@ public class CameraMover : MonoBehaviour
     public Camera mainCam;
     public Vector2 transitionPoint;
     public float speed = 0.1f;
+    public bool m_moving;
 
-    private bool m_moving;
     private List<Behaviour> heldComponents;
 
     void Start()
