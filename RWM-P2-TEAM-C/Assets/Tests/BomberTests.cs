@@ -44,5 +44,14 @@ namespace Tests
             yield return new WaitForSeconds(0.5f);
             Assert.IsNotNull(bomb);
         }
+
+        [UnityTest]
+        public IEnumerator BombCarryingTest()
+        {
+            bomb = GameObject.Find("Bomb");
+            float initialPos = bomb.GetComponent<Rigidbody2D>().position.x;
+            yield return new WaitForSeconds(0.5f);
+            Assert.Less(bomb.GetComponent<Rigidbody2D>().position.x, initialPos);
+        }
     }
 }
