@@ -11,6 +11,8 @@ namespace Tests
     {
         // Bomber Enemy Object
         GameObject Enemy;
+        // Enemy Bomb Object
+        GameObject bomb;
         // player Object
         GameObject Player;
 
@@ -33,6 +35,14 @@ namespace Tests
             float initialPos = Enemy.GetComponent<Rigidbody2D>().position.x;
             yield return new WaitForSeconds(0.5f);
             Assert.Less(Enemy.GetComponent<Rigidbody2D>().position.x, initialPos);
+        }
+
+        [UnityTest]
+        public IEnumerator BombSpawnTest()
+        {
+            bomb = GameObject.Find("Bomb");
+            yield return new WaitForSeconds(0.5f);
+            Assert.IsNotNull(bomb);
         }
     }
 }
