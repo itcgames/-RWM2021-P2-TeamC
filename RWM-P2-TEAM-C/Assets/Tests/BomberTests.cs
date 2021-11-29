@@ -53,5 +53,16 @@ namespace Tests
             yield return new WaitForSeconds(0.5f);
             Assert.Less(bomb.GetComponent<Rigidbody2D>().position.x, initialPos);
         }
+
+        [UnityTest]
+        public IEnumerator BombDropTest()
+        {
+            bomb = GameObject.Find("Bomb");
+            Player = GameObject.Find("Player");
+            Player.transform.position = new Vector3(bomb.transform.position.x - 3, bomb.transform.position.y - 1, Player.transform.position.z);
+            float initialPos = bomb.GetComponent<Rigidbody2D>().position.x;
+            yield return new WaitForSeconds(0.5f);
+            Assert.Less(bomb.GetComponent<Rigidbody2D>().position.y, initialPos);
+        }
     }
 }
