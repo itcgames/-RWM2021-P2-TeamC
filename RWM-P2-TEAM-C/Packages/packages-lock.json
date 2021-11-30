@@ -166,11 +166,11 @@
       "hash": "45f7b52781b2353ec730bf7f16ee47f0e30545b9"
     },
     "ie.itcarlow.2dmovement": {
-      "version": "https://github.com/itcgames/RWM-2DMovement.git?path=/2D%20Movement/Packages/ie.itcarlow.2dmovement#v3.3.0",
+      "version": "https://github.com/itcgames/RWM-2DMovement.git?path=/2D%20Movement/Packages/ie.itcarlow.2dmovement#v3.4.0",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "e40ced0774ce29e92c79f6b4dafa97e6e4cfee9b"
+      "hash": "68acd4207691171c4aad38c895b70144da49484c"
     },
     "ie.itcarlow.bulletfilter": {
       "version": "https://github.com/Emma-Conlon/WeaponSystem.git?path=/New Unity Project (2)/Packages/ie.itcarlow.bulletfilter#v1.0.0",
