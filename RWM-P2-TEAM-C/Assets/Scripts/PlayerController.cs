@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         {
             handleDirectionWhileJumping();
         }
-        else if ((_rb.velocity.SqrMagnitude() <= 0 && _2dMovement.getIsGrounded()) && !_animator.GetBool("idle"))
+        else if ((_rb.velocity.SqrMagnitude() <= 0 && !_animator.GetBool("idle")))
         {
             handleIdleAnimation();
         }
