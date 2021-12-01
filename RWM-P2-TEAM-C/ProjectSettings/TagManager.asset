@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Ground
   - Follower
+  - Bullet
+  - Ledge
+  - Boundary
   layers:
   - Default
   - TransparentFX
