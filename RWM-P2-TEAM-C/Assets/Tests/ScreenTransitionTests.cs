@@ -90,7 +90,7 @@ namespace Tests
             Assert.Less(mainCam.transform.position.x, mainCam.GetComponent<CameraMover>().transitionPoints[1].x + 0.1f);
             Assert.GreaterOrEqual(mainCam.transform.position.x, mainCam.GetComponent<CameraMover>().transitionPoints[0].x);
 
-        }
+        } 
 
         private void setupCamera()
         {
