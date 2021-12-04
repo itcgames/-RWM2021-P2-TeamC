@@ -76,6 +76,22 @@ namespace Tests
 
         }
 
+        [UnityTest]
+        public IEnumerator MovesToCorrectPoint()
+        {
+            setupCamera();
+            mainCam.GetComponent<CameraMover>().AddPoint(new Vector2(1.0f, 0.0f));
+            mainCam.GetComponent<CameraMover>().AddPoint(new Vector2(1000.0f, 0.0f));
+            mainCam.GetComponent<CameraMover>().StartMovement(0, ScreenTransition.transitionTypes.HORIZONTAL);
+
+            yield return new WaitForSeconds(0.5f);
+
+            Assert.Less(mainCam.transform.position.x, mainCam.GetComponent<CameraMover>().transitionPoints[1].x);
+            Assert.Less(mainCam.transform.position.x, mainCam.GetComponent<CameraMover>().transitionPoints[1].x + 0.1f);
+            Assert.GreaterOrEqual(mainCam.transform.position.x, mainCam.GetComponent<CameraMover>().transitionPoints[0].x);
+
+        }
+
 
 
         private void setupCamera()
