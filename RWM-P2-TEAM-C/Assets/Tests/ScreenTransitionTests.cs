@@ -14,13 +14,13 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            SceneManager.LoadScene("Game", LoadSceneMode.Single);
+            SceneManager.LoadScene("CameraTestScene", LoadSceneMode.Single);
         }
 
         [TearDown]
         public void Teardown()
         {
-            SceneManager.UnloadSceneAsync("Game");
+            SceneManager.UnloadSceneAsync("CameraTestScene");
         }
 
         [UnityTest]
@@ -28,7 +28,8 @@ namespace Tests
         {
             setupCamera();
             Vector3 pos = mainCam.transform.position;
-            mainCam.GetComponent<CameraMover>().StartMovement();
+            mainCam.GetComponent<CameraMover>().AddPoint(new Vector2(100.0f, 0.0f));
+            mainCam.GetComponent<CameraMover>().StartMovement(0, ScreenTransition.transitionTypes.HORIZONTAL);
 
             yield return new WaitForSeconds(0.1f);
 
@@ -40,21 +41,63 @@ namespace Tests
         public IEnumerator TransitionEnds()
         {
             setupCamera();
-            Vector3 pos = mainCam.transform.position;
-            mainCam.GetComponent<ScreenTransition>().transitionPoint = new Vector2(1.0f, 0.0f);
-            mainCam.GetComponent<CameraMover>().StartMovement();
+            mainCam.GetComponent<CameraMover>().AddPoint(new Vector2(1.0f, 0.0f));
+            mainCam.GetComponent<CameraMover>().StartMovement(0, ScreenTransition.transitionTypes.HORIZONTAL);
 
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(0.5f);
 
-            Assert.AreEqual(true, mainCam.GetComponent<CameraMover>().m_moving);
+            Assert.AreEqual(false, mainCam.GetComponent<CameraMover>().m_moving);
 
         }
 
+        [UnityTest]
+        public IEnumerator AddingPoints()
+        {
+            setupCamera();
+            mainCam.GetComponent<CameraMover>().AddPoint(new Vector2(1.0f, 0.0f));
+            mainCam.GetComponent<CameraMover>().AddPoint(new Vector2(2.0f, 0.0f));
+            mainCam.GetComponent<CameraMover>().AddPoint(new Vector2(3.0f, 0.0f));
+            yield return new WaitForSeconds(0.1f);
 
+            Assert.AreEqual(3, mainCam.GetComponent<CameraMover>().transitionPoints.Count);
+
+        }
+
+        [UnityTest]
+        public IEnumerator RemovingLastAddedPoint()
+        {
+            setupCamera();
+            mainCam.GetComponent<CameraMover>().AddPoint(new Vector2(1.0f, 0.0f));
+            mainCam.GetComponent<CameraMover>().AddPoint(new Vector2(2.0f, 0.0f));
+            mainCam.GetComponent<CameraMover>().RemoveLastPoint();
+            yield return new WaitForSeconds(0.1f);
+
+            Assert.AreEqual(1, mainCam.GetComponent<CameraMover>().transitionPoints.Count);
+
+        }
+
+        [UnityTest]
+        public IEnumerator MovesToCorrectPoint()
+        {
+            setupCamera();
+            mainCam.GetComponent<CameraMover>().AddPoint(new Vector2(1.0f, 0.0f));
+            mainCam.GetComponent<CameraMover>().AddPoint(new Vector2(1000.0f, 0.0f));
+            mainCam.GetComponent<CameraMover>().StartMovement(0, ScreenTransition.transitionTypes.HORIZONTAL);
+
+            yield return new WaitForSeconds(0.5f);
+
+            Assert.Less(mainCam.transform.position.x, mainCam.GetComponent<CameraMover>().transitionPoints[1].x);
+            Assert.Less(mainCam.transform.position.x, mainCam.GetComponent<CameraMover>().transitionPoints[1].x + 0.1f);
+            Assert.GreaterOrEqual(mainCam.transform.position.x, mainCam.GetComponent<CameraMover>().transitionPoints[0].x);
+
+        } 
 
         private void setupCamera()
         {
             mainCam = Camera.main;
+
+            // remove any other points that may exist on the camera for our tests
+            mainCam.GetComponent<CameraMover>().transitionPoints.Clear();
         }
     }
 }
