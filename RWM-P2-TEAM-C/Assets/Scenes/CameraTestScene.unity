@@ -220,7 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   type: 0
-  transitionPoint: {x: 3, y: 0}
+  transitionPoint: {x: 0, y: 0}
 --- !u!114 &2010743314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +234,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCam: {fileID: 0}
-  transitionPoint: {x: 0, y: 0}
+  transitionPoints: []
   speed: 0.1
   m_moving: 0

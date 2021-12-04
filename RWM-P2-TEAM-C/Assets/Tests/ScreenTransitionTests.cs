@@ -50,6 +50,32 @@ namespace Tests
 
         }
 
+        [UnityTest]
+        public IEnumerator AddingPoints()
+        {
+            setupCamera();
+            mainCam.GetComponent<CameraMover>().AddPoint(new Vector2(1.0f, 0.0f));
+            mainCam.GetComponent<CameraMover>().AddPoint(new Vector2(2.0f, 0.0f));
+            mainCam.GetComponent<CameraMover>().AddPoint(new Vector2(3.0f, 0.0f));
+            yield return new WaitForSeconds(0.1f);
+
+            Assert.AreEqual(3, mainCam.GetComponent<CameraMover>().transitionPoints.Count);
+
+        }
+
+        [UnityTest]
+        public IEnumerator RemovingLastAddedPoint()
+        {
+            setupCamera();
+            mainCam.GetComponent<CameraMover>().AddPoint(new Vector2(1.0f, 0.0f));
+            mainCam.GetComponent<CameraMover>().AddPoint(new Vector2(2.0f, 0.0f));
+            mainCam.GetComponent<CameraMover>().RemoveLastPoint();
+            yield return new WaitForSeconds(0.1f);
+
+            Assert.AreEqual(1, mainCam.GetComponent<CameraMover>().transitionPoints.Count);
+
+        }
+
 
 
         private void setupCamera()
