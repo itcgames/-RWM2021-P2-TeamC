@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
     private Rigidbody2D _rb;
     private Runtime2DMovement _2dMovement;
+    private bool _isShooting = false;
+    public float timeBetweenShots;
     void Start()
     {
         setUpPlayer();
@@ -36,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
     void updatePlayerAnimationStates()
     {
+        getShootInput();
         if (_2dMovement.getIsMovingLeft() && _2dMovement.getIsGrounded() && !_animator.GetBool("movingLeft"))
         {
             handleLeftAnimation();
@@ -120,5 +123,22 @@ public class PlayerController : MonoBehaviour
             if (temp.x > 0) { temp.x *= -1; }
             transform.localScale = temp;
         }
+    }
+
+    void getShootInput()
+    {
+        if (Input.GetKeyDown(KeyCode.P) && _rb.velocity.SqrMagnitude() <= 0 && _animator.GetBool("grounded"))
+        {
+            _isShooting = true;
+            _animator.SetBool("isShooting", _isShooting);
+            StartCoroutine("shootingCooldown");
+        }
+    }
+    IEnumerator shootingCooldown()
+    {
+        yield return new WaitForSeconds(timeBetweenShots);
+        _isShooting = false;
+        yield return new WaitForSeconds(timeBetweenShots);
+        _animator.SetBool("isShooting", _isShooting);
     }
 }
