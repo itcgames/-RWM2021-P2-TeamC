@@ -51,11 +51,9 @@ public class CameraMover : MonoBehaviour
 
     IEnumerator movement()
     {
-        bool wentThroughMove = false;
         if(!m_moving)
         { // only do this enumerator if it isn't already happening, to stop overlapping
             m_moving = true;
-            wentThroughMove = true;
             if (GetComponent<ScreenTransition>().type == ScreenTransition.transitionTypes.HORIZONTAL)
             {
                 if (mainCam.transform.position.x < chosenPoint.x)
@@ -64,7 +62,7 @@ public class CameraMover : MonoBehaviour
                     {
                         mainCam.transform.position = new Vector3(mainCam.transform.position.x + speed, mainCam.transform.position.y, mainCam.transform.position.z);
 
-                        yield return new WaitForSeconds(0.1f);
+                        yield return new WaitForSeconds(0.025f);
                     }
                 }
                 else if (mainCam.transform.position.x > chosenPoint.x)
@@ -73,7 +71,7 @@ public class CameraMover : MonoBehaviour
                     {
                         mainCam.transform.position = new Vector3(mainCam.transform.position.x - speed, mainCam.transform.position.y, mainCam.transform.position.z);
 
-                        yield return new WaitForSeconds(0.1f);
+                        yield return new WaitForSeconds(0.025f);
                     }
                 }
             }
@@ -85,7 +83,7 @@ public class CameraMover : MonoBehaviour
                     {
                         mainCam.transform.position = new Vector3(mainCam.transform.position.x, mainCam.transform.position.y + speed, mainCam.transform.position.z);
 
-                        yield return new WaitForSeconds(0.1f);
+                        yield return new WaitForSeconds(0.025f);
                     }
                 }
                 else if (mainCam.transform.position.y > chosenPoint.y)
@@ -94,11 +92,10 @@ public class CameraMover : MonoBehaviour
                     {
                         mainCam.transform.position = new Vector3(mainCam.transform.position.x, mainCam.transform.position.y - speed, mainCam.transform.position.z);
 
-                        yield return new WaitForSeconds(0.1f);
+                        yield return new WaitForSeconds(0.025f);
                     }
                 }
             }
-            Debug.Log("camera reached end");
         }
 
         // now that the mover is done, re-enable any disabled components
@@ -114,6 +111,7 @@ public class CameraMover : MonoBehaviour
             }
         }
 
+        m_moving = false;
         yield break;
     }
 }

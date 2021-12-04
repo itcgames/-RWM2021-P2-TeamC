@@ -7,15 +7,7 @@ public class TransitionZone : MonoBehaviour
     public int transitionPoint;
     public ScreenTransition.transitionTypes type;
 
-    void Update()
-    {
-        if(Input.GetKeyDown("space"))
-        {
-            Camera.main.GetComponent<CameraMover>().StartMovement(transitionPoint, type);
-        }
-    }
-
-    // when the GameObjects collider arrange for this GameObject to travel to the left of the screen
+    // begin transition on collision with player only
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag == "Player")

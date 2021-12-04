@@ -28,7 +28,7 @@ namespace Tests
         {
             setupCamera();
             Vector3 pos = mainCam.transform.position;
-            mainCam.GetComponent<CameraMover>().AddPoint(new Vector2(1.0f, 0.0f));
+            mainCam.GetComponent<CameraMover>().AddPoint(new Vector2(100.0f, 0.0f));
             mainCam.GetComponent<CameraMover>().StartMovement(0, ScreenTransition.transitionTypes.HORIZONTAL);
 
             yield return new WaitForSeconds(0.1f);
@@ -46,7 +46,7 @@ namespace Tests
 
             yield return new WaitForSeconds(0.5f);
 
-            Assert.AreEqual(true, mainCam.GetComponent<CameraMover>().m_moving);
+            Assert.AreEqual(false, mainCam.GetComponent<CameraMover>().m_moving);
 
         }
 
@@ -81,6 +81,9 @@ namespace Tests
         private void setupCamera()
         {
             mainCam = Camera.main;
+
+            // remove any other points that may exist on the camera for our tests
+            mainCam.GetComponent<CameraMover>().transitionPoints.Clear();
         }
     }
 }
