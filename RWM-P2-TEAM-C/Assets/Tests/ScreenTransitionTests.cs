@@ -28,7 +28,8 @@ namespace Tests
         {
             setupCamera();
             Vector3 pos = mainCam.transform.position;
-            mainCam.GetComponent<CameraMover>().StartMovement();
+            mainCam.GetComponent<CameraMover>().AddPoint(new Vector2(1.0f, 0.0f));
+            mainCam.GetComponent<CameraMover>().StartMovement(0, ScreenTransition.transitionTypes.HORIZONTAL);
 
             yield return new WaitForSeconds(0.1f);
 
@@ -40,11 +41,10 @@ namespace Tests
         public IEnumerator TransitionEnds()
         {
             setupCamera();
-            Vector3 pos = mainCam.transform.position;
-            mainCam.GetComponent<ScreenTransition>().transitionPoint = new Vector2(1.0f, 0.0f);
-            mainCam.GetComponent<CameraMover>().StartMovement();
+            mainCam.GetComponent<CameraMover>().AddPoint(new Vector2(1.0f, 0.0f));
+            mainCam.GetComponent<CameraMover>().StartMovement(0, ScreenTransition.transitionTypes.HORIZONTAL);
 
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(0.5f);
 
             Assert.AreEqual(true, mainCam.GetComponent<CameraMover>().m_moving);
 

@@ -5,10 +5,11 @@ using UnityEngine;
 public class CameraMover : MonoBehaviour
 {
     public Camera mainCam;
-    public Vector2 transitionPoint;
+    public List<Vector2> transitionPoints;
     public float speed = 0.1f;
     public bool m_moving;
 
+    private Vector2 chosenPoint;
     private List<Behaviour> heldComponents;
 
     void Start()
@@ -16,11 +17,14 @@ public class CameraMover : MonoBehaviour
         mainCam = Camera.main;
     }
 
-    public void StartMovement()
+    public void AddPoint(Vector2 t_point)
     {
-        
-        transitionPoint = GetComponent<ScreenTransition>().transitionPoint;
+        transitionPoints.Add(t_point);
+    }
 
+    public void StartMovement(int point, ScreenTransition.transitionTypes t_type)
+    {
+        chosenPoint = transitionPoints[point];
         foreach (Behaviour behaviour in GetComponents<Behaviour>())
         {
             if(behaviour.enabled)
@@ -48,18 +52,18 @@ public class CameraMover : MonoBehaviour
             wentThroughMove = true;
             if (GetComponent<ScreenTransition>().type == ScreenTransition.transitionTypes.HORIZONTAL)
             {
-                if (mainCam.transform.position.x < transitionPoint.x)
+                if (mainCam.transform.position.x < chosenPoint.x)
                 {
-                    while (mainCam.transform.position.x <= transitionPoint.x)
+                    while (mainCam.transform.position.x <= chosenPoint.x)
                     {
                         mainCam.transform.position = new Vector3(mainCam.transform.position.x + speed, mainCam.transform.position.y, mainCam.transform.position.z);
 
                         yield return new WaitForSeconds(0.1f);
                     }
                 }
-                else if (mainCam.transform.position.x > transitionPoint.x)
+                else if (mainCam.transform.position.x > chosenPoint.x)
                 {
-                    while (mainCam.transform.position.x >= transitionPoint.x)
+                    while (mainCam.transform.position.x >= chosenPoint.x)
                     {
                         mainCam.transform.position = new Vector3(mainCam.transform.position.x - speed, mainCam.transform.position.y, mainCam.transform.position.z);
 
@@ -67,20 +71,20 @@ public class CameraMover : MonoBehaviour
                     }
                 }
             }
-            if (GetComponent<ScreenTransition>().type == ScreenTransition.transitionTypes.HORIZONTAL)
+            if (GetComponent<ScreenTransition>().type == ScreenTransition.transitionTypes.VERTICAL)
             {
-                if (mainCam.transform.position.y < transitionPoint.y)
+                if (mainCam.transform.position.y < chosenPoint.y)
                 {
-                    while (mainCam.transform.position.y <= transitionPoint.y)
+                    while (mainCam.transform.position.y <= chosenPoint.y)
                     {
                         mainCam.transform.position = new Vector3(mainCam.transform.position.x, mainCam.transform.position.y + speed, mainCam.transform.position.z);
 
                         yield return new WaitForSeconds(0.1f);
                     }
                 }
-                else if (mainCam.transform.position.y > transitionPoint.y)
+                else if (mainCam.transform.position.y > chosenPoint.y)
                 {
-                    while (mainCam.transform.position.y >= transitionPoint.y)
+                    while (mainCam.transform.position.y >= chosenPoint.y)
                     {
                         mainCam.transform.position = new Vector3(mainCam.transform.position.x, mainCam.transform.position.y - speed, mainCam.transform.position.z);
 
