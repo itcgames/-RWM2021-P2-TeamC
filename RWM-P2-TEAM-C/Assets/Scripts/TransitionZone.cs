@@ -19,13 +19,13 @@ public class TransitionZone : MonoBehaviour
                 if (!swap)
                 {
                     Camera.main.GetComponent<CameraMover>().StartMovement(pointOne, type);
-                    swap = true;
                 }
                 else
                 {
                     Camera.main.GetComponent<CameraMover>().StartMovement(pointTwo, type);
-                    swap = false;
                 }
+
+                swap = !swap;
             }   
         }
     }

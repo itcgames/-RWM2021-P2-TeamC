@@ -92,8 +92,6 @@ namespace Tests
 
         }
 
-
-
         private void setupCamera()
         {
             mainCam = Camera.main;
