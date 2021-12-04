@@ -419,7 +419,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2eaf8577c32aec468f09bcd72fdf3ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionPoint: 0
+  pointOne: 0
+  pointTwo: 1
   type: 0
 --- !u!4 &936331644
 Transform:
