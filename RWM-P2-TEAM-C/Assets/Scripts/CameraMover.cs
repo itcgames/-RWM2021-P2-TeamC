@@ -22,6 +22,12 @@ public class CameraMover : MonoBehaviour
         transitionPoints.Add(t_point);
     }
 
+    public void RemoveLastPoint()
+    {
+        if(transitionPoints.Count > 0) // make sure points exist first
+            transitionPoints.RemoveAt(transitionPoints.Count - 1); // removes the last item in the list
+    }
+
     public void StartMovement(int point, ScreenTransition.transitionTypes t_type)
     {
         chosenPoint = transitionPoints[point];

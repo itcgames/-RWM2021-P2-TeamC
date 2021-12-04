@@ -25,6 +25,11 @@ public class TransitionEditor : Editor
 			cM.AddPoint(sT.transitionPoint);
 		}
 
+		if (GUILayout.Button("Remove Last Point"))
+		{
+			cM.RemoveLastPoint();
+		}
+
 		// Draw default inspector after button...
 		base.OnInspectorGUI();
 	}
