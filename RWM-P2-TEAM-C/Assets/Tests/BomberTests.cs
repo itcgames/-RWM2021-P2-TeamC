@@ -21,13 +21,13 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            SceneManager.LoadScene("Game", LoadSceneMode.Single);
+            SceneManager.LoadScene("AITestScene", LoadSceneMode.Single);
         }
 
         [TearDown]
         public void TearDown()
         {
-            SceneManager.UnloadSceneAsync("Game");
+            SceneManager.UnloadSceneAsync("AITestScene");
         }
 
         [UnityTest]
