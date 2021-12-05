@@ -312,7 +312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -64.03, y: -7.14, z: -10}
+  m_LocalPosition: {x: -68.84, y: -7.14, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -446,6 +446,7 @@ GameObject:
   - component: {fileID: 706003887}
   - component: {fileID: 706003889}
   - component: {fileID: 706003890}
+  - component: {fileID: 706003891}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -511,8 +512,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 560560035
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 8020143640844766479, guid: 158cc7ffc66fe014fbf16c32faf9fc58,
     type: 3}
@@ -572,6 +573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeBetweenShots: 0.25
+  direction: -1
 --- !u!50 &706003890
 Rigidbody2D:
   serializedVersion: 4
@@ -593,6 +595,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &706003891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706003884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671dfec9c69239b4cbd5acb4d9bd85f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 5154881601171482382, guid: 6229a9a1966c19441b3647cd59df0518,
+    type: 3}
+  bulletMoveSpeed: 20
+  bulletLifeTime: 1.5
 --- !u!1 &794939022
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,8 +943,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1771201005
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 949788d5d08266e4bb4f34879fa217e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 namespace Tests
 {
-    public class PlayerShootingTests
+    public class ShootingBulletsTest
     {
         private GameObject _player;
         private Animator _animator;
@@ -27,7 +27,7 @@ namespace Tests
         }
 
         [UnityTest]
-        public IEnumerator playerIdlePlayerShootingTest()
+        public IEnumerator PlayerShootingBulletInIdleStateTest()
         {
             setUpPlayer();
             yield return new WaitForSeconds(1.0f);
@@ -35,26 +35,13 @@ namespace Tests
             _playerController.handleIdlePlayerShooting();
             yield return new WaitForSeconds(0.1f);
             Assert.AreEqual(true, _animator.GetBool("isShooting"));
-            Assert.AreEqual(true, (_player.GetComponent<Rigidbody2D>().velocity.sqrMagnitude <= 0));
+            GameObject bullet = GameObject.Find("Bullet(Clone)");
+            Assert.AreEqual(-1, bullet.GetComponent<Bullet>().bulletDirection);
+            Assert.Less(bullet.GetComponent<Bullet>().transform.position.x, _player.GetComponent<Rigidbody2D>().position.x);
         }
 
         [UnityTest]
-        public IEnumerator playerWalkingRightShootingTest()
-        {
-            setUpPlayer();
-            _2dMovement.handleRightInput();
-            _2dMovement.moveRight();
-            _playerController.handleRightAnimation();
-            yield return new WaitForSeconds(1.0f);
-            Assert.AreEqual(true, _animator.GetBool("movingRight"));
-            _playerController.handleMovingPlayerShooting();
-            Assert.AreEqual(true, _animator.GetBool("isShooting"));
-            yield return new WaitForSeconds(0.1f);
-            Assert.AreEqual(true, (_player.GetComponent<Rigidbody2D>().velocity.sqrMagnitude > 0));
-        }
-
-        [UnityTest]
-        public IEnumerator playerWalkingLeftShootingTest()
+        public IEnumerator PlayerShootingBulletInWalkingLeftStateTest()
         {
             setUpPlayer();
             _2dMovement.handleLeftInput();
@@ -63,13 +50,32 @@ namespace Tests
             yield return new WaitForSeconds(1.0f);
             Assert.AreEqual(true, _animator.GetBool("movingLeft"));
             _playerController.handleMovingPlayerShooting();
-            Assert.AreEqual(true, _animator.GetBool("isShooting"));
             yield return new WaitForSeconds(0.1f);
-            Assert.AreEqual(true, (_player.GetComponent<Rigidbody2D>().velocity.sqrMagnitude > 0));
+            Assert.AreEqual(true, _animator.GetBool("isShooting"));
+            GameObject bullet = GameObject.Find("Bullet(Clone)");
+            Assert.AreEqual(-1, bullet.GetComponent<Bullet>().bulletDirection);
+            Assert.Less(bullet.GetComponent<Bullet>().transform.position.x, _player.GetComponent<Rigidbody2D>().position.x);
         }
 
         [UnityTest]
-        public IEnumerator playerJumpingtShootingTest()
+        public IEnumerator PlayerShootingBulletInWalkingRightStateTest()
+        {
+            setUpPlayer();
+            _2dMovement.handleRightInput();
+            _2dMovement.moveRight();
+            _playerController.handleRightAnimation();
+            yield return new WaitForSeconds(1.0f);
+            Assert.AreEqual(true, _animator.GetBool("movingRight"));
+            _playerController.handleMovingPlayerShooting();
+            yield return new WaitForSeconds(0.1f);
+            Assert.AreEqual(true, _animator.GetBool("isShooting"));
+            GameObject bullet = GameObject.Find("Bullet(Clone)");
+            Assert.AreEqual(1, bullet.GetComponent<Bullet>().bulletDirection);
+            Assert.Greater(bullet.GetComponent<Bullet>().transform.position.x, _player.GetComponent<Rigidbody2D>().position.x);
+        }
+
+        [UnityTest]
+        public IEnumerator PlayerShootingBulletInJumpingTest()
         {
             setUpPlayer();
             _2dMovement.handleJumpInput();
@@ -77,9 +83,11 @@ namespace Tests
             yield return new WaitForSeconds(0.05f);
             Assert.AreEqual(false, _animator.GetBool("grounded"));
             _playerController.handleMovingPlayerShooting();
-            Assert.AreEqual(true, _animator.GetBool("isShooting"));
             yield return new WaitForSeconds(0.1f);
-            Assert.AreEqual(true, (_player.GetComponent<Rigidbody2D>().velocity.sqrMagnitude > 0));
+            Assert.AreEqual(true, _animator.GetBool("isShooting"));
+            GameObject bullet = GameObject.Find("Bullet(Clone)");
+            Assert.AreEqual(-1, bullet.GetComponent<Bullet>().bulletDirection);
+            Assert.Less(bullet.GetComponent<Bullet>().transform.position.x, _player.GetComponent<Rigidbody2D>().position.x);
         }
 
         private void setUpPlayer()
