@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
     void updatePlayerAnimationStates()
     {
+        getShootInput();
         if (_2dMovement.getIsMovingLeft() && _2dMovement.getIsGrounded() && !_animator.GetBool("movingLeft"))
         {
             handleLeftAnimation();
@@ -63,7 +64,6 @@ public class PlayerController : MonoBehaviour
         {
             handleIdleAnimation();
         }
-        getShootInput();
     }
 
     public void handleLeftAnimation()
