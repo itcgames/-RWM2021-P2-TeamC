@@ -62,7 +62,7 @@ namespace Tests
             _2dMovement.impluseJumpVel = 30.0f;
             _2dMovement.handleRightInput();
             _2dMovement.moveRight();
-            yield return new WaitForSeconds(3.5f);
+            yield return new WaitForSeconds(2.5f);
             _2dMovement.intialJump();
             yield return new WaitForSeconds(1.0f);
             Assert.Greater(_rb.position.y, intialYPos);
@@ -76,7 +76,7 @@ namespace Tests
             setUpPlayer();
             _2dMovement.handleLeftInput();
             _2dMovement.moveLeft();
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(2.5f);
             Assert.AreEqual(false, _animator.GetBool("walkingLeft"));
         }
 

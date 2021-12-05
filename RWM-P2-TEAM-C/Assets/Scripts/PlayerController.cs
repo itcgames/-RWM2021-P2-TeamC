@@ -7,6 +7,12 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
     private Rigidbody2D _rb;
     private Runtime2DMovement _2dMovement;
+    private bool _isShooting = false;
+    private bool idleshoot;
+    public float _timeBetweenShots;
+    public int direction = -1;
+    private BulletManager _bulletManager;
+
     void Start()
     {
         setUpPlayer();
@@ -26,6 +32,7 @@ public class PlayerController : MonoBehaviour
             _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             _rb.gravityScale = 3;
         }
+        _bulletManager = gameObject.GetComponent<BulletManager>();
     }
 
     // Update is called once per frame
@@ -36,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     void updatePlayerAnimationStates()
     {
+        getShootInput();
         if (_2dMovement.getIsMovingLeft() && _2dMovement.getIsGrounded() && !_animator.GetBool("movingLeft"))
         {
             handleLeftAnimation();
@@ -60,6 +68,10 @@ public class PlayerController : MonoBehaviour
         {
             handleIdleAnimation();
         }
+
+        Vector3 temp = transform.localScale;
+        if (temp.x < 0) { direction =  1; }
+        if (temp.x > 0) { direction = -1;  }
     }
 
     public void handleLeftAnimation()
@@ -120,5 +132,49 @@ public class PlayerController : MonoBehaviour
             if (temp.x > 0) { temp.x *= -1; }
             transform.localScale = temp;
         }
+    }
+
+    void getShootInput()
+    {
+        if (Input.GetKeyDown(KeyCode.P) && _bulletManager.canFire())
+        {
+            if (_rb.velocity.SqrMagnitude() <= 0 && _animator.GetBool("grounded"))
+            {
+                handleIdlePlayerShooting();
+            }
+            else if (_rb.velocity.SqrMagnitude() > 0 && !idleshoot)
+            {
+                handleMovingPlayerShooting();
+            }
+        }
+    }
+
+    public void handleIdlePlayerShooting()
+    {
+        _isShooting = true;
+        idleshoot = true;
+        _2dMovement.setStopMovement(true);
+        _bulletManager.shootBullet();
+        _animator.SetBool("isShooting", _isShooting);
+        StartCoroutine("shootingCooldown");
+    }
+
+    public void handleMovingPlayerShooting()
+    {
+        _isShooting = true;
+        _bulletManager.shootBullet();
+        _animator.SetBool("isShooting", _isShooting);
+        StartCoroutine("shootingCooldown");
+    }
+
+
+    IEnumerator shootingCooldown()
+    {
+        yield return new WaitForSeconds(_timeBetweenShots);
+        _isShooting = false;
+        idleshoot = false;
+        _2dMovement.setStopMovement(false);
+        yield return new WaitForSeconds(_timeBetweenShots);
+        _animator.SetBool("isShooting", _isShooting);
     }
 }
