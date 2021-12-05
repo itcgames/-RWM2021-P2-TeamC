@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private Runtime2DMovement _2dMovement;
     private bool _isShooting = false;
     public float _timeBetweenShots;
-    private bool _isIdleShooting = false;
+    bool idleshoot;
     void Start()
     {
         setUpPlayer();
@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour
 
     void updatePlayerAnimationStates()
     {
-        getShootInput();
         if (_2dMovement.getIsMovingLeft() && _2dMovement.getIsGrounded() && !_animator.GetBool("movingLeft"))
         {
             handleLeftAnimation();
@@ -64,6 +63,7 @@ public class PlayerController : MonoBehaviour
         {
             handleIdleAnimation();
         }
+        getShootInput();
     }
 
     public void handleLeftAnimation()
@@ -128,25 +128,41 @@ public class PlayerController : MonoBehaviour
 
     void getShootInput()
     {
-        if (Input.GetKeyDown(KeyCode.P) && _rb.velocity.SqrMagnitude() <= 0 && _animator.GetBool("grounded"))
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            _isShooting = true;
-            _isIdleShooting = true;
-            _animator.SetBool("isShooting", _isShooting);
-            StartCoroutine("shootingCooldown");
-        }
-        else if (Input.GetKeyDown(KeyCode.P))
-        {
-            _isShooting = true;
-            _animator.SetBool("isShooting", _isShooting);
-            StartCoroutine("shootingCooldown");
+            if (_rb.velocity.SqrMagnitude() <= 0 && _animator.GetBool("grounded"))
+            {
+                handleIdlePlayerShooting();
+            }
+            else if (_rb.velocity.SqrMagnitude() > 0 && !idleshoot)
+            {
+                handleMovingPlayerShooting();
+            }
         }
     }
+
+    public void handleIdlePlayerShooting()
+    {
+        _isShooting = true;
+        idleshoot = true;
+        _2dMovement.setStopMovement(true);
+        _animator.SetBool("isShooting", _isShooting);
+        StartCoroutine("shootingCooldown");
+    }
+
+    public void handleMovingPlayerShooting()
+    {
+        _isShooting = true;
+        _animator.SetBool("isShooting", _isShooting);
+        StartCoroutine("shootingCooldown");
+    }
+
+
     IEnumerator shootingCooldown()
     {
-        if (_isIdleShooting) { _2dMovement.setStopMovement(true); _isIdleShooting = false; }
         yield return new WaitForSeconds(_timeBetweenShots);
         _isShooting = false;
+        idleshoot = false;
         _2dMovement.setStopMovement(false);
         yield return new WaitForSeconds(_timeBetweenShots);
         _animator.SetBool("isShooting", _isShooting);
