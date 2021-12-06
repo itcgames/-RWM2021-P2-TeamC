@@ -247,6 +247,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -275,7 +276,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCam: {fileID: 0}
-  transitionPoints: []
+  transitionPoints:
+  - {x: -10, y: 0}
+  - {x: 20, y: 0}
   speed: 0.1
   m_moving: 0
 --- !u!20 &519420031
@@ -335,6 +338,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fd17ebb69c343c4a9d130a49d2eac15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  type: 0
+  transitionPoint: {x: 20.014622, y: -0.22}
 --- !u!1 &629650137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,6 +1084,7 @@ GameObject:
   - component: {fileID: 1822607367}
   - component: {fileID: 1822607366}
   - component: {fileID: 1822607365}
+  - component: {fileID: 1822607368}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -1157,6 +1176,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1822607368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822607364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2eaf8577c32aec468f09bcd72fdf3ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointOne: 1
+  pointTwo: 0
+  type: 0
 --- !u!1 &2110352886
 GameObject:
   m_ObjectHideFlags: 0
