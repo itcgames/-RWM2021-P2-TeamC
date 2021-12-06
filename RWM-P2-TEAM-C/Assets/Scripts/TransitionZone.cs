@@ -26,6 +26,7 @@ public class TransitionZone : MonoBehaviour
         }
     }
 
+    /*
     // begin transition on collision with player only
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -45,5 +46,5 @@ public class TransitionZone : MonoBehaviour
                 swap = !swap;
             }   
         }
-    }
+    }*/
 }

@@ -112,7 +112,7 @@ public class CameraMover : MonoBehaviour
 
         foreach (Behaviour behaviour in GetComponents<Behaviour>())
         {
-            if (behaviour.enabled)
+            if (!behaviour.enabled)
             {
                 if (behaviour != mainCam)
                 {
