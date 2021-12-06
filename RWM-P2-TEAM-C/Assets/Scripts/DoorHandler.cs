@@ -19,7 +19,6 @@ public class DoorHandler : MonoBehaviour
             if (!Camera.main.GetComponent<CameraMover>().m_moving)
             {
                 GameObject player = GameObject.FindWithTag("Player");
-                player.GetComponent<Runtime2DMovement>().m_paused = true;
                 player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
                 player.GetComponent<Animator>().enabled = false;
                 Animator anim = GetComponent<Animator>();
