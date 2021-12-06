@@ -195,16 +195,13 @@ public class PlayerController : MonoBehaviour
             if (_health - healthReduction <= 0)
             {
                 _health = 0;
-                _invincible = true;
             }
             else
             {
                 _health -= healthReduction;
                 _invincible = true;
+                StartCoroutine(damagedStateTime());
             }
-
-
-            StartCoroutine(damagedStateTime());
         }
 
     }
@@ -254,11 +251,13 @@ public class PlayerController : MonoBehaviour
     {
         if (_health <= 0)
         {
-            GetComponent<OnDeath>().hasDied(); // begin death animation 
-            GetComponent<SpriteRenderer>().enabled = false; // make it so megaman's body is no longer visible
-            GetComponent<BoxCollider2D>().enabled = false; // disable collisions
-            GetComponent<Rigidbody2D>().gravityScale = 0.0f; // suspend megaman mid-air
-            this.enabled = false; // disable the movement controller script now
+            gameObject.GetComponent<OnDeath>().hasDied();
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            gameObject.GetComponent<Runtime2DMovement>().enabled = false;
+            gameObject.GetComponent<BulletManager>().enabled = false;
+            gameObject.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+            this.enabled = false;
         }
     }
 
