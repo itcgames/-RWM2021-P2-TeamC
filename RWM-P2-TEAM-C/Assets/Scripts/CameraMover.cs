@@ -130,7 +130,7 @@ public class CameraMover : MonoBehaviour
 
         player.GetComponent<Runtime2DMovement>().m_paused = false;
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-        player.GetComponent<Animator>().speed = 1;
+        player.GetComponent<Animator>().enabled = true;
         m_moving = false;
         yield break;
     }
