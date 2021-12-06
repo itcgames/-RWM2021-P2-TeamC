@@ -58,14 +58,26 @@ public class Bomber : MonoBehaviour
         }
     }
 
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            if (!col.gameObject.GetComponent<PlayerController>().getIsInvincible())
+            {
+                col.gameObject.GetComponent<PlayerController>().decreseHealth(1);
+            }
+        }
+    }
+
     public void Damage(float damage)
     {
-        if (health > 0)
+        if (health - damage > 0)
         {
             health -= damage;
         }
         else
         {
+            health = 0;
             Destroy(this.gameObject);
         }
     }
