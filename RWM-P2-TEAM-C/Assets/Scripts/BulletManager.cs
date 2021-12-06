@@ -38,6 +38,7 @@ public class BulletManager : MonoBehaviour
     {
         if (currentBulletTotal < MAX_BULLETS)
         {
+            SoundManagerScript.PlaySound("buster");
             Instantiate(bulletPrefab);
             bulletPrefab.GetComponent<Bullet>().bulletManager = this;
             bulletPrefab.GetComponent<Bullet>().speed = bulletMoveSpeed;
