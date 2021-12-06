@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public int direction = -1;
     private BulletManager _bulletManager;
     private const int _MAX_HEALTH = 15;
-    private int _health = _MAX_HEALTH;
+    public int _health = _MAX_HEALTH;
     private bool _invincible = false;
     public float _hurtTimer = 0.25f;
     public float _invincibleTimer = 2.0f;
@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         updatePlayerAnimationStates();
+        setUpDeadAnimation();
     }
 
     void updatePlayerAnimationStates()
@@ -242,6 +243,23 @@ public class PlayerController : MonoBehaviour
     public bool getIsInvincible()
     {
         return _invincible;
+    }
+
+    public int getHealth()
+    {
+        return _health;
+    }
+
+    public void setUpDeadAnimation()
+    {
+        if (_health <= 0)
+        {
+            GetComponent<OnDeath>().hasDied(); // begin death animation 
+            GetComponent<SpriteRenderer>().enabled = false; // make it so megaman's body is no longer visible
+            GetComponent<BoxCollider2D>().enabled = false; // disable collisions
+            GetComponent<Rigidbody2D>().gravityScale = 0.0f; // suspend megaman mid-air
+            this.enabled = false; // disable the movement controller script now
+        }
     }
 
 }
