@@ -29,7 +29,7 @@ namespace Tests
 
         private void setUpEnemy()
         {
-            Enemy = GameObject.Find("Follower");
+            Enemy = GameObject.FindGameObjectWithTag("Follower");
             EnemyAnimator = Enemy.GetComponent<Animator>();
             Follower = Enemy.GetComponent<FlyingFollower>();
             FollowerController = Enemy.GetComponent<FollowerAnimationController>();
@@ -47,7 +47,7 @@ namespace Tests
         public IEnumerator UnfurledTest()
         {
             setUpEnemy();
-            Player = GameObject.Find("Player");
+            Player = GameObject.FindGameObjectWithTag("Player");
             Player.GetComponent<Rigidbody2D>().position = new Vector2(Enemy.GetComponent<Rigidbody2D>().position.x - 2, Enemy.GetComponent<Rigidbody2D>().position.y - 2);
             yield return new WaitForSeconds(1.0f);
             Assert.AreEqual("Unfurl", EnemyAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
@@ -57,7 +57,7 @@ namespace Tests
         public IEnumerator FlyingTest()
         {
             setUpEnemy();
-            Player = GameObject.Find("Player");
+            Player = GameObject.FindGameObjectWithTag("Player");
             Player.GetComponent<Rigidbody2D>().position = new Vector2(Enemy.GetComponent<Rigidbody2D>().position.x - 2, Enemy.GetComponent<Rigidbody2D>().position.y - 2);
             yield return new WaitForSeconds(1.5f);
             Assert.AreEqual("Flying", EnemyAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name);

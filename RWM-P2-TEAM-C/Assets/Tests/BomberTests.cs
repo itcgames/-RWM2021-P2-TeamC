@@ -33,7 +33,7 @@ namespace Tests
         [UnityTest]
         public IEnumerator MovementTest()
         {
-            Enemy = GameObject.Find("Bomber");
+            Enemy = GameObject.FindGameObjectWithTag("Bomber");
             float initialPos = Enemy.GetComponent<Rigidbody2D>().position.x;
             yield return new WaitForSeconds(0.5f);
             Assert.Less(Enemy.GetComponent<Rigidbody2D>().position.x, initialPos);
@@ -42,7 +42,7 @@ namespace Tests
         [UnityTest]
         public IEnumerator BombSpawnTest()
         {
-            bomb = GameObject.Find("Bomb");
+            bomb = GameObject.FindGameObjectWithTag("Bomb");
             yield return new WaitForSeconds(0.5f);
             Assert.IsNotNull(bomb);
         }
@@ -50,7 +50,7 @@ namespace Tests
         [UnityTest]
         public IEnumerator BombCarryingTest()
         {
-            bomb = GameObject.Find("Bomb");
+            bomb = GameObject.FindGameObjectWithTag("Bomb");
             float initialPos = bomb.GetComponent<Rigidbody2D>().position.x;
             yield return new WaitForSeconds(0.5f);
             Assert.Less(bomb.GetComponent<Rigidbody2D>().position.x, initialPos);
@@ -59,8 +59,8 @@ namespace Tests
         [UnityTest]
         public IEnumerator BombDropTest()
         {
-            bomb = GameObject.Find("Bomb");
-            Player = GameObject.Find("Player");
+            bomb = GameObject.FindGameObjectWithTag("Bomb");
+            Player = GameObject.FindGameObjectWithTag("Player");
             Player.transform.position = new Vector3(bomb.transform.position.x - 3, bomb.transform.position.y - 1, Player.transform.position.z);
             float initialPos = bomb.GetComponent<Rigidbody2D>().position.x;
             yield return new WaitForSeconds(0.1f);
@@ -70,17 +70,17 @@ namespace Tests
         [UnityTest]
         public IEnumerator BombExplosionTest()
         {
-            bomb = GameObject.Find("Bomb");
+            bomb = GameObject.FindGameObjectWithTag("Bomb");
             bomb.GetComponent<Bomb>().dropped = true;
-            shrapnel = GameObject.Find("Shrapnel");
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(1.0f);
+            shrapnel = GameObject.FindGameObjectWithTag("Shrapnel");
             Assert.IsNotNull(shrapnel);
         }
 
         [UnityTest]
         public IEnumerator BombDamageTest()
         {
-            bomb = GameObject.Find("Bomb");
+            bomb = GameObject.FindGameObjectWithTag("Bomb");
             float initialHealth = bomb.GetComponent<Bomb>().getHealth();
             bomb.GetComponent<Bomb>().Damage(0.5f);
             yield return new WaitForSeconds(0.1f);
@@ -90,7 +90,7 @@ namespace Tests
         [UnityTest]
         public IEnumerator BomberDamageTest()
         {
-            Enemy = GameObject.Find("Bomber");
+            Enemy = GameObject.FindGameObjectWithTag("Bomber");
             float initialHealth = Enemy.GetComponent<Bomber>().getHealth();
             Enemy.GetComponent<Bomber>().Damage(0.5f);
             yield return new WaitForSeconds(0.1f);
@@ -100,9 +100,9 @@ namespace Tests
         [UnityTest]
         public IEnumerator EggCrackTest()
         {
-            bomb = GameObject.Find("Bomb");
+            bomb = GameObject.FindGameObjectWithTag("Bomb");
             bomb.GetComponent<Bomb>().dropped = true;
-            yield return new WaitForSeconds(1.16f);
+            yield return new WaitForSeconds(0.94f);
             Assert.AreEqual("pipi copipi spritesheet_2", bomb.GetComponent<SpriteRenderer>().sprite.name);
         }
     }

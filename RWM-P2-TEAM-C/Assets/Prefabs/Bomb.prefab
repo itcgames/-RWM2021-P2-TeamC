@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5901618009943190602}
   m_Layer: 0
   m_Name: Bomb
-  m_TagString: Untagged
+  m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,6 +122,8 @@ MonoBehaviour:
   dropped: 0
   cracked: {fileID: -4641593119166046098, guid: 9ec9039fbb64f574b82c4c585d966b38,
     type: 3}
+  ShrapnelPassed: {fileID: 3322553872814111815, guid: e25f02ecd66fa094e826c58f7570ceca,
+    type: 3}
 --- !u!61 &5901618009943190602
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132,7 +134,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
