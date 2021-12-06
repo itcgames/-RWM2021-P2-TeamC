@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class PlayerController : MonoBehaviour
     public float _hurtTimer = 0.25f;
     public float _invincibleTimer = 2.0f;
     public float _damagedFlashRate = 0.25f;
-
+    public Text megaManHealthText;
     void Start()
     {
         setUpPlayer();
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
             _rb.gravityScale = 3;
         }
         _bulletManager = gameObject.GetComponent<BulletManager>();
+        megaManHealthText.text = "MEGAMAN HEALTH " + _health;
     }
 
     // Update is called once per frame
@@ -195,10 +197,12 @@ public class PlayerController : MonoBehaviour
             if (_health - healthReduction <= 0)
             {
                 _health = 0;
+                megaManHealthText.text = "MEGAMAN HEALTH " + _health;
             }
             else
             {
                 _health -= healthReduction;
+                megaManHealthText.text = "MEGAMAN HEALTH " + _health;
                 _invincible = true;
                 StartCoroutine(damagedStateTime());
             }
