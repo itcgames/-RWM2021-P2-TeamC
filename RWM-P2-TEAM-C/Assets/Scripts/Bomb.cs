@@ -9,7 +9,7 @@ public class Bomb : MonoBehaviour
 
     // Bomber's GameObject
     private GameObject bomber;
-    // Shrapnel GameObject
+    // Temporary Shrapnel GameObject
     private GameObject shrapnel;
     // player gameobject
     private GameObject player;
@@ -17,17 +17,22 @@ public class Bomb : MonoBehaviour
     public float maxHealth = 1.0f;
     // Current Health
     private float health;
+    // Shell visible timer
+    private float timer = 0;
     // Controls id the bomb is dropped;
     public bool dropped = false;
+    // cracked egg sprite
+    public Sprite cracked;
+    // shrapnel object
+    public GameObject ShrapnelPassed;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
-        player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         health = maxHealth;
-        bomber = GameObject.Find("Bomber");
-        rb.velocity = new Vector2(-bomber.GetComponent<Bomber>().speed, rb.velocity.y);
+        rb.velocity = new Vector2(-this.GetComponentInParent<Bomber>().speed, rb.velocity.y);
     }
 
     // Update is called once per frame
@@ -39,24 +44,37 @@ public class Bomb : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.name == "Ground")
+        Debug.Log(col.gameObject.tag);
+        timer = Time.deltaTime + 2.0f;
+        if (col.gameObject.tag == "Ground")
         {
+            gameObject.GetComponent<SpriteRenderer>().sprite = cracked;
             for (int i = 0; i < 3; i++)
             {
-                shrapnel = Instantiate(GameObject.Find("Shrapnel"), new Vector3(rb.position.x, rb.position.y + i, 0), Quaternion.identity);
+                shrapnel = Instantiate(ShrapnelPassed, new Vector3(rb.position.x, rb.position.y + i, 0), Quaternion.identity);
                 if(rb.position.x < player.GetComponent<Rigidbody2D>().position.x)
                 {
-                    shrapnel.GetComponent<Rigidbody2D>().velocity = new Vector2(bomber.GetComponent<Bomber>().speed, rb.velocity.y);
+                    shrapnel.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponentInParent<Bomber>().speed, 0.0f);
+                    shrapnel.GetComponent<Transform>().localScale = new Vector3(shrapnel.GetComponent<Transform>().localScale.x * -1, shrapnel.GetComponent<Transform>().localScale.y, shrapnel.GetComponent<Transform>().localScale.z);
                 }
                 else if(rb.position.x > player.GetComponent<Rigidbody2D>().position.x)
                 {
-                    shrapnel.GetComponent<Rigidbody2D>().velocity = new Vector2(-bomber.GetComponent<Bomber>().speed, rb.velocity.y);
+                    shrapnel.GetComponent<Rigidbody2D>().velocity = new Vector2(-this.GetComponentInParent<Bomber>().speed, 0.0f);
                 }
             }
+
+            while (timer < 2.0f)
+            {
+                Destroy(this.gameObject);
+                timer += Time.deltaTime;
+            }
         }
-        Destroy(this.gameObject);
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     public void Damage(float damage)

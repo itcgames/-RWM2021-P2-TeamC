@@ -9,6 +9,9 @@ TagManager:
   - Bullet
   - Ledge
   - Boundary
+  - Bomb
+  - Bomber
+  - Shrapnel
   layers:
   - Default
   - TransparentFX
