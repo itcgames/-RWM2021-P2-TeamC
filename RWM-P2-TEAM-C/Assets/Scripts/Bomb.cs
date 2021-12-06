@@ -25,6 +25,7 @@ public class Bomb : MonoBehaviour
     public Sprite cracked;
     // shrapnel object
     public GameObject ShrapnelPassed;
+    private bool _timerStarted = false;
 
     // Start is called before the first frame update
     void Start()
@@ -38,18 +39,37 @@ public class Bomb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(dropped && rb.gravityScale != 1)
+        if (!_timerStarted)
         {
-            rb.gravityScale = 1;
+            if (dropped && rb.gravityScale != 1)
+            {
+                rb.gravityScale = 1;
+            }
         }
+
+        if (_timerStarted)
+        {
+            if (timer > 0.0f)
+            {
+                timer -= Time.deltaTime;
+            }
+            else
+            {
+                _timerStarted = false;
+                Destroy(this.gameObject);
+            }
+        }
+
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log(col.gameObject.tag);
-        timer = Time.deltaTime + 2.0f;
         if (col.gameObject.tag == "Ground")
         {
+            timer = Time.deltaTime + 0.5f;
+            _timerStarted = true;
+            rb.velocity = new Vector2(0, 0);
+            rb.gravityScale = 0;
             gameObject.GetComponent<SpriteRenderer>().sprite = cracked;
             for (int i = 0; i < 3; i++)
             {
@@ -64,16 +84,24 @@ public class Bomb : MonoBehaviour
                     shrapnel.GetComponent<Rigidbody2D>().velocity = new Vector2(-this.GetComponentInParent<Bomber>().speed, 0.0f);
                 }
             }
-
-            while (timer < 2.0f)
-            {
-                Destroy(this.gameObject);
-                timer += Time.deltaTime;
-            }
         }
         else
         {
-            Destroy(this.gameObject);
+            if (gameObject.GetComponent<SpriteRenderer>().sprite != cracked)
+            {
+                if (col.gameObject.tag == "Player")
+                {
+                    if (!col.gameObject.GetComponent<PlayerController>().getIsInvincible())
+                    {
+                        col.gameObject.GetComponent<PlayerController>().decreseHealth(3);
+                        Destroy(this.gameObject);
+                    }
+                }
+                else if (col.gameObject.tag == "Bullet")
+                {
+                    Destroy(this.gameObject);
+                }
+            }
         }
     }
 

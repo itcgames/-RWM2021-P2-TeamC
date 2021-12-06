@@ -12,6 +12,12 @@ public class PlayerController : MonoBehaviour
     public float _timeBetweenShots;
     public int direction = -1;
     private BulletManager _bulletManager;
+    private const int _MAX_HEALTH = 15;
+    private int _health = _MAX_HEALTH;
+    private bool _invincible = false;
+    public float _hurtTimer = 0.25f;
+    public float _invincibleTimer = 2.0f;
+    public float _damagedFlashRate = 0.25f;
 
     void Start()
     {
@@ -43,7 +49,10 @@ public class PlayerController : MonoBehaviour
 
     void updatePlayerAnimationStates()
     {
-        getShootInput();
+        if (!_invincible) 
+        { 
+            getShootInput(); 
+        }
         if (_2dMovement.getIsMovingLeft() && _2dMovement.getIsGrounded() && !_animator.GetBool("movingLeft"))
         {
             handleLeftAnimation();
@@ -177,4 +186,62 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(_timeBetweenShots);
         _animator.SetBool("isShooting", _isShooting);
     }
+
+    public void decreseHealth(int healthReduction)
+    {
+        if (!_invincible)
+        {
+            if (_health - healthReduction <= 0)
+            {
+                _health = 0;
+                _invincible = true;
+            }
+            else
+            {
+                _health -= healthReduction;
+                _invincible = true;
+            }
+
+
+            StartCoroutine(damagedStateTime());
+        }
+
+    }
+
+    IEnumerator invincibilityTime()
+    {
+        StartCoroutine(invincibilityFlash());
+
+        yield return new WaitForSeconds(_invincibleTimer);
+
+        _invincible = false;
+    }
+
+    IEnumerator damagedStateTime()
+    {
+        yield return new WaitForSeconds(_hurtTimer);
+
+        StartCoroutine(invincibilityTime());
+    }
+
+    IEnumerator invincibilityFlash()
+    {
+        while (_invincible)
+        {
+            GetComponent<SpriteRenderer>().enabled = false;
+
+            yield return new WaitForSeconds(_damagedFlashRate);
+
+            GetComponent<SpriteRenderer>().enabled = true;
+
+            yield return new WaitForSeconds(_damagedFlashRate);
+        }
+        GetComponent<SpriteRenderer>().enabled = true;
+    }
+
+    public bool getIsInvincible()
+    {
+        return _invincible;
+    }
+
 }

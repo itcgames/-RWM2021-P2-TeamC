@@ -2,23 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shrapnel : MonoBehaviour
+public class FlyingFollwerCollisions : MonoBehaviour
 {
-    // player gameobject
-    private GameObject player;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnTriggerStay2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player")
@@ -26,7 +11,6 @@ public class Shrapnel : MonoBehaviour
             if (!col.gameObject.GetComponent<PlayerController>().getIsInvincible())
             {
                 col.gameObject.GetComponent<PlayerController>().decreseHealth(1);
-                Destroy(this.gameObject);
             }
         }
     }
