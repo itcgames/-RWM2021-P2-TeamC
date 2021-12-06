@@ -209,6 +209,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                SoundManagerScript.PlaySound("playerHit");
                 _health -= healthReduction;
                 megaManHealthText.text = "MEGAMAN HEALTH " + _health;
                 _invincible = true;

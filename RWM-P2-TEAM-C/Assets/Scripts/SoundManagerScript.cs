@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundManagerScript : MonoBehaviour
 {
-    public static AudioClip buster, death, landing, dink, bulletHit;
+    public static AudioClip buster, death, landing, dink, bulletHit, playerHit;
     static AudioSource audioSrc;
 
     // Start is called before the first frame update
@@ -15,6 +15,7 @@ public class SoundManagerScript : MonoBehaviour
         landing = Resources.Load<AudioClip>("land");
         dink = Resources.Load<AudioClip>("dink");
         bulletHit = Resources.Load<AudioClip>("enemy_hit");
+        playerHit = Resources.Load<AudioClip>("hit");
 
         audioSrc = GetComponent<AudioSource>();
     }
@@ -43,6 +44,9 @@ public class SoundManagerScript : MonoBehaviour
                 break;
             case "bulletHit":
                 audioSrc.PlayOneShot(bulletHit);
+                break;
+            case "playerHit":
+                audioSrc.PlayOneShot(playerHit);
                 break;
         }
     }
