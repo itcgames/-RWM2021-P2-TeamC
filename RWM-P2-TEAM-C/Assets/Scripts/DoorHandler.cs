@@ -18,6 +18,10 @@ public class DoorHandler : MonoBehaviour
         {
             if (!Camera.main.GetComponent<CameraMover>().m_moving)
             {
+                GameObject player = GameObject.FindWithTag("Player");
+                player.GetComponent<Runtime2DMovement>().m_paused = true;
+                player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+                player.GetComponent<Animator>().speed = 0;
                 Animator anim = GetComponent<Animator>();
                 anim.SetBool("opening", true);
                 anim.SetBool("closing", false);
