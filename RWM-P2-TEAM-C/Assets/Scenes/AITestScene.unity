@@ -153,6 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65acb87fefd0f8042a3f8602ebf90a79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timeBetweenShots: 0
+  direction: -1
 --- !u!95 &1289308190
 Animator:
   serializedVersion: 3
@@ -547,6 +549,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4445250453518211759, guid: e3f4f20cb93d3f24ea0b363feff84dd7,
         type: 3}
+    - target: {fileID: 2581665534947295292, guid: 9ab170db3611677469f6a9fdb39cc557,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581665534947295292, guid: 9ab170db3611677469f6a9fdb39cc557,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581665534947295292, guid: 9ab170db3611677469f6a9fdb39cc557,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2581665534947295293, guid: 9ab170db3611677469f6a9fdb39cc557,
         type: 3}
       propertyPath: m_RootOrder
