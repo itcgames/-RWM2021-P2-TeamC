@@ -17,6 +17,16 @@ public class CameraMover : MonoBehaviour
         mainCam = Camera.main;
     }
 
+    void Update()
+    {
+        // this bool is used to move during a transition
+        // so while we're not transitioning, follow megaman
+        if(!m_moving)
+        {
+            mainCam.transform.position = new Vector3(GameObject.FindWithTag("Player").transform.position.x, mainCam.transform.position.y, mainCam.transform.position.z);
+        }
+    }
+
     public void AddPoint(Vector2 t_point)
     {
         transitionPoints.Add(t_point);
