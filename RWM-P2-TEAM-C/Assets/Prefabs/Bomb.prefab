@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5901618009943190600}
   - component: {fileID: 5901618009943190601}
   - component: {fileID: 5901618009943190602}
-  - component: {fileID: 5901618009570057701}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -28,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5901618009943190603}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 14, y: 5, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
@@ -121,6 +120,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1
   dropped: 0
+  cracked: {fileID: -4641593119166046098, guid: 9ec9039fbb64f574b82c4c585d966b38,
+    type: 3}
 --- !u!61 &5901618009943190602
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -147,22 +148,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.13, y: 0.1}
   m_EdgeRadius: 0
---- !u!95 &5901618009570057701
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5901618009943190603}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
