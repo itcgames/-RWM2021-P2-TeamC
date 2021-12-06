@@ -32,6 +32,10 @@ public class Bomber : MonoBehaviour
         rb.velocity = new Vector2(-speed, rb.velocity.y);
         bomb = Instantiate(GameObject.Find("Bomb"), new Vector3(rb.position.x, rb.position.y - 1.5f, 0), Quaternion.identity);
         bomb.transform.parent = this.transform;
+        if (!player)
+        {
+            player = GameObject.Find("Player");
+        }
     }
 
     // Update is called once per frame

@@ -122,6 +122,8 @@ MonoBehaviour:
   dropped: 0
   cracked: {fileID: -4641593119166046098, guid: 9ec9039fbb64f574b82c4c585d966b38,
     type: 3}
+  ShrapnelPassed: {fileID: 3322553872814111815, guid: e25f02ecd66fa094e826c58f7570ceca,
+    type: 3}
 --- !u!61 &5901618009943190602
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class Bomb : MonoBehaviour
 
     // Bomber's GameObject
     private GameObject bomber;
-    // Shrapnel GameObject
+    // Temporary Shrapnel GameObject
     private GameObject shrapnel;
     // player gameobject
     private GameObject player;
@@ -23,6 +23,8 @@ public class Bomb : MonoBehaviour
     public bool dropped = false;
     // cracked egg sprite
     public Sprite cracked;
+    // shrapnel object
+    public GameObject ShrapnelPassed;
 
     // Start is called before the first frame update
     void Start()
@@ -51,10 +53,11 @@ public class Bomb : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().sprite = cracked;
             for (int i = 0; i < 3; i++)
             {
-                shrapnel = Instantiate(GameObject.Find("Shrapnel"), new Vector3(rb.position.x, rb.position.y + i, 0), Quaternion.identity);
+                shrapnel = Instantiate(ShrapnelPassed, new Vector3(rb.position.x, rb.position.y + i, 0), Quaternion.identity);
                 if(rb.position.x < player.GetComponent<Rigidbody2D>().position.x)
                 {
                     shrapnel.GetComponent<Rigidbody2D>().velocity = new Vector2(bomber.GetComponent<Bomber>().speed, rb.velocity.y);
+                    shrapnel.GetComponent<Transform>().localScale = new Vector3(shrapnel.GetComponent<Transform>().localScale.x * -1, shrapnel.GetComponent<Transform>().localScale.y, shrapnel.GetComponent<Transform>().localScale.z);
                 }
                 else if(rb.position.x > player.GetComponent<Rigidbody2D>().position.x)
                 {
