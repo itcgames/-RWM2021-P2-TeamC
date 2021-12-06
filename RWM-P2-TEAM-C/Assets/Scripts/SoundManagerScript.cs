@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class SoundManagerScript : MonoBehaviour
 {
-    public static AudioClip buster;
+    public static AudioClip buster, death;
     static AudioSource audioSrc;
 
     // Start is called before the first frame update
     void Start()
     {
         buster = Resources.Load<AudioClip>("buster");
+        death = Resources.Load<AudioClip>("death");
 
         audioSrc = GetComponent<AudioSource>();
     }
@@ -27,6 +28,9 @@ public class SoundManagerScript : MonoBehaviour
         {
             case "buster":
                 audioSrc.PlayOneShot(buster);
+                break;
+            case "death":
+                audioSrc.PlayOneShot(death);
                 break;
         }
     }
