@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1823058899
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 1899764433161736106, guid: 9ec9039fbb64f574b82c4c585d966b38,
     type: 3}
@@ -147,6 +147,6 @@ MonoBehaviour:
   maxHealth: 5
   speed: 5
   player: {fileID: 0}
-  range: 5
+  range: 10
   bombPassed: {fileID: 5901618009943190603, guid: 1fb843f44354d3f44b2d683be981be46,
     type: 3}

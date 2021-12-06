@@ -12,6 +12,12 @@ public class PlayerController : MonoBehaviour
     public float _timeBetweenShots;
     public int direction = -1;
     private BulletManager _bulletManager;
+    private const int _MAX_HEALTH = 15;
+    public int _health = _MAX_HEALTH;
+    private bool _invincible = false;
+    public float _hurtTimer = 0.25f;
+    public float _invincibleTimer = 2.0f;
+    public float _damagedFlashRate = 0.25f;
 
     void Start()
     {
@@ -39,11 +45,15 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         updatePlayerAnimationStates();
+        setUpDeadAnimation();
     }
 
     void updatePlayerAnimationStates()
     {
-        getShootInput();
+        if (!_invincible) 
+        { 
+            getShootInput(); 
+        }
         if (_2dMovement.getIsMovingLeft() && _2dMovement.getIsGrounded() && !_animator.GetBool("movingLeft"))
         {
             handleLeftAnimation();
@@ -177,4 +187,78 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(_timeBetweenShots);
         _animator.SetBool("isShooting", _isShooting);
     }
+
+    public void decreseHealth(int healthReduction)
+    {
+        if (!_invincible)
+        {
+            if (_health - healthReduction <= 0)
+            {
+                _health = 0;
+            }
+            else
+            {
+                _health -= healthReduction;
+                _invincible = true;
+                StartCoroutine(damagedStateTime());
+            }
+        }
+
+    }
+
+    IEnumerator invincibilityTime()
+    {
+        StartCoroutine(invincibilityFlash());
+
+        yield return new WaitForSeconds(_invincibleTimer);
+
+        _invincible = false;
+    }
+
+    IEnumerator damagedStateTime()
+    {
+        yield return new WaitForSeconds(_hurtTimer);
+
+        StartCoroutine(invincibilityTime());
+    }
+
+    IEnumerator invincibilityFlash()
+    {
+        while (_invincible)
+        {
+            GetComponent<SpriteRenderer>().enabled = false;
+
+            yield return new WaitForSeconds(_damagedFlashRate);
+
+            GetComponent<SpriteRenderer>().enabled = true;
+
+            yield return new WaitForSeconds(_damagedFlashRate);
+        }
+        GetComponent<SpriteRenderer>().enabled = true;
+    }
+
+    public bool getIsInvincible()
+    {
+        return _invincible;
+    }
+
+    public int getHealth()
+    {
+        return _health;
+    }
+
+    public void setUpDeadAnimation()
+    {
+        if (_health <= 0)
+        {
+            gameObject.GetComponent<OnDeath>().hasDied();
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            gameObject.GetComponent<Runtime2DMovement>().enabled = false;
+            gameObject.GetComponent<BulletManager>().enabled = false;
+            gameObject.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+            this.enabled = false;
+        }
+    }
+
 }
