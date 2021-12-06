@@ -96,5 +96,14 @@ namespace Tests
             yield return new WaitForSeconds(0.1f);
             Assert.Less(Enemy.GetComponent<Bomber>().getHealth(), initialHealth);
         }
+
+        [UnityTest]
+        public IEnumerator EggCrackTest()
+        {
+            bomb = GameObject.Find("Bomb");
+            bomb.GetComponent<Bomb>().dropped = true;
+            yield return new WaitForSeconds(1.15f);
+            Assert.AreEqual("pipi copipi spritesheet_2", bomb.GetComponent<SpriteRenderer>().sprite.name);
+        }
     }
 }
