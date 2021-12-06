@@ -17,8 +17,12 @@ public class Bomb : MonoBehaviour
     public float maxHealth = 1.0f;
     // Current Health
     private float health;
+    // Shell visible timer
+    private float timer = 0;
     // Controls id the bomb is dropped;
     public bool dropped = false;
+    // cracked egg sprite
+    public Sprite cracked;
 
     // Start is called before the first frame update
     void Start()
@@ -41,8 +45,10 @@ public class Bomb : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.name == "Ground")
+        timer = Time.deltaTime + 2.0f;
+        if (col.gameObject.name == "Ground")
         {
+            gameObject.GetComponent<SpriteRenderer>().sprite = cracked;
             for (int i = 0; i < 3; i++)
             {
                 shrapnel = Instantiate(GameObject.Find("Shrapnel"), new Vector3(rb.position.x, rb.position.y + i, 0), Quaternion.identity);
@@ -55,8 +61,17 @@ public class Bomb : MonoBehaviour
                     shrapnel.GetComponent<Rigidbody2D>().velocity = new Vector2(-bomber.GetComponent<Bomber>().speed, rb.velocity.y);
                 }
             }
+
+            while (timer < 2.0f)
+            {
+                Destroy(this.gameObject);
+                timer += Time.deltaTime;
+            }
         }
-        Destroy(this.gameObject);
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     public void Damage(float damage)
