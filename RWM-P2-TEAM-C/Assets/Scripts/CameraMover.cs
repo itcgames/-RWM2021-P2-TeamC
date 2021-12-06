@@ -134,7 +134,8 @@ public class CameraMover : MonoBehaviour
         player.GetComponent<Animator>().enabled = true;
         player.GetComponent<PlayerController>().enabled = true;
 
-        m_lastDoor.GetComponent<DoorHandler>().CloseDoor();
+        if(m_lastDoor != null)
+            m_lastDoor.GetComponent<DoorHandler>().CloseDoor();
         
 
         m_moving = false;
