@@ -23,6 +23,9 @@ public class Bomber : MonoBehaviour
 
     private bool armed = true;
 
+    // Passed in Bomb Object
+    public GameObject bombPassed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,11 +33,11 @@ public class Bomber : MonoBehaviour
         health = maxHealth;
         // Movement
         rb.velocity = new Vector2(-speed, rb.velocity.y);
-        bomb = Instantiate(GameObject.Find("Bomb"), new Vector3(rb.position.x, rb.position.y - 1.5f, 0), Quaternion.identity);
+        bomb = Instantiate(bombPassed, new Vector3(rb.position.x, rb.position.y - 1.5f, 0), Quaternion.identity);
         bomb.transform.parent = this.transform;
         if (!player)
         {
-            player = GameObject.Find("Player");
+            player = GameObject.FindGameObjectWithTag("Player");
         }
     }
 
