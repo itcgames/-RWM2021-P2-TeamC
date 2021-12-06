@@ -447,6 +447,7 @@ GameObject:
   - component: {fileID: 706003889}
   - component: {fileID: 706003890}
   - component: {fileID: 706003891}
+  - component: {fileID: 706003892}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -574,6 +575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeBetweenShots: 0.25
   direction: -1
+  _health: 15
   _hurtTimer: 0
   _invincibleTimer: 1.5
   _damagedFlashRate: 0.1
@@ -615,6 +617,23 @@ MonoBehaviour:
   bulletMoveSpeed: 20
   bulletLifeTime: 1.5
   currentBulletTotal: 0
+--- !u!114 &706003892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706003884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 124f0bd19c9d15d4c8feb78f19eedd3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathOrbPrefab: {fileID: 2349235026821315469, guid: 657438a943269f54a9b7f401ca30cfe9,
+    type: 3}
+  willRestartLevel: 1
+  timeToRestart: 5
+  orbSpeed: 2
 --- !u!1 &794939022
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public int direction = -1;
     private BulletManager _bulletManager;
     private const int _MAX_HEALTH = 15;
-    private int _health = _MAX_HEALTH;
+    public int _health = _MAX_HEALTH;
     private bool _invincible = false;
     public float _hurtTimer = 0.25f;
     public float _invincibleTimer = 2.0f;
@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         updatePlayerAnimationStates();
+        setUpDeadAnimation();
     }
 
     void updatePlayerAnimationStates()
@@ -194,16 +195,13 @@ public class PlayerController : MonoBehaviour
             if (_health - healthReduction <= 0)
             {
                 _health = 0;
-                _invincible = true;
             }
             else
             {
                 _health -= healthReduction;
                 _invincible = true;
+                StartCoroutine(damagedStateTime());
             }
-
-
-            StartCoroutine(damagedStateTime());
         }
 
     }
@@ -242,6 +240,25 @@ public class PlayerController : MonoBehaviour
     public bool getIsInvincible()
     {
         return _invincible;
+    }
+
+    public int getHealth()
+    {
+        return _health;
+    }
+
+    public void setUpDeadAnimation()
+    {
+        if (_health <= 0)
+        {
+            gameObject.GetComponent<OnDeath>().hasDied();
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            gameObject.GetComponent<Runtime2DMovement>().enabled = false;
+            gameObject.GetComponent<BulletManager>().enabled = false;
+            gameObject.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+            this.enabled = false;
+        }
     }
 
 }
