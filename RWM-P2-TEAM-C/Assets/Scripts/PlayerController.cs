@@ -50,6 +50,14 @@ public class PlayerController : MonoBehaviour
         setUpDeadAnimation();
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Ground" && !_animator.GetBool("grounded"))
+        {
+            SoundManagerScript.PlaySound("land");
+        }
+    }
+
     void updatePlayerAnimationStates()
     {
         if (!_invincible) 
