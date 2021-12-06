@@ -22,6 +22,7 @@ public class TransitionZone : MonoBehaviour
                 Camera.main.GetComponent<CameraMover>().StartMovement(pointTwo, type);
             }
 
+            Camera.main.GetComponent<CameraMover>().m_lastDoor = this.gameObject;
             swap = !swap;
         }
     }

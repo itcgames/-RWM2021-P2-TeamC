@@ -277,10 +277,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCam: {fileID: 0}
   transitionPoints:
-  - {x: -10, y: 0}
-  - {x: 20, y: 0}
+  - {x: 0, y: 0}
+  - {x: 15, y: 0}
   speed: 0.1
   m_moving: 0
+  m_lastDoor: {fileID: 0}
+  player: {fileID: 0}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

@@ -9,6 +9,8 @@ public class CameraMover : MonoBehaviour
     public float speed = 0.1f;
     public bool m_moving;
 
+    public GameObject m_lastDoor;
+
     private Vector2 chosenPoint;
     private List<Behaviour> heldComponents;
 
@@ -130,6 +132,11 @@ public class CameraMover : MonoBehaviour
 
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         player.GetComponent<Animator>().enabled = true;
+        player.GetComponent<PlayerController>().enabled = true;
+
+        m_lastDoor.GetComponent<DoorHandler>().CloseDoor();
+        
+
         m_moving = false;
         yield break;
     }
