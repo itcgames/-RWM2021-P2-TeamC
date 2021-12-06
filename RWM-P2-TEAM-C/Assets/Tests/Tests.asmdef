@@ -5,7 +5,8 @@
         "UnityEditor.TestRunner",
         "Scripts",
         "2DM",
-        "ScreenTransition"
+        "ScreenTransition",
+        "PlatformerEnemyBehaviour"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
