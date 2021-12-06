@@ -255,6 +255,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_health <= 0)
         {
+            SoundManagerScript.PlaySound("death");
             gameObject.GetComponent<OnDeath>().hasDied();
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
