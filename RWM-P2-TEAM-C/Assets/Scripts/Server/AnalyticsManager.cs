@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
+using System.Net;
 
 [System.Serializable]
 public class GameState
@@ -11,8 +13,10 @@ public class GameState
 
 public class AnalyticsManager : MonoBehaviour
 {
-    public static IEnumerator PostMethod(string jsonData)
+    public static IEnumerator PostMethod(GameState t_data)
     {
+        string jsonData = JsonUtility.ToJson(t_data);
+
         string url = "http://localhost:5000/upload_data";
         using (UnityWebRequest request = UnityWebRequest.Put(url, jsonData))
         {
