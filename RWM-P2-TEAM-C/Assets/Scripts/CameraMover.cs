@@ -9,12 +9,18 @@ public class CameraMover : MonoBehaviour
     public float speed = 0.1f;
     public bool m_moving;
 
+    public GameObject m_lastDoor;
+
     private Vector2 chosenPoint;
     private List<Behaviour> heldComponents;
+
+    [SerializeField]
+    private GameObject player;
 
     void Start()
     {
         mainCam = Camera.main;
+        player = GameObject.FindWithTag("Player");
     }
 
     void Update()
@@ -55,7 +61,6 @@ public class CameraMover : MonoBehaviour
         // re-enable these afterwards
         mainCam.enabled = true;
         GetComponent<AudioListener>().enabled = true;
-
         StartCoroutine(movement()); 
     }
 
@@ -71,6 +76,7 @@ public class CameraMover : MonoBehaviour
                     while (mainCam.transform.position.x <= chosenPoint.x)
                     {
                         mainCam.transform.position = new Vector3(mainCam.transform.position.x + speed, mainCam.transform.position.y, mainCam.transform.position.z);
+                        player.transform.position = new Vector3(player.transform.position.x + speed, player.transform.position.y, player.transform.position.z);
 
                         yield return new WaitForSeconds(0.025f);
                     }
@@ -80,6 +86,7 @@ public class CameraMover : MonoBehaviour
                     while (mainCam.transform.position.x >= chosenPoint.x)
                     {
                         mainCam.transform.position = new Vector3(mainCam.transform.position.x - speed, mainCam.transform.position.y, mainCam.transform.position.z);
+                        player.transform.position = new Vector3(player.transform.position.x - speed, player.transform.position.y, player.transform.position.z);
 
                         yield return new WaitForSeconds(0.025f);
                     }
@@ -92,6 +99,7 @@ public class CameraMover : MonoBehaviour
                     while (mainCam.transform.position.y <= chosenPoint.y)
                     {
                         mainCam.transform.position = new Vector3(mainCam.transform.position.x, mainCam.transform.position.y + speed, mainCam.transform.position.z);
+                        player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + speed, player.transform.position.z);
 
                         yield return new WaitForSeconds(0.025f);
                     }
@@ -101,6 +109,7 @@ public class CameraMover : MonoBehaviour
                     while (mainCam.transform.position.y >= chosenPoint.y)
                     {
                         mainCam.transform.position = new Vector3(mainCam.transform.position.x, mainCam.transform.position.y - speed, mainCam.transform.position.z);
+                        player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y - speed, player.transform.position.z);
 
                         yield return new WaitForSeconds(0.025f);
                     }
@@ -112,7 +121,7 @@ public class CameraMover : MonoBehaviour
 
         foreach (Behaviour behaviour in GetComponents<Behaviour>())
         {
-            if (behaviour.enabled)
+            if (!behaviour.enabled)
             {
                 if (behaviour != mainCam)
                 {
@@ -120,6 +129,14 @@ public class CameraMover : MonoBehaviour
                 }
             }
         }
+
+        player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        player.GetComponent<Animator>().enabled = true;
+        player.GetComponent<PlayerController>().enabled = true;
+
+        if(m_lastDoor != null)
+            m_lastDoor.GetComponent<DoorHandler>().CloseDoor();
+        
 
         m_moving = false;
         yield break;
