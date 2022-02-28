@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class GameState
+{
+    public int completion_time;
+    public int level;
+}
+
 public class AnalyticsManager : MonoBehaviour
 {
     public static IEnumerator PostMethod(string jsonData)
@@ -20,4 +27,5 @@ public class AnalyticsManager : MonoBehaviour
             else
                 Debug.Log("Error sending data to the server: Error " + request.responseCode);
         }
+    }
 }
