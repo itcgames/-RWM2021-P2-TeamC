@@ -4,7 +4,7 @@ from pymongo import MongoClient
 db = {}
 
 def connect_to_database():
-   client = MongoClient('mongo', 80, username="test", password="test")
+   client = MongoClient('mongo', 27017, username="test", password="test")
   
    global db
    db = client.test_database

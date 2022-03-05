@@ -2,7 +2,7 @@ import game_analytics
 import requests
 
 def test_post_data():
-   url = 'http://34.242.150.74/upload_data'
+   url = 'http://localhost:80/upload_data'
    payload = {"completion_time": 2000,
               "level": 7
                }
