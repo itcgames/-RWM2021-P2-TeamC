@@ -9,5 +9,5 @@ CORS(app)
 
 app.register_blueprint(api_basic_upload)
 
-app.run(host='0.0.0.0', debug=True, use_reloader=True)
+app.run(host='0.0.0.0', port=5000, debug=True, use_reloader=True)
 
