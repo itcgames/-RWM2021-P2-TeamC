@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Net;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class GameState
@@ -21,7 +22,22 @@ public class AnalyticsManager : MonoBehaviour
     void Awake()
     {
         if (instance == null) instance = this;
-        else if (instance != this) Destroy(gameObject);
+        else if (instance != this) DestroyImmediate(gameObject);
+
+        data.level = SceneManager.GetActiveScene().buildIndex;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    /// <summary>
+    /// Used to reset our Singleton's data back to the start
+    /// To be used when a new game is started.
+    /// </summary>
+    void resetdata()
+    {
+        data.bulletsFired = 0;
+        data.deathCount = 0;
+        data.defeatedEnemies = 0;
+        data.level = SceneManager.GetActiveScene().buildIndex;
     }
 
     void Start() { }
