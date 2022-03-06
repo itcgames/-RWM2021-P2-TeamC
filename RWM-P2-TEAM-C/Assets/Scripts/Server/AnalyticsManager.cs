@@ -15,7 +15,7 @@ public class GameState
 
 public class AnalyticsManager : MonoBehaviour
 {
-    public GameState data = new GameState; // new
+    public static GameState data; // new
 
     public static IEnumerator PostMethod()
     {
