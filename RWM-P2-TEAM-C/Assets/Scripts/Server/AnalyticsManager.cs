@@ -18,7 +18,7 @@ public class AnalyticsManager : MonoBehaviour
     {
         string jsonData = JsonUtility.ToJson(t_data);
 
-        string url = "http://localhost:5000/upload_data";
+        string url = "http://34.242.150.74/upload_data";
         using (UnityWebRequest request = UnityWebRequest.Put(url, jsonData))
         {
             request.method = UnityWebRequest.kHttpVerbPOST;
