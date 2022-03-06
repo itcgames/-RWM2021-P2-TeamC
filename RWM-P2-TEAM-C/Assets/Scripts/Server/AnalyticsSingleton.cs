@@ -13,7 +13,7 @@ public class GameState
     public int level;
 }
 
-public class AnalyticsManager : MonoBehaviour
+public class AnalyticsManager
 {
     public static GameState data; // new
 
@@ -34,6 +34,25 @@ public class AnalyticsManager : MonoBehaviour
                 Debug.Log("Data successfully sent to the server");
             else
                 Debug.Log("Error sending data to the server: Error " + request.responseCode);
+        }
+    }
+}
+
+public class AnalyticsSingleton : MonoBehaviour
+{
+    public static AnalyticsSingleton instance;
+    public static AnalyticsManager manager;
+
+    private void Awake()
+    {
+        // If there is an instance, and it's not me, delete myself.
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
         }
     }
 }
