@@ -7,7 +7,8 @@ using System.Net;
 [System.Serializable]
 public class GameState
 {
-    public int completion_time;
+    public int bulletsFired;
+    public int deathCount;
     public int level;
 }
 
