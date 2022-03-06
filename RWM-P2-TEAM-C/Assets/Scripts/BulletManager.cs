@@ -42,6 +42,8 @@ public class BulletManager : MonoBehaviour
             bulletPrefab.GetComponent<Bullet>().bulletManager = this;
             bulletPrefab.GetComponent<Bullet>().speed = bulletMoveSpeed;
             bulletPrefab.GetComponent<Bullet>().lifetime = bulletLifeTime;
+
+            AnalyticsManager.instance.data.bulletsFired++;
         }
     }
 

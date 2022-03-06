@@ -27,6 +27,7 @@ public class OnDeath : MonoBehaviour
 
     public void hasDied()
     {
+        AnalyticsManager.instance.data.deathCount++;
         StartCoroutine("deathAnimationPlaying");
     }
 

@@ -3,21 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Net;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class GameState
 {
-    public int completion_time;
+    public int bulletsFired;
+    public int deathCount;
+    public int defeatedEnemies;
     public int level;
 }
 
 public class AnalyticsManager : MonoBehaviour
 {
-    public static IEnumerator PostMethod(GameState t_data)
-    {
-        string jsonData = JsonUtility.ToJson(t_data);
+    public static AnalyticsManager instance = null;
+    public GameState data;
 
-        string url = "http://localhost:5000/upload_data";
+    void Awake()
+    {
+        if (instance == null) instance = this;
+        else if (instance != this) DestroyImmediate(gameObject);
+
+        data.level = SceneManager.GetActiveScene().buildIndex;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    /// <summary>
+    /// Used to reset our Singleton's data back to the start
+    /// To be used when a new game is started.
+    /// </summary>
+    void resetdata()
+    {
+        data.bulletsFired = 0;
+        data.deathCount = 0;
+        data.defeatedEnemies = 0;
+        data.level = SceneManager.GetActiveScene().buildIndex;
+    }
+
+    public IEnumerator PostMethod()
+    {
+        string jsonData = JsonUtility.ToJson(data); // uses pre-made data object
+
+        string url = "http://34.242.150.74/upload_data";
         using (UnityWebRequest request = UnityWebRequest.Put(url, jsonData))
         {
             request.method = UnityWebRequest.kHttpVerbPOST;
@@ -32,4 +59,8 @@ public class AnalyticsManager : MonoBehaviour
                 Debug.Log("Error sending data to the server: Error " + request.responseCode);
         }
     }
+
+    void Start() { }
+
+    void Update() { }
 }
