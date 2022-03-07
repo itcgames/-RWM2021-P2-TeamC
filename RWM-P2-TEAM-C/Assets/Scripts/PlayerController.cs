@@ -261,6 +261,7 @@ public class PlayerController : MonoBehaviour
             gameObject.GetComponent<Runtime2DMovement>().enabled = false;
             gameObject.GetComponent<BulletManager>().enabled = false;
             gameObject.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+            SoundManagerScript.PlaySound("death");
             this.enabled = false;
         }
     }

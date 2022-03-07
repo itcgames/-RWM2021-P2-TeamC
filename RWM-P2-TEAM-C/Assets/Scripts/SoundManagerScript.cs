@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoundManagerScript : MonoBehaviour
 {
     public static SoundManagerScript instance = null;
-    public static AudioClip bgm, buster;
+    public static AudioClip bgm, buster, death, edeath;
     static AudioSource audioSrc;
 
     // Start is called before the first frame update
@@ -16,6 +16,7 @@ public class SoundManagerScript : MonoBehaviour
 
         bgm = Resources.Load<AudioClip>("SFX/bgm");
         buster = Resources.Load<AudioClip>("SFX/buster");
+        death = Resources.Load<AudioClip>("SFX/death");
 
         audioSrc = GetComponent<AudioSource>();
         PlaySound("bgm");
@@ -41,6 +42,9 @@ public class SoundManagerScript : MonoBehaviour
                 break;
             case "buster":
                 audioSrc.PlayOneShot(buster);
+                break;
+            case "death":
+                audioSrc.PlayOneShot(death);
                 break;
         }
     }
