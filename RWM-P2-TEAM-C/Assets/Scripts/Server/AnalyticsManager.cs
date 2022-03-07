@@ -24,7 +24,7 @@ public class AnalyticsManager : MonoBehaviour
     void Awake()
     {
         if (instance == null) instance = this;
-        else if (instance != this) DestroyImmediate(gameObject);
+        else if (instance != this) Destroy(gameObject);
 
         data.level = SceneManager.GetActiveScene().buildIndex;
         DontDestroyOnLoad(gameObject);

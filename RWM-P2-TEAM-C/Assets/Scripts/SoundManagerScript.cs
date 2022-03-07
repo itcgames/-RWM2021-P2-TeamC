@@ -6,13 +6,18 @@ public class SoundManagerScript : MonoBehaviour
 {
     public static SoundManagerScript instance = null;
     public static AudioClip bgm, buster, death, land, dink, bhit, phit;
-    static AudioSource audioSrc;
+    AudioSource audioSrc;
 
+
+    private void Awake()
+    {
+        audioSrc = GetComponent<AudioSource>();
+    }
     // Start is called before the first frame update
     void Start()
     {
         if (instance == null) instance = this;
-        else if (instance != this) DestroyImmediate(gameObject);
+        else if (instance != this) Destroy(gameObject);
 
         bgm = Resources.Load<AudioClip>("SFX/bgm");
         buster = Resources.Load<AudioClip>("SFX/buster");
@@ -23,7 +28,7 @@ public class SoundManagerScript : MonoBehaviour
         phit = Resources.Load<AudioClip>("SFX/phit");
 
 
-        audioSrc = GetComponent<AudioSource>();
+        //audioSrc = GetComponent<AudioSource>();
         PlaySound("bgm");
 
         DontDestroyOnLoad(gameObject);
@@ -35,8 +40,12 @@ public class SoundManagerScript : MonoBehaviour
         
     }
 
-    public static void PlaySound(string clip)
+    public void PlaySound(string clip)
     {
+        if(audioSrc == null)
+        {
+            Debug.Log("audio source is null!");
+        }
         switch (clip)
         {
             case "bgm":

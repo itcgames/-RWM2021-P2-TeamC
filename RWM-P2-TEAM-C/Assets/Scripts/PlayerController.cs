@@ -195,7 +195,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!_invincible)
         {
-            SoundManagerScript.PlaySound("phit");
+            SoundManagerScript.instance.PlaySound("phit");
             if (_health - healthReduction <= 0)
             {
                 _health = 0;
@@ -263,7 +263,7 @@ public class PlayerController : MonoBehaviour
             gameObject.GetComponent<Runtime2DMovement>().enabled = false;
             gameObject.GetComponent<BulletManager>().enabled = false;
             gameObject.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
-            SoundManagerScript.PlaySound("death");
+            SoundManagerScript.instance.PlaySound("death");
             this.enabled = false;
         }
     }
@@ -271,7 +271,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground" && !_animator.GetBool("grounded"))
         {
-            SoundManagerScript.PlaySound("land");
+            SoundManagerScript.instance.PlaySound("land");
         }
     }
 }

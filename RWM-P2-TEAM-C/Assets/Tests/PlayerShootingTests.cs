@@ -88,6 +88,13 @@ namespace Tests
             _animator = _player.GetComponent<Animator>();
             _2dMovement = _player.GetComponent<Runtime2DMovement>();
             _playerController = _player.GetComponent<PlayerController>();
+
+            GameObject _soundManager = GameObject.Find("SoundManager");
+
+            if(_soundManager.GetComponent<AudioSource>() == null)
+            {
+                Debug.Log("null");
+            }
         }
     }
 }

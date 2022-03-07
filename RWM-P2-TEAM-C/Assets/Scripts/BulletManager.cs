@@ -43,7 +43,7 @@ public class BulletManager : MonoBehaviour
             bulletPrefab.GetComponent<Bullet>().speed = bulletMoveSpeed;
             bulletPrefab.GetComponent<Bullet>().lifetime = bulletLifeTime;
 
-            SoundManagerScript.PlaySound("buster");
+            SoundManagerScript.instance.PlaySound("buster");
             AnalyticsManager.instance.data.bulletsFired++;
         }
     }
