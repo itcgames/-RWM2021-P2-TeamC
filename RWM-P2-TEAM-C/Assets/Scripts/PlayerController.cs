@@ -194,6 +194,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!_invincible)
         {
+            SoundManagerScript.PlaySound("phit");
             if (_health - healthReduction <= 0)
             {
                 _health = 0;
