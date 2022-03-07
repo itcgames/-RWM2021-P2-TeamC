@@ -13,6 +13,7 @@ public class GameState
     public int defeatedEnemies = 0;
     public int level = 0;
     public string version = "week_1";
+    public string playerID;
 }
 
 public class AnalyticsManager : MonoBehaviour
@@ -27,6 +28,8 @@ public class AnalyticsManager : MonoBehaviour
 
         data.level = SceneManager.GetActiveScene().buildIndex;
         DontDestroyOnLoad(gameObject);
+
+        data.playerID = SystemInfo.deviceUniqueIdentifier;
     }
 
     /// <summary>
@@ -60,6 +63,9 @@ public class AnalyticsManager : MonoBehaviour
             else
                 Debug.Log("Error sending data to the server: Error " + request.responseCode);
         }
+
+
+        Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLScnJGTnEkXljPbGThxiU4Gaf-wCLiUDk5fDGyjie5SX3kr9KQ/viewform?usp=pp_url&entry.560347647=" + data.playerID);
     }
 
     void Start() { }
