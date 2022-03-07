@@ -17,7 +17,7 @@ def connect_to_database():
    return db
 
 def connect_to_database_outside_docker():
-   client = MongoClient('34.242.150.74', 80, username="test", password="test")
+   client = MongoClient('localhost', 27017, username="test", password="test")
 
    global db
    db = client.test_database

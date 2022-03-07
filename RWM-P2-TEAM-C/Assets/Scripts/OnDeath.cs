@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class OnDeath : MonoBehaviour
 {
+    public GameObject end;
     public GameObject deathOrbPrefab;
     public bool willRestartLevel;
     public float timeToRestart;
     public float orbSpeed;
-
     private bool restartLevel;
     private bool isDead = false;
 
@@ -21,6 +21,7 @@ public class OnDeath : MonoBehaviour
             if (restartLevel)
             { 
                 SceneManager.LoadScene("Game");
+              
             }
         }
     }

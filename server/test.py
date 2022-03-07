@@ -12,7 +12,7 @@ def test_post_data():
 def test_get_data():
    #game_analytics.connect_to_database_outside_docker()
    print("Connecting to database in test_get_data")
-   game_analytics.connect_to_database()
+   game_analytics.connect_to_database_outside_docker()
    
    df = game_analytics.get_dataframe()
    print(df)

@@ -12,6 +12,7 @@ TagManager:
   - Bomb
   - Bomber
   - Shrapnel
+  - end
   layers:
   - Default
   - TransparentFX
@@ -63,4 +64,7 @@ TagManager:
     locked: 0
   - name: Door
     uniqueID: 3523397525
+    locked: 0
+  - name: end
+    uniqueID: 4056327861
     locked: 0

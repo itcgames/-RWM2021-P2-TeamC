@@ -8,10 +8,12 @@ using UnityEngine.SceneManagement;
 [System.Serializable]
 public class GameState
 {
-    public int bulletsFired;
-    public int deathCount;
-    public int defeatedEnemies;
-    public int level;
+    public int bulletsFired = 0;
+    public int deathCount = 0;
+    public int defeatedEnemies = 0;
+    public int level = 0;
+    public string version = "week_1";
+    public string playerID;
 }
 
 public class AnalyticsManager : MonoBehaviour
@@ -26,6 +28,8 @@ public class AnalyticsManager : MonoBehaviour
 
         data.level = SceneManager.GetActiveScene().buildIndex;
         DontDestroyOnLoad(gameObject);
+
+        data.playerID = SystemInfo.deviceUniqueIdentifier;
     }
 
     /// <summary>
@@ -42,6 +46,7 @@ public class AnalyticsManager : MonoBehaviour
 
     public IEnumerator PostMethod()
     {
+        Debug.Log("Posting data...");
         string jsonData = JsonUtility.ToJson(data); // uses pre-made data object
 
         string url = "http://34.242.150.74/upload_data";
@@ -58,6 +63,9 @@ public class AnalyticsManager : MonoBehaviour
             else
                 Debug.Log("Error sending data to the server: Error " + request.responseCode);
         }
+
+
+        Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLScnJGTnEkXljPbGThxiU4Gaf-wCLiUDk5fDGyjie5SX3kr9KQ/viewform?usp=pp_url&entry.560347647=" + data.playerID);
     }
 
     void Start() { }
