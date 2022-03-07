@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class SoundManagerScript : MonoBehaviour
 {
-    public static AudioClip temp;
+    public static SoundManagerScript instance = null;
+    public static AudioClip bgm;
     static AudioSource audioSrc;
 
     // Start is called before the first frame update
     void Start()
     {
-        temp = Resources.Load<AudioClip>("temp");
+        if (instance == null) instance = this;
+        else if (instance != this) DestroyImmediate(gameObject);
+        bgm = Resources.Load<AudioClip>("SFX/bgm");
 
         audioSrc = GetComponent<AudioSource>();
+        PlaySound("bgm");
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -25,8 +30,11 @@ public class SoundManagerScript : MonoBehaviour
     {
         switch (clip)
         {
-            case "temp":
-                audioSrc.PlayOneShot(temp);
+            case "bgm":
+                audioSrc.volume = 0.05f;
+                audioSrc.loop = true;
+                audioSrc.clip = bgm;
+                audioSrc.Play();
                 break;
         }
     }
