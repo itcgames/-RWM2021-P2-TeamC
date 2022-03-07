@@ -265,5 +265,11 @@ public class PlayerController : MonoBehaviour
             this.enabled = false;
         }
     }
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground" && !_animator.GetBool("grounded"))
+        {
+            SoundManagerScript.PlaySound("land");
+        }
+    }
 }
