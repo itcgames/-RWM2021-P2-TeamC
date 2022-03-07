@@ -1169,7 +1169,6 @@ MonoBehaviour:
   _invincibleTimer: 2
   _damagedFlashRate: 0.25
   megaManHealthText: {fileID: 1277291920}
-  ending: {fileID: 1427678666}
 --- !u!50 &706003890
 Rigidbody2D:
   serializedVersion: 4
@@ -1526,7 +1525,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 6.5, y: -0.69999695}
+  m_AnchoredPosition: {x: 6.5, y: -0.7000122}
   m_SizeDelta: {x: 49.4386, y: 23.909576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1001556107
@@ -2180,7 +2179,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1427678666}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 98.13, y: -0.4, z: -14.377633}
+  m_LocalPosition: {x: 99, y: -0.4, z: -14.377633}
   m_LocalScale: {x: 160.25209, y: 104.93665, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2260,6 +2259,7 @@ MonoBehaviour:
     deathCount: 0
     defeatedEnemies: 0
     level: 0
+    version: week_1
 --- !u!4 &1482684144
 Transform:
   m_ObjectHideFlags: 0

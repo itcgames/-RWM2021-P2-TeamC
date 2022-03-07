@@ -8,10 +8,11 @@ using UnityEngine.SceneManagement;
 [System.Serializable]
 public class GameState
 {
-    public int bulletsFired;
-    public int deathCount;
-    public int defeatedEnemies;
-    public int level;
+    public int bulletsFired = 0;
+    public int deathCount = 0;
+    public int defeatedEnemies = 0;
+    public int level = 0;
+    public string version = "week_1";
 }
 
 public class AnalyticsManager : MonoBehaviour
@@ -42,6 +43,7 @@ public class AnalyticsManager : MonoBehaviour
 
     public IEnumerator PostMethod()
     {
+        Debug.Log("Posting data...");
         string jsonData = JsonUtility.ToJson(data); // uses pre-made data object
 
         string url = "http://34.242.150.74/upload_data";

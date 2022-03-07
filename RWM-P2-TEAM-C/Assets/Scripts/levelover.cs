@@ -27,6 +27,8 @@ public class levelover : MonoBehaviour
             timer += Time.deltaTime;
             displayText();
         }
+
+        //if(Input.GetMouseButtonDown(0))
       
     }
     void displayText()
@@ -39,7 +41,10 @@ public class levelover : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
+            Debug.Log("player detected ending");
             ended = true;
+            Debug.Log(AnalyticsManager.instance);
+            StartCoroutine(AnalyticsManager.instance.PostMethod());
             over.SetActive(true);
         }
     }
