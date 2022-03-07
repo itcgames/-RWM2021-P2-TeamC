@@ -195,6 +195,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!_invincible)
         {
+            SoundManagerScript.PlaySound("phit");
             if (_health - healthReduction <= 0)
             {
                 _health = 0;
@@ -262,7 +263,15 @@ public class PlayerController : MonoBehaviour
             gameObject.GetComponent<Runtime2DMovement>().enabled = false;
             gameObject.GetComponent<BulletManager>().enabled = false;
             gameObject.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+            SoundManagerScript.PlaySound("death");
             this.enabled = false;
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground" && !_animator.GetBool("grounded"))
+        {
+            SoundManagerScript.PlaySound("land");
         }
     }
 }
