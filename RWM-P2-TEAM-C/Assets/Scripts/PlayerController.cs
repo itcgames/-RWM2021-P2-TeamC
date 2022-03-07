@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public float _invincibleTimer = 2.0f;
     public float _damagedFlashRate = 0.25f;
     public Text megaManHealthText;
+
     void Start()
     {
         setUpPlayer();
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour
         updatePlayerAnimationStates();
         setUpDeadAnimation();
     }
-
+       
     void updatePlayerAnimationStates()
     {
         if (!_invincible) 
@@ -250,7 +251,7 @@ public class PlayerController : MonoBehaviour
     {
         return _health;
     }
-
+    
     public void setUpDeadAnimation()
     {
         if (_health <= 0)
@@ -264,5 +265,4 @@ public class PlayerController : MonoBehaviour
             this.enabled = false;
         }
     }
-
 }
