@@ -38,11 +38,10 @@ public class BulletManager : MonoBehaviour
     {
         if (currentBulletTotal < MAX_BULLETS)
         {
-            Instantiate(bulletPrefab);
             bulletPrefab.GetComponent<Bullet>().bulletManager = this;
             bulletPrefab.GetComponent<Bullet>().speed = bulletMoveSpeed;
             bulletPrefab.GetComponent<Bullet>().lifetime = bulletLifeTime;
-
+            Instantiate(bulletPrefab);
             SoundManagerScript.instance.PlaySound("buster");
             AnalyticsManager.instance.data.bulletsFired++;
         }
