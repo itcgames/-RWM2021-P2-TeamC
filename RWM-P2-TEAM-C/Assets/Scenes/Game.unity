@@ -546,9 +546,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCam: {fileID: 0}
-  transitionPoints:
-  - {x: 0, y: 0}
-  - {x: 15, y: 0}
   speed: 0.1
   m_moving: 0
   m_farLeftBoundary: {fileID: 1083052252}
@@ -624,9 +621,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd17ebb69c343c4a9d130a49d2eac15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  type: 0
-  transitionPoint: {x: 20.014622, y: -0.22}
+  currPoint:
+    transitionPoint: {x: 16, y: 3}
+    type: 1
+  transitionPoints:
+  - transitionPoint: {x: 2, y: 3}
+    type: 1
+  - transitionPoint: {x: 10, y: 3}
+    type: 1
+  transitionSpeed: 2
+  transitioning: 0
 --- !u!1 &539245368
 GameObject:
   m_ObjectHideFlags: 0
@@ -2728,7 +2732,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointOne: 1
   pointTwo: 0
-  type: 0
 --- !u!61 &1822607369
 BoxCollider2D:
   m_ObjectHideFlags: 0
