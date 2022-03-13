@@ -27,7 +27,8 @@ public class CameraMover : MonoBehaviour
     {
         // this bool is used to move during a transition
         // so while we're not transitioning, follow megaman
-        if(!m_moving)
+        if(!m_moving && GameObject.FindWithTag("Player").transform.position.x > GameObject.FindWithTag("Ground").transform.Find("LevelBoundary").transform.position.x + 40 
+            && GameObject.FindWithTag("Player").transform.position.x < GameObject.FindWithTag("Ground").transform.Find("LevelBoundary(3)").transform.position.x - 40)
         {
             mainCam.transform.position = new Vector3(GameObject.FindWithTag("Player").transform.position.x, mainCam.transform.position.y, mainCam.transform.position.z);
         }
