@@ -546,9 +546,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCam: {fileID: 0}
-  transitionPoints:
-  - {x: 0, y: 0}
-  - {x: 15, y: 0}
   speed: 0.1
   m_moving: 0
   m_lastDoor: {fileID: 0}
@@ -622,9 +619,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd17ebb69c343c4a9d130a49d2eac15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  type: 0
-  transitionPoint: {x: 20.014622, y: -0.22}
+  currPoint:
+    transitionPoint: {x: 16, y: 3}
+    type: 1
+  transitionPoints:
+  - transitionPoint: {x: -4, y: 3}
+    type: 1
+  transitionSpeed: 2
+  transitioning: 0
 --- !u!1 &539245368
 GameObject:
   m_ObjectHideFlags: 0
@@ -2260,6 +2262,7 @@ MonoBehaviour:
     defeatedEnemies: 0
     level: 0
     version: week_1
+    playerID: 
 --- !u!4 &1482684144
 Transform:
   m_ObjectHideFlags: 0
@@ -2725,7 +2728,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointOne: 1
   pointTwo: 0
-  type: 0
 --- !u!61 &1822607369
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2878,7 +2880,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1897102213
 AudioSource:

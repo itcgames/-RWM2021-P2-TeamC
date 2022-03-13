@@ -180,11 +180,11 @@
       "hash": "0b45d30851dff242b2e5f554389a9b9377aa8481"
     },
     "ie.itcarlow.screentransitions": {
-      "version": "https://github.com/itcgames/RWM-ScreenTransitions.git?path=/Packages/ie.itcarlow.screentransitions#v0.1.1",
+      "version": "https://github.com/itcgames/RWM-ScreenTransitions.git?path=/Packages/ie.itcarlow.screentransitions#v0.5.0",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "698436195a61891c6fa45d68eb80fc9c68dcac71"
+      "hash": "6d2f3500e1ac9b319cce1353f90968e3aeca45d0"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
