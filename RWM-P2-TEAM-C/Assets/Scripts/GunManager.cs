@@ -21,7 +21,7 @@ public class GunManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            setUpNewGun((_currentGun == Gun.Normal) ? Gun.SteamPunk : Gun.Normal);
+            handleSwap();
         }
     }
 
@@ -39,9 +39,19 @@ public class GunManager : MonoBehaviour
                 break;
             case Gun.SteamPunk:
                 bulletManager.MAX_BULLETS = 1;
-                bulletManager.bulletMoveSpeed = 20.0f;
+                bulletManager.bulletMoveSpeed = 40.0f;
                 bulletManager.bulletLifeTime = 1.0f;
                 break;
         }
+    }
+
+    public Gun getCurrentGun()
+    {
+        return _currentGun;
+    }
+
+    public void handleSwap()
+    {
+        setUpNewGun((_currentGun == Gun.Normal) ? Gun.SteamPunk : Gun.Normal);
     }
 }
