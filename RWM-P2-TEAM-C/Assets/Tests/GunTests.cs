@@ -71,6 +71,33 @@ namespace Tests
             Assert.AreEqual(40.0f, bulletScript.speed); // Speed of the steam bullet.
         }
 
+        [UnityTest]
+        public IEnumerator DefaultBulletLifetimeTest()
+        {
+            setUpPlayer();
+            yield return new WaitForSeconds(1.0f);
+            _playerController.handleIdlePlayerShooting();
+            GameObject bullet = GameObject.Find("Bullet(Clone)");
+            Assert.NotNull(bullet);
+            yield return new WaitForSeconds(2.0f);
+            bullet = GameObject.Find("Bullet(Clone)");
+            Assert.Null(bullet);
+        }
+
+        [UnityTest]
+        public IEnumerator SteamPunkBulletLifetimeTest()
+        {
+            setUpPlayer();
+            yield return new WaitForSeconds(1.0f);
+            _gunManager.handleSwap();
+            _playerController.handleIdlePlayerShooting();
+            GameObject bullet = GameObject.Find("Bullet(Clone)");
+            Assert.NotNull(bullet);
+            yield return new WaitForSeconds(1.0f);
+            bullet = GameObject.Find("Bullet(Clone)");
+            Assert.Null(bullet);
+        }
+
         private void setUpPlayer()
         {
             _player = GameObject.Find("Player");
