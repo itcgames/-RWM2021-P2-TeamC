@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public float _timeBetweenShots;
     public int direction = -1;
     private BulletManager _bulletManager;
+    private GunManager _gunManager;
     private const int _MAX_HEALTH = 15;
     public int _health = _MAX_HEALTH;
     private bool _invincible = false;
@@ -29,8 +30,10 @@ public class PlayerController : MonoBehaviour
 
     void setUpPlayer()
     {
+        _gunManager = this.GetComponent<GunManager>();
         _animator = this.GetComponent<Animator>();
         _2dMovement = this.GetComponent<Runtime2DMovement>();
+        _2dMovement.jumpKey = KeyCode.W;
         _rb = this.GetComponent<Rigidbody2D>();
         _rb = this.GetComponent<Rigidbody2D>();
         if (!_rb)
@@ -168,6 +171,12 @@ public class PlayerController : MonoBehaviour
         _isShooting = true;
         idleshoot = true;
         _2dMovement.setStopMovement(true);
+        if (_gunManager.getCurrentGun() == Gun.SteamPunk)
+        {
+            Vector2 temp = _rb.velocity;
+            temp.x = (direction * -1) * 10;
+            _rb.velocity = temp;
+        }
         _bulletManager.shootBullet();
         _animator.SetBool("isShooting", _isShooting);
         StartCoroutine("shootingCooldown");
@@ -176,6 +185,12 @@ public class PlayerController : MonoBehaviour
     public void handleMovingPlayerShooting()
     {
         _isShooting = true;
+        if (_gunManager.getCurrentGun() == Gun.SteamPunk)
+        {
+            Vector2 temp = _rb.velocity;
+            temp.x = temp.x + (direction * -1) * 10;
+            _rb.velocity = temp;
+        }
         _bulletManager.shootBullet();
         _animator.SetBool("isShooting", _isShooting);
         StartCoroutine("shootingCooldown");

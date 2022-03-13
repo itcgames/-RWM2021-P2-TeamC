@@ -7,8 +7,8 @@ public class BulletManager : MonoBehaviour
     public GameObject bulletPrefab;
     public float bulletMoveSpeed;
     public float bulletLifeTime;
-    private const float MAX_BULLETS = 3;
-    public float currentBulletTotal;
+    public int MAX_BULLETS;
+    public int currentBulletTotal = 0;
 
     /// <summary>
     /// Decrease the number of active bullets
@@ -38,11 +38,10 @@ public class BulletManager : MonoBehaviour
     {
         if (currentBulletTotal < MAX_BULLETS)
         {
-            Instantiate(bulletPrefab);
             bulletPrefab.GetComponent<Bullet>().bulletManager = this;
             bulletPrefab.GetComponent<Bullet>().speed = bulletMoveSpeed;
             bulletPrefab.GetComponent<Bullet>().lifetime = bulletLifeTime;
-
+            Instantiate(bulletPrefab);
             SoundManagerScript.instance.PlaySound("buster");
             AnalyticsManager.instance.data.bulletsFired++;
         }
