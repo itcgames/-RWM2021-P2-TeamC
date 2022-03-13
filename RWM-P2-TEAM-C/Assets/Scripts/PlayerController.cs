@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public float _hurtTimer = 0.25f;
     public float _invincibleTimer = 2.0f;
     public float _damagedFlashRate = 0.25f;
+    public float _damagePushback = 2.0f; // amount of force to push megaman back by
     public Text megaManHealthText;
 
     void Start()
@@ -191,7 +192,7 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool("isShooting", _isShooting);
     }
 
-    public void decreseHealth(int healthReduction)
+    public void decreseHealth(int healthReduction, Vector2 sourcePos)
     {
         if (!_invincible)
         {
@@ -206,6 +207,16 @@ public class PlayerController : MonoBehaviour
                 _health -= healthReduction;
                 megaManHealthText.text = "MEGAMAN HEALTH " + _health;
                 _invincible = true;
+
+                if (sourcePos.x >= transform.position.x)
+                { // if the source of the damage is to the right
+                    _rb.velocity = new Vector2(-_damagePushback, 0.0f);
+                }
+                else
+                { // if the source of the damage is to the left
+                    _rb.velocity = new Vector2(_damagePushback, 0.0f);
+                }
+
                 StartCoroutine(damagedStateTime());
             }
         }
