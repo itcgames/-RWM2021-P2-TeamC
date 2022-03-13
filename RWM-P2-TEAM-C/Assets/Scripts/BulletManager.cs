@@ -7,8 +7,8 @@ public class BulletManager : MonoBehaviour
     public GameObject bulletPrefab;
     public float bulletMoveSpeed;
     public float bulletLifeTime;
-    private const float MAX_BULLETS = 3;
-    public float currentBulletTotal;
+    public int MAX_BULLETS;
+    public int currentBulletTotal = 0;
 
     /// <summary>
     /// Decrease the number of active bullets
