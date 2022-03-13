@@ -625,7 +625,9 @@ MonoBehaviour:
     transitionPoint: {x: 16, y: 3}
     type: 1
   transitionPoints:
-  - transitionPoint: {x: -4, y: 3}
+  - transitionPoint: {x: 2, y: 3}
+    type: 1
+  - transitionPoint: {x: 10, y: 3}
     type: 1
   transitionSpeed: 2
   transitioning: 0
