@@ -98,6 +98,31 @@ namespace Tests
             Assert.Null(bullet);
         }
 
+        [UnityTest]
+        public IEnumerator DefaultGunKnockBackTest()
+        {
+            setUpPlayer();
+            yield return new WaitForSeconds(1.0f);
+            Vector2 initalPos = _player.gameObject.transform.position;
+            _playerController.handleIdlePlayerShooting();
+            yield return new WaitForSeconds(1.0f);
+            Vector2 newPos = _player.gameObject.transform.position;
+            Assert.AreEqual(initalPos, newPos);
+        }
+
+        [UnityTest]
+        public IEnumerator SteamPunkGunKnockBackTest()
+        {
+            setUpPlayer();
+            yield return new WaitForSeconds(1.0f);
+            Vector2 initalPos = _player.gameObject.transform.position;
+            _gunManager.handleSwap();
+            _playerController.handleIdlePlayerShooting();
+            yield return new WaitForSeconds(1.0f);
+            Vector2 newPos = _player.gameObject.transform.position;
+            Assert.AreNotEqual(initalPos, newPos);
+        }
+
         private void setUpPlayer()
         {
             _player = GameObject.Find("Player");
