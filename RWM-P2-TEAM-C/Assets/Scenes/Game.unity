@@ -203,12 +203,12 @@ PrefabInstance:
     - target: {fileID: 1622205576178837883, guid: dec1a0501962ae04bb32201805ca78c3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.7780914
+      value: 8.5
       objectReference: {fileID: 0}
     - target: {fileID: 1622205576178837883, guid: dec1a0501962ae04bb32201805ca78c3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5720987
+      value: 5.93
       objectReference: {fileID: 0}
     - target: {fileID: 1622205576178837883, guid: dec1a0501962ae04bb32201805ca78c3,
         type: 3}
@@ -551,6 +551,8 @@ MonoBehaviour:
   - {x: 15, y: 0}
   speed: 0.1
   m_moving: 0
+  m_farLeftBoundary: {fileID: 1083052252}
+  m_farRightBoundary: {fileID: 836003769}
   m_lastDoor: {fileID: 0}
   player: {fileID: 0}
 --- !u!20 &519420031
@@ -1144,7 +1146,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 706003884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -97.25, y: -7.35, z: -1}
+  m_LocalPosition: {x: -75.06173, y: -7.35, z: -1}
   m_LocalScale: {x: 12, y: 12, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1776,12 +1778,12 @@ PrefabInstance:
     - target: {fileID: 2581665534947295293, guid: 9ab170db3611677469f6a9fdb39cc557,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.691586
+      value: 1.85
       objectReference: {fileID: 0}
     - target: {fileID: 2581665534947295293, guid: 9ab170db3611677469f6a9fdb39cc557,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.06
+      value: 1.84
       objectReference: {fileID: 0}
     - target: {fileID: 2581665534947295293, guid: 9ab170db3611677469f6a9fdb39cc557,
         type: 3}
@@ -2260,6 +2262,7 @@ MonoBehaviour:
     defeatedEnemies: 0
     level: 0
     version: week_1
+    playerID: 
 --- !u!4 &1482684144
 Transform:
   m_ObjectHideFlags: 0
@@ -2878,7 +2881,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1897102213
 AudioSource:

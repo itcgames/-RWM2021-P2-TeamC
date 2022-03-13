@@ -8,6 +8,8 @@ public class CameraMover : MonoBehaviour
     public List<Vector2> transitionPoints;
     public float speed = 0.1f;
     public bool m_moving;
+    public GameObject m_farLeftBoundary;
+    public GameObject m_farRightBoundary;
 
     public GameObject m_lastDoor;
 
@@ -25,9 +27,17 @@ public class CameraMover : MonoBehaviour
 
     void Update()
     {
-        // this bool is used to move during a transition
+        // the m_moving bool is used to move during a transition
         // so while we're not transitioning, follow megaman
-        if(!m_moving)
+        if (m_farLeftBoundary != null && m_farRightBoundary != null)
+        {
+            if (!m_moving && GameObject.FindWithTag("Player").transform.position.x > m_farLeftBoundary.transform.position.x + 40
+                && GameObject.FindWithTag("Player").transform.position.x < m_farRightBoundary.transform.position.x - 40)
+            {
+                mainCam.transform.position = new Vector3(GameObject.FindWithTag("Player").transform.position.x, mainCam.transform.position.y, mainCam.transform.position.z);
+            }
+        }
+        else if(!m_moving)
         {
             mainCam.transform.position = new Vector3(GameObject.FindWithTag("Player").transform.position.x, mainCam.transform.position.y, mainCam.transform.position.z);
         }
