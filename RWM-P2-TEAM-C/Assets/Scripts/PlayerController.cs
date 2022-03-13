@@ -223,7 +223,15 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator damagedStateTime()
     {
+        // Tell Megaman's Animator to display the Damaged animation state
+        _animator.SetBool("isHurt", true);
+        _2dMovement.enabled = false;
+
         yield return new WaitForSeconds(_hurtTimer);
+
+
+        _animator.SetBool("isHurt", false); // now that a second has elapsed, Megaman will no longer be damaged.
+        _2dMovement.enabled = true;
 
         StartCoroutine(invincibilityTime());
     }
