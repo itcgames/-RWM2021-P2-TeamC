@@ -2,13 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Gun
+{
+    Normal,
+    SteamPunk
+}
+
 public class BulletManager : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public float bulletMoveSpeed;
     public float bulletLifeTime;
-    private const float MAX_BULLETS = 3;
+    private int MAX_BULLETS;
     public float currentBulletTotal;
+    Gun currentGun = Gun.Normal;
+
+    private void Start()
+    {
+        setUpGun(Gun.Normal);
+    }
 
     /// <summary>
     /// Decrease the number of active bullets
@@ -51,5 +63,15 @@ public class BulletManager : MonoBehaviour
     public bool canFire()
     {
         return currentBulletTotal < MAX_BULLETS;
+    }
+
+    public void setUpGun(Gun gunType)
+    {
+        if(gunType == Gun.Normal)
+        {
+            MAX_BULLETS = 3;
+            bulletLifeTime = 1.0f;
+            bulletMoveSpeed = 2.0f;
+        }
     }
 }
