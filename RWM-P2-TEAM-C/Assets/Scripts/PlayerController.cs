@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     {
         _animator = this.GetComponent<Animator>();
         _2dMovement = this.GetComponent<Runtime2DMovement>();
+        _2dMovement.jumpKey = KeyCode.W;
         _rb = this.GetComponent<Rigidbody2D>();
         _rb = this.GetComponent<Rigidbody2D>();
         if (!_rb)
