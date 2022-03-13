@@ -25,7 +25,7 @@ public class Shrapnel : MonoBehaviour
         {
             if (!col.gameObject.GetComponent<PlayerController>().getIsInvincible())
             {
-                col.gameObject.GetComponent<PlayerController>().decreseHealth(1, col.transform.position);
+                col.gameObject.GetComponent<PlayerController>().decreseHealth(1, transform.position);
                 Destroy(this.gameObject);
             }
         }

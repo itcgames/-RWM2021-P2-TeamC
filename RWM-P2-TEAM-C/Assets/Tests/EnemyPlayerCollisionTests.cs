@@ -55,7 +55,7 @@ namespace Tests
         public IEnumerator playerHasDiedTest()
         {
             setUpPlayer();
-            _player.GetComponent<PlayerController>().decreseHealth(20);
+            _player.GetComponent<PlayerController>().decreseHealth(20, new Vector2(0,0));
             _player.GetComponent<PlayerController>().setUpDeadAnimation();
             yield return new WaitForSeconds(2.0f);
             Assert.AreEqual(true, _player.GetComponent<OnDeath>().getIsDead());
