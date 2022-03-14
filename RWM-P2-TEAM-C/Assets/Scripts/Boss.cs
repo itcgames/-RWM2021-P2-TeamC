@@ -5,36 +5,82 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
 	// Start is called before the first frame update
+	public GameObject bulletPrefab;
+	public DoorHandler door;
 	public Transform player;
-	public BulletManager _bulletManager;
-	public int direction = -1;
-	public bool isFlipped = false;
-	public bool playerdetected = false;
-	 float _timeBetweenShots = 0.5f;
+	public float maxHealth = 30.0f;
+	private float health;
+	public float direction = 1;
+	public bool isFlipped = true;
+	public bool playerdetected = true;
+	float fireRate;
+	float nextFire;
+	public bool hit = true;
 
-	private void Update()
+	private void Start()
     {
+		transform.Rotate(0f, 180f, 0f);
+		fireRate = 1f;
+		nextFire = Time.time;
+		health = maxHealth;
+	}
+    private void Update()
+    {
+		
+		
+		if(door.playerthrough)
+        {
+			CheckIfTimeToFire();
+		}
 		LookAtPlayer();
+	
 		
 	}
-    public void LookAtPlayer()
+	public void CheckIfTimeToFire()
 	{
-		Vector3 temp = transform.localScale;
-		if (temp.x < 0) { direction = 1; }
-		if (temp.x > 0) { direction = -1; }
+		if (Time.time > nextFire)
+		{
+			Instantiate(bulletPrefab,transform.position, Quaternion.identity);
+			nextFire = Time.time + fireRate;
+		}
 
+	}
+
+	public void damage(float t_damage)
+	{
+
+			health -= t_damage;
+			if (health <= 0.0f)
+			{
+				Destroy(this.gameObject);
+			}
+		Debug.Log("Health:" + health);
+	}
+
+	public float getHealth()
+	{
+		return health;
+	}
+	public void LookAtPlayer()
+	{
+		
+	
 		Vector3 flipped = transform.localScale;
 		flipped.z *= -1f;
 
-		if (transform.position.x > player.position.x && isFlipped)
+		if (transform.position.x < player.position.x && isFlipped)
 		{
 			transform.localScale = flipped;
+			direction = flipped.z;
+			Debug.Log(direction);
 			transform.Rotate(0f, 180f, 0f);
 			isFlipped = false;
 		}
-		else if (transform.position.x < player.position.x && !isFlipped)
+		else if (transform.position.x > player.position.x && !isFlipped)
 		{
 			transform.localScale = flipped;
+			direction = flipped.z;
+			Debug.Log(direction);
 			transform.Rotate(0f, 180f, 0f);
 			isFlipped = true;
 		}
@@ -44,33 +90,14 @@ public class Boss : MonoBehaviour
 	{
 		if (collision.gameObject.name == "Player")
 		{
-			playerdetected = true;
-			Debug.Log("player detected");
-			shootPlayer();
-			//collision.gameObject.GetComponent<PlayerController>().decreseHealth(10);
-
-
-		}
-
-	}
-
-	void shootPlayer()
-    {
-		if(playerdetected && _bulletManager.canFire())
-		 {
-			Debug.Log("player SHOOT");
-			_bulletManager.shootBullet();
-			StartCoroutine("shootingCooldown");
-		}
-    }
-
-	IEnumerator shootingCooldown()
-	{
-		yield return new WaitForSeconds(_timeBetweenShots);
-		//_isShooting = false;
-		//idleshoot = false;
-		//_2dMovement.setStopMovement(false);
-		yield return new WaitForSeconds(_timeBetweenShots);
-		//_animator.SetBool("isShooting", _isShooting);
+			
+			if(hit)
+            {
+				collision.gameObject.GetComponent<PlayerController>().decreseHealth(1);
+				Debug.Log("player detected");
+			}
+		
+			
+		}        
 	}
 }

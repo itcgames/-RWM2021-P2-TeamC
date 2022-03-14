@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DoorHandler : MonoBehaviour
 {
+    [SerializeField]
+    public bool playerthrough = false;
     public void CloseDoor()
     {
         Animator anim = GetComponent<Animator>();
@@ -20,11 +22,13 @@ public class DoorHandler : MonoBehaviour
             {
                 GameObject player = GameObject.FindWithTag("Player");
                 player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+             
                 player.GetComponent<Animator>().enabled = false;
                 player.GetComponent<PlayerController>().enabled = false;
                 Animator anim = GetComponent<Animator>();
                 anim.SetBool("opening", true);
                 anim.SetBool("closing", false);
+                playerthrough = true;
             }
         }
     }

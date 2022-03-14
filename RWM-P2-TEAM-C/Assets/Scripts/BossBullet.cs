@@ -4,47 +4,32 @@ using UnityEngine;
 
 public class BossBullet : MonoBehaviour
 {
-    public BulletManager bulletManager;
-    public float bulletDirection;
-    public float speed;
-    public float lifetime;
 
-    // Update is called once per frame
+    float moveSpeed = 20f;
 
+    public Rigidbody2D rb;
+
+    public PlayerController target;
+    Vector2 moveDirection;
+
+    // Use this for initialization
     void Start()
     {
-        StartCoroutine("livingTime");
-
-        if (null == bulletManager) { bulletManager = GameObject.Find("Boss").GetComponent<BulletManager>(); }
-
-        transform.position = GameObject.Find("Boss").transform.position;
-        bulletDirection = GameObject.Find("Boss").GetComponent<Boss>().direction;
-        bulletManager.increaseBullets();
+        rb = GetComponent<Rigidbody2D>();
+        target = GameObject.FindObjectOfType<PlayerController>();
+        moveDirection = (target.transform.position - transform.position).normalized * moveSpeed;
+        rb.velocity = new Vector2(moveDirection.x, moveDirection.y);
+       
     }
 
-    void Update()
+    void OnTriggerEnter2D(Collider2D col)
     {
-        transform.position += new Vector3((bulletDirection * speed) * Time.deltaTime, 0);
-    }
-
-    void OnTriggerEnter2D(Collider2D t_other)
-    {
-        if (t_other.tag != "Boss")
+        if (col.gameObject.tag == "Player" && col.gameObject.tag == "Ledge")
         {
-            bulletManager.decreaseBullets(); // decrease total number of bullets
-            StopCoroutine("livingTime"); // stop the co-routine before destroying
-            Destroy(gameObject);
+            Debug.Log("Hit!");
+            col.gameObject.GetComponent<PlayerController>().decreseHealth(5);
+            Destroy(this.gameObject);
         }
     }
 
-
-    IEnumerator livingTime()
-    {
-        yield return new WaitForSeconds(lifetime);
-
-        bulletManager.decreaseBullets(); // decrease total number of bullets
-        Destroy(gameObject); // destroy this after a set amount of time
-
-        yield break;
-    }
 }

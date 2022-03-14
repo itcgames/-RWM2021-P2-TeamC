@@ -13,6 +13,7 @@ public class levelover : MonoBehaviour
     private bool ended;
     public Text timing;
     public GameObject over;
+    public Boss m_boss;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,10 +43,18 @@ public class levelover : MonoBehaviour
         if (collision.gameObject.name == "Player")
         {
             Debug.Log("player detected ending");
-            ended = true;
-            Debug.Log(AnalyticsManager.instance);
-            StartCoroutine(AnalyticsManager.instance.PostMethod());
-            over.SetActive(true);
+            if(m_boss.getHealth() <=0)
+            {
+                ended = true;
+                Debug.Log(AnalyticsManager.instance);
+                StartCoroutine(AnalyticsManager.instance.PostMethod());
+                over.SetActive(true);
+            }
+            else
+            {
+                Debug.Log("Boss Not dead");
+            }
+           
         }
     }
 }

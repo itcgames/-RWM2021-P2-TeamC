@@ -6,7 +6,8 @@
         "Scripts",
         "2DM",
         "ScreenTransition",
-        "PlatformerEnemyBehaviour"
+        "PlatformerEnemyBehaviour",
+        "game_scripts"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

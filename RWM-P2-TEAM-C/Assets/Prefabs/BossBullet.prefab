@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 2110711431415462035}
   - component: {fileID: 2110711431415462044}
   - component: {fileID: 2110711431415462045}
-  - component: {fileID: 2110711431415462034}
   - component: {fileID: 158014144234773214}
+  - component: {fileID: -2389685809656191486}
   m_Layer: 0
   m_Name: BossBullet
-  m_TagString: Bullet
+  m_TagString: bossbullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2110711431415462046}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -65.46, y: -4.42, z: -36.661827}
-  m_LocalScale: {x: 50.43401, y: 41.356354, z: 1}
+  m_LocalPosition: {x: -65.17, y: -5.39, z: -36.661827}
+  m_LocalScale: {x: 38.650303, y: 14.4097185, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -70,11 +70,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 769105629
-  m_SortingLayer: 2
+  m_SortingLayerID: 279265919
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6d294ba3ccac623489f467ace592428d, type: 3}
-  m_Color: {r: 0.9622642, g: 0.94864726, b: 0.94864726, a: 1}
+  m_Color: {r: 0.07381892, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -110,22 +110,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.08, y: 0.08}
   m_EdgeRadius: 0
---- !u!114 &2110711431415462034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2110711431415462046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d072132f314bd744b78f6c7c5338dd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletManager: {fileID: 0}
-  bulletDirection: 0
-  speed: 1
-  lifetime: 1.5
 --- !u!50 &158014144234773214
 Rigidbody2D:
   serializedVersion: 4
@@ -147,3 +131,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-2389685809656191486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110711431415462046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f7a3da9ea20b3d4baf06b40e01517a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 158014144234773214}
+  target: {fileID: 0}
