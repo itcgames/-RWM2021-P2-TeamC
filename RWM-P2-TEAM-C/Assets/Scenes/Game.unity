@@ -546,6 +546,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCam: {fileID: 0}
+  transitionPoints:
+  - {x: 0, y: 0}
+  - {x: 15, y: 0}
   speed: 0.1
   m_moving: 0
   m_farLeftBoundary: {fileID: 1083052252}
@@ -621,16 +624,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd17ebb69c343c4a9d130a49d2eac15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currPoint:
-    transitionPoint: {x: 16, y: 3}
-    type: 1
-  transitionPoints:
-  - transitionPoint: {x: 2, y: 3}
-    type: 1
-  - transitionPoint: {x: 10, y: 3}
-    type: 1
-  transitionSpeed: 2
-  transitioning: 0
+  cam: {fileID: 0}
+  type: 0
+  transitionPoint: {x: 20.014622, y: -0.22}
 --- !u!1 &539245368
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,7 +1039,6 @@ GameObject:
   - component: {fileID: 706003890}
   - component: {fileID: 706003891}
   - component: {fileID: 706003892}
-  - component: {fileID: 706003893}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1175,7 +1170,6 @@ MonoBehaviour:
   _hurtTimer: 0.25
   _invincibleTimer: 2
   _damagedFlashRate: 0.25
-  _damagePushback: 20
   megaManHealthText: {fileID: 1277291920}
 --- !u!50 &706003890
 Rigidbody2D:
@@ -1214,7 +1208,6 @@ MonoBehaviour:
     type: 3}
   bulletMoveSpeed: 20
   bulletLifeTime: 1.5
-  MAX_BULLETS: 0
   currentBulletTotal: 0
 --- !u!114 &706003892
 MonoBehaviour:
@@ -1401,12 +1394,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_GameObject: {fileID: 706003884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 908a1ce6922996749af3e11202d5335f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &794939022
 GameObject:
   m_ObjectHideFlags: 0
@@ -2909,6 +2896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointOne: 1
   pointTwo: 0
+  type: 0
 --- !u!61 &1822607369
 BoxCollider2D:
   m_ObjectHideFlags: 0

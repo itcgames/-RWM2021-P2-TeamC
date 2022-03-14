@@ -13,14 +13,12 @@ public class PlayerController : MonoBehaviour
     public float _timeBetweenShots;
     public int direction = -1;
     private BulletManager _bulletManager;
-    private GunManager _gunManager;
     private const int _MAX_HEALTH = 15;
     public int _health = _MAX_HEALTH;
     private bool _invincible = false;
     public float _hurtTimer = 0.25f;
     public float _invincibleTimer = 2.0f;
     public float _damagedFlashRate = 0.25f;
-    public float _damagePushback = 2.0f; // amount of force to push megaman back by
     public Text megaManHealthText;
 
     void Start()
@@ -30,10 +28,8 @@ public class PlayerController : MonoBehaviour
 
     void setUpPlayer()
     {
-        _gunManager = this.GetComponent<GunManager>();
         _animator = this.GetComponent<Animator>();
         _2dMovement = this.GetComponent<Runtime2DMovement>();
-        _2dMovement.jumpKey = KeyCode.W;
         _rb = this.GetComponent<Rigidbody2D>();
         _rb = this.GetComponent<Rigidbody2D>();
         if (!_rb)
@@ -171,12 +167,6 @@ public class PlayerController : MonoBehaviour
         _isShooting = true;
         idleshoot = true;
         _2dMovement.setStopMovement(true);
-        if (_gunManager.getCurrentGun() == Gun.SteamPunk)
-        {
-            Vector2 temp = _rb.velocity;
-            temp.x = (direction * -1) * 10;
-            _rb.velocity = temp;
-        }
         _bulletManager.shootBullet();
         _animator.SetBool("isShooting", _isShooting);
         StartCoroutine("shootingCooldown");
@@ -185,12 +175,6 @@ public class PlayerController : MonoBehaviour
     public void handleMovingPlayerShooting()
     {
         _isShooting = true;
-        if (_gunManager.getCurrentGun() == Gun.SteamPunk)
-        {
-            Vector2 temp = _rb.velocity;
-            temp.x = temp.x + (direction * -1) * 10;
-            _rb.velocity = temp;
-        }
         _bulletManager.shootBullet();
         _animator.SetBool("isShooting", _isShooting);
         StartCoroutine("shootingCooldown");
@@ -207,7 +191,7 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool("isShooting", _isShooting);
     }
 
-    public void decreseHealth(int healthReduction, Vector2 sourcePos)
+    public void decreseHealth(int healthReduction)
     {
         if (!_invincible)
         {
@@ -222,16 +206,6 @@ public class PlayerController : MonoBehaviour
                 _health -= healthReduction;
                 megaManHealthText.text = "MEGAMAN HEALTH " + _health;
                 _invincible = true;
-
-                if (sourcePos.x >= transform.position.x)
-                { // if the source of the damage is to the right
-                    _rb.velocity = new Vector2(-_damagePushback, 0.0f);
-                }
-                else
-                { // if the source of the damage is to the left
-                    _rb.velocity = new Vector2(_damagePushback, 0.0f);
-                }
-
                 StartCoroutine(damagedStateTime());
             }
         }
@@ -249,15 +223,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator damagedStateTime()
     {
-        // Tell Megaman's Animator to display the Damaged animation state
-        _animator.SetBool("isHurt", true);
-        _2dMovement.enabled = false;
-
         yield return new WaitForSeconds(_hurtTimer);
-
-
-        _animator.SetBool("isHurt", false); // now that a second has elapsed, Megaman will no longer be damaged.
-        _2dMovement.enabled = true;
 
         StartCoroutine(invincibilityTime());
     }
