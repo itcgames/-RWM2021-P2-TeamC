@@ -31,7 +31,8 @@ def add_data(data):
    print("Grabbing post_id using data in add_data")
    post_id = posts.insert_one(data).inserted_id
    
-   print("Post ID: " + str(post_id))
+   print("Post ID: " + str(post_id))   
+    
 
 def get_dataframe():   
    print("Initializing cursor in get_dataframe")
@@ -41,6 +42,7 @@ def get_dataframe():
    
    print("Creating pandas Dataframe in get_dataframe")
    df = pd.DataFrame(list(cursor))
+   pd.set_option('display.max_rows', df.shape[0]+1)
    
    return df
 

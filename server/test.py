@@ -17,5 +17,5 @@ def test_get_data():
    df = game_analytics.get_dataframe()
    print(df)
 
-test_post_data()
+#test_post_data()
 test_get_data()
