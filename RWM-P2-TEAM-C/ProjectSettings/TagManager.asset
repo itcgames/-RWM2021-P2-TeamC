@@ -13,6 +13,8 @@ TagManager:
   - Bomber
   - Shrapnel
   - end
+  - Boss
+  - bossbullet
   layers:
   - Default
   - TransparentFX
@@ -67,4 +69,10 @@ TagManager:
     locked: 0
   - name: end
     uniqueID: 4056327861
+    locked: 0
+  - name: Boss
+    uniqueID: 3087038457
+    locked: 0
+  - name: bossbullet
+    uniqueID: 837668233
     locked: 0
