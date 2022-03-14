@@ -8,4 +8,9 @@ public class levelend : MonoBehaviour
     {
         SceneManager.LoadScene("Game");
     }
+
+    public void MENU()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }
