@@ -5,6 +5,7 @@ using UnityEngine;
 public class TempInput : MonoBehaviour
 {
     public int transitionPoint;
+    public ScreenTransition.transitionTypes type;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +17,7 @@ public class TempInput : MonoBehaviour
     {
         if (col.tag == "Player")
         {
-            Camera.main.GetComponent<CameraMover>().StartMovement(transitionPoint);
+            Camera.main.GetComponent<CameraMover>().StartMovement(transitionPoint, type);
         }
     }
 }

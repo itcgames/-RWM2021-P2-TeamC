@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraMover : MonoBehaviour
 {
     public Camera mainCam;
+    public List<Vector2> transitionPoints;
     public float speed = 0.1f;
     public bool m_moving;
     public GameObject m_farLeftBoundary;
@@ -12,9 +13,8 @@ public class CameraMover : MonoBehaviour
 
     public GameObject m_lastDoor;
 
-    private TransitionPoint chosenPoint;
+    private Vector2 chosenPoint;
     private List<Behaviour> heldComponents;
-    private ScreenTransition sT;
 
     [SerializeField]
     private GameObject player;
@@ -23,7 +23,6 @@ public class CameraMover : MonoBehaviour
     {
         mainCam = Camera.main;
         player = GameObject.FindWithTag("Player");
-        sT = Camera.main.GetComponent<ScreenTransition>();
     }
 
     void Update()
@@ -44,9 +43,20 @@ public class CameraMover : MonoBehaviour
         }
     }
 
-    public void StartMovement(int point)
+    public void AddPoint(Vector2 t_point)
     {
-        chosenPoint = sT.transitionPoints[point];
+        transitionPoints.Add(t_point);
+    }
+
+    public void RemoveLastPoint()
+    {
+        if(transitionPoints.Count > 0) // make sure points exist first
+            transitionPoints.RemoveAt(transitionPoints.Count - 1); // removes the last item in the list
+    }
+
+    public void StartMovement(int point, ScreenTransition.transitionTypes t_type)
+    {
+        chosenPoint = transitionPoints[point];
         foreach (Behaviour behaviour in GetComponents<Behaviour>())
         {
             if(behaviour.enabled)
@@ -69,11 +79,11 @@ public class CameraMover : MonoBehaviour
         if(!m_moving)
         { // only do this enumerator if it isn't already happening, to stop overlapping
             m_moving = true;
-            if (chosenPoint.type == TransitionTypes.HORIZONTAL)
+            if (GetComponent<ScreenTransition>().type == ScreenTransition.transitionTypes.HORIZONTAL)
             {
-                if (mainCam.transform.position.x < chosenPoint.transitionPoint.x)
+                if (mainCam.transform.position.x < chosenPoint.x)
                 {
-                    while (mainCam.transform.position.x <= chosenPoint.transitionPoint.x)
+                    while (mainCam.transform.position.x <= chosenPoint.x)
                     {
                         mainCam.transform.position = new Vector3(mainCam.transform.position.x + speed, mainCam.transform.position.y, mainCam.transform.position.z);
                         player.transform.position = new Vector3(player.transform.position.x + speed, player.transform.position.y, player.transform.position.z);
@@ -81,9 +91,9 @@ public class CameraMover : MonoBehaviour
                         yield return new WaitForSeconds(0.025f);
                     }
                 }
-                else if (mainCam.transform.position.x > chosenPoint.transitionPoint.x)
+                else if (mainCam.transform.position.x > chosenPoint.x)
                 {
-                    while (mainCam.transform.position.x >= chosenPoint.transitionPoint.x)
+                    while (mainCam.transform.position.x >= chosenPoint.x)
                     {
                         mainCam.transform.position = new Vector3(mainCam.transform.position.x - speed, mainCam.transform.position.y, mainCam.transform.position.z);
                         player.transform.position = new Vector3(player.transform.position.x - speed, player.transform.position.y, player.transform.position.z);
@@ -92,11 +102,11 @@ public class CameraMover : MonoBehaviour
                     }
                 }
             }
-            if (chosenPoint.type == TransitionTypes.VERTICAL)
+            if (GetComponent<ScreenTransition>().type == ScreenTransition.transitionTypes.VERTICAL)
             {
-                if (mainCam.transform.position.y < chosenPoint.transitionPoint.y)
+                if (mainCam.transform.position.y < chosenPoint.y)
                 {
-                    while (mainCam.transform.position.y <= chosenPoint.transitionPoint.y)
+                    while (mainCam.transform.position.y <= chosenPoint.y)
                     {
                         mainCam.transform.position = new Vector3(mainCam.transform.position.x, mainCam.transform.position.y + speed, mainCam.transform.position.z);
                         player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + speed, player.transform.position.z);
@@ -104,9 +114,9 @@ public class CameraMover : MonoBehaviour
                         yield return new WaitForSeconds(0.025f);
                     }
                 }
-                else if (mainCam.transform.position.y > chosenPoint.transitionPoint.y)
+                else if (mainCam.transform.position.y > chosenPoint.y)
                 {
-                    while (mainCam.transform.position.y >= chosenPoint.transitionPoint.y)
+                    while (mainCam.transform.position.y >= chosenPoint.y)
                     {
                         mainCam.transform.position = new Vector3(mainCam.transform.position.x, mainCam.transform.position.y - speed, mainCam.transform.position.z);
                         player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y - speed, player.transform.position.z);

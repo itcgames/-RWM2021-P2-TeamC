@@ -13,7 +13,6 @@ namespace Tests
         private Animator _animator;
         private Runtime2DMovement _2dMovement;
         private PlayerController _playerController;
-        private GunManager _gunManager;
 
         [SetUp]
         public void Setup()
@@ -97,7 +96,6 @@ namespace Tests
             _animator = _player.GetComponent<Animator>();
             _2dMovement = _player.GetComponent<Runtime2DMovement>();
             _playerController = _player.GetComponent<PlayerController>();
-            _gunManager = _player.GetComponent<GunManager>();
         }
     }
 }

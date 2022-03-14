@@ -6,6 +6,7 @@ public class TransitionZone : MonoBehaviour
 {
     public int pointOne;
     public int pointTwo;
+    public ScreenTransition.transitionTypes type;
     bool swap = false;
 
     public void BeginTransition()
@@ -14,11 +15,11 @@ public class TransitionZone : MonoBehaviour
         {
             if (!swap)
             {
-                Camera.main.GetComponent<CameraMover>().StartMovement(pointOne);
+                Camera.main.GetComponent<CameraMover>().StartMovement(pointOne, type);
             }
             else
             {
-                Camera.main.GetComponent<CameraMover>().StartMovement(pointTwo);
+                Camera.main.GetComponent<CameraMover>().StartMovement(pointTwo, type);
             }
 
             Camera.main.GetComponent<CameraMover>().m_lastDoor = this.gameObject;
