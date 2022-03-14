@@ -93,7 +93,7 @@ public class Bomb : MonoBehaviour
                 {
                     if (!col.gameObject.GetComponent<PlayerController>().getIsInvincible())
                     {
-                        col.gameObject.GetComponent<PlayerController>().decreseHealth(3);
+                        col.gameObject.GetComponent<PlayerController>().decreseHealth(3, transform.position);
                         Destroy(this.gameObject);
                     }
                 }
