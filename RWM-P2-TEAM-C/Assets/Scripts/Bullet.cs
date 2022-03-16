@@ -38,6 +38,7 @@ public class Bullet : MonoBehaviour
             else if (t_other.gameObject.tag == "Follower" && !t_other.gameObject.GetComponent<FlyingFollower>().invincible) { t_other.gameObject.GetComponent<FlyingFollower>().damage(1); SoundManagerScript.instance.PlaySound("bhit"); }
             else if (t_other.gameObject.tag == "Follower" && t_other.gameObject.GetComponent<FlyingFollower>().invincible) { SoundManagerScript.instance.PlaySound("dink"); }
             else if (t_other.gameObject.tag == "Boss") { t_other.gameObject.GetComponent<Boss>().damage(3); SoundManagerScript.instance.PlaySound("bhit"); }
+            else if (t_other.gameObject.tag == "dummy") { SoundManagerScript.instance.PlaySound("dummy"); }
             bulletManager.decreaseBullets(); // decrease total number of bullets
             StopCoroutine("livingTime"); // stop the co-routine before destroying
             Destroy(gameObject);

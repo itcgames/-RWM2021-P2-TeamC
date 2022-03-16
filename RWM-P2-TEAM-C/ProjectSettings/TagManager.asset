@@ -15,6 +15,7 @@ TagManager:
   - end
   - Boss
   - bossbullet
+  - dummy
   layers:
   - Default
   - TransparentFX
