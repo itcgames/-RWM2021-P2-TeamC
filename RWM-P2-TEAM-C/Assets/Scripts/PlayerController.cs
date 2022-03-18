@@ -251,10 +251,22 @@ public class PlayerController : MonoBehaviour
     {
         // Tell Megaman's Animator to display the Damaged animation state
         _animator.SetBool("isHurt", true);
+        _2dMovement.setWalkLeft(false);
+        _2dMovement.setWalkRight(false);
         _2dMovement.enabled = false;
         
 
         yield return new WaitForSeconds(_hurtTimer);
+
+        if(Input.GetKey(KeyCode.A))
+        {
+            _2dMovement.setWalkLeft(true);
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            _2dMovement.setWalkRight(true);
+        }
 
 
         _animator.SetBool("isHurt", false); // now that a second has elapsed, Megaman will no longer be damaged.
