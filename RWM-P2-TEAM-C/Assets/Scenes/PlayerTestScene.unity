@@ -519,6 +519,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 706003888}
+  - component: {fileID: 706003893}
   - component: {fileID: 706003885}
   - component: {fileID: 706003886}
   - component: {fileID: 706003887}
@@ -545,6 +546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434c82429ec95684889105cf450b2b69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _invincible: 0
   _walkableSurfaceTagName: Ground
   leftKey: 97
   rightKey: 100
@@ -555,6 +557,11 @@ MonoBehaviour:
   _MAX_WALKING_SPEED: 10
   acclearation: 17
   _LOWEST_WALKING_SPEED: 2
+  _health: 10
+  _MAX_HEALTH: 15
+  _hurtTimer: 0.25
+  _invincibleTimer: 2
+  _damagedFlashRate: 0.25
 --- !u!212 &706003886
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -594,13 +601,13 @@ SpriteRenderer:
   m_SortingLayerID: 560560035
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8020143640844766479, guid: 158cc7ffc66fe014fbf16c32faf9fc58,
+  m_Sprite: {fileID: -1129237261335551613, guid: 52f689e3f4a67e442bf6e85d0749f547,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.2, y: 0.26}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -657,6 +664,7 @@ MonoBehaviour:
   _hurtTimer: 0.25
   _invincibleTimer: 2
   _damagedFlashRate: 0.25
+  _damagePushback: 2
   megaManHealthText: {fileID: 463004763}
 --- !u!50 &706003890
 Rigidbody2D:
@@ -709,6 +717,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908a1ce6922996749af3e11202d5335f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &706003893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706003884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9faeb2e994002e442bf90a2b4e2f3093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementController: {fileID: 0}
+  _animator: {fileID: 0}
 --- !u!1 &794939022
 GameObject:
   m_ObjectHideFlags: 0

@@ -223,6 +223,12 @@ public class PlayerController : MonoBehaviour
                 megaManHealthText.text = "MEGAMAN HEALTH " + _health;
                 _invincible = true;
 
+                if (this.GetComponent<MovingStateMachine>())
+                {
+                    this.GetComponent<MovingStateMachine>().movementController.setWalkLeft(false);
+                    this.GetComponent<MovingStateMachine>().movementController.setWalkRight(false);
+                }
+
                 if (sourcePos.x >= transform.position.x)
                 { // if the source of the damage is to the right
                     _rb.velocity = new Vector2(-_damagePushback, 0.0f);
