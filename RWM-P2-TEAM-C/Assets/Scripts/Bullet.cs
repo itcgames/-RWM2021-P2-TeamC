@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     public float bulletDirection;
     public float speed;
     public float lifetime;
+    public int damage;
 
     // Update is called once per frame
 
@@ -31,13 +32,25 @@ public class Bullet : MonoBehaviour
     {
         if (t_other.tag != "Player")
         {
-            if (t_other.gameObject.tag == "Bomb") { Destroy(t_other.gameObject); SoundManagerScript.instance.PlaySound("bhit"); }
+            if (t_other.gameObject.tag == "Bomb") 
+            {
+                t_other.GetComponent<Bomb>().Damage(damage);
+                Destroy(t_other.gameObject); SoundManagerScript.instance.PlaySound("bhit"); 
+            }
             else if(t_other.gameObject.tag == "bossbullet") { Destroy(t_other.gameObject); SoundManagerScript.instance.PlaySound("bhit"); }
-            else if (t_other.gameObject.tag == "Shrapnel") { Destroy(t_other.gameObject); SoundManagerScript.instance.PlaySound("bhit"); }
-            else if (t_other.gameObject.tag == "Bomber") { t_other.gameObject.GetComponent<Bomber>().Damage(1); SoundManagerScript.instance.PlaySound("bhit"); }
-            else if (t_other.gameObject.tag == "Follower" && !t_other.gameObject.GetComponent<FlyingFollower>().invincible) { t_other.gameObject.GetComponent<FlyingFollower>().damage(1); SoundManagerScript.instance.PlaySound("bhit"); }
+            else if (t_other.gameObject.tag == "Shrapnel") {Destroy(t_other.gameObject); SoundManagerScript.instance.PlaySound("bhit"); }
+            else if (t_other.gameObject.tag == "Bomber") 
+            { 
+                t_other.gameObject.GetComponent<Bomber>().Damage(damage); 
+                SoundManagerScript.instance.PlaySound("bhit"); 
+            }
+            else if (t_other.gameObject.tag == "Follower" && !t_other.gameObject.GetComponent<FlyingFollower>().invincible) 
+            { 
+                t_other.gameObject.GetComponent<FlyingFollower>().damage(damage); 
+                SoundManagerScript.instance.PlaySound("bhit"); 
+            }
             else if (t_other.gameObject.tag == "Follower" && t_other.gameObject.GetComponent<FlyingFollower>().invincible) { SoundManagerScript.instance.PlaySound("dink"); }
-            else if (t_other.gameObject.tag == "Boss") { t_other.gameObject.GetComponent<Boss>().damage(3); SoundManagerScript.instance.PlaySound("bhit"); }
+            else if (t_other.gameObject.tag == "Boss") { t_other.gameObject.GetComponent<Boss>().damage(damage); SoundManagerScript.instance.PlaySound("bhit"); }
             bulletManager.decreaseBullets(); // decrease total number of bullets
             StopCoroutine("livingTime"); // stop the co-routine before destroying
             Destroy(gameObject);

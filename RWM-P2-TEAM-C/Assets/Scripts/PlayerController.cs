@@ -171,13 +171,14 @@ public class PlayerController : MonoBehaviour
         _isShooting = true;
         idleshoot = true;
         _2dMovement.setStopMovement(true);
+        int damage = (_gunManager.getCurrentGun() == Gun.Normal) ? 1 : 3;
         if (_gunManager.getCurrentGun() == Gun.SteamPunk)
         {
             Vector2 temp = _rb.velocity;
             temp.x = (direction * -1) * 10;
             _rb.velocity = temp;
         }
-        _bulletManager.shootBullet();
+        _bulletManager.shootBullet(damage);
         _animator.SetBool("isShooting", _isShooting);
         StartCoroutine("shootingCooldown");
     }
@@ -185,13 +186,14 @@ public class PlayerController : MonoBehaviour
     public void handleMovingPlayerShooting()
     {
         _isShooting = true;
+        int damage = (_gunManager.getCurrentGun() == Gun.Normal) ? 1 : 3;
         if (_gunManager.getCurrentGun() == Gun.SteamPunk)
         {
             Vector2 temp = _rb.velocity;
             temp.x = temp.x + (direction * -1) * 10;
             _rb.velocity = temp;
         }
-        _bulletManager.shootBullet();
+        _bulletManager.shootBullet(damage);
         _animator.SetBool("isShooting", _isShooting);
         StartCoroutine("shootingCooldown");
     }
