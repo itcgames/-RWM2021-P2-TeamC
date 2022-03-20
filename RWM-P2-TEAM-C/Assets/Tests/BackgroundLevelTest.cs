@@ -13,6 +13,7 @@ namespace Tests
         private Runtime2DMovement _2dMovement;
         private PlayerController _playerController;
         private Rigidbody2D _rb;
+        private MovingStateMachine _movingStateMachine;
         [SetUp]
         public void Setup()
         {
@@ -23,6 +24,7 @@ namespace Tests
         public void Teardown()
         {
             SceneManager.UnloadSceneAsync("PlayerTestScene");
+            GameObject.Destroy(_player);
         }
 
         [UnityTest]
@@ -34,50 +36,40 @@ namespace Tests
         }
 
         [UnityTest]
-        public IEnumerator PlayerCanWalkIntoWallTest()
+        public IEnumerator PlayerCanWalkRightTest()
         {
             setUpPlayer();
-            _2dMovement.handleRightInput();
-            _2dMovement.moveRight();
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitForSeconds(0.5f);
+            _movingStateMachine.setInitalState(_movingStateMachine.movementRight);
+            _movingStateMachine.movementRight.moveRight();
+            _playerController.handleRightAnimation();
+            yield return new WaitForSeconds(0.01f);
             Assert.AreEqual(true, _animator.GetBool("movingRight"));
         }
 
         [UnityTest]
-        public IEnumerator PlayerCanWalkOffLedgeTest()
+        public IEnumerator PlayerCanWalkLeftTest()
         {
             setUpPlayer();
-            _rb.position = new Vector2(-53.42f, -4.36f);
-            _2dMovement.handleLeftInput();
-            _2dMovement.moveLeft();
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(0.5f);
+            _movingStateMachine.setInitalState(_movingStateMachine.movementLeft);
+            _movingStateMachine.movementLeft.moveLeft();
+            _playerController.handleLeftAnimation();
+            yield return new WaitForSeconds(0.01f);
+            Assert.AreEqual(true, _animator.GetBool("movingLeft"));
+        }
+
+        [UnityTest]
+        public IEnumerator PlayerCanInJumpTest()
+        {
+            setUpPlayer();
+            yield return new WaitForSeconds(0.5f);
+            _movingStateMachine.setInitalState(_movingStateMachine.jumping);
+            _movingStateMachine.jumping.handleJumpInput();
+            _playerController.handleJumpAnimationWhileIdle();
             Assert.AreEqual(false, _animator.GetBool("grounded"));
-        }
-
-        [UnityTest]
-        public IEnumerator PlayerCanInJumpOntoLedgeTest()
-        {
-            setUpPlayer();
-            float intialYPos = _rb.position.y;
-            _2dMovement.impluseJumpVel = 30.0f;
-            _2dMovement.handleRightInput();
-            _2dMovement.moveRight();
-            yield return new WaitForSeconds(2.5f);
-            _2dMovement.intialJump();
-            yield return new WaitForSeconds(1.0f);
-            Assert.Greater(_rb.position.y, intialYPos);
+            yield return new WaitForSeconds(0.5f);
             Assert.AreEqual(true, _animator.GetBool("grounded"));
-            Assert.AreEqual(false, _animator.GetBool("walkingRight"));
-        }
-
-        [UnityTest]
-        public IEnumerator PlayerCannotWalkOffLevelTest()
-        {
-            setUpPlayer();
-            _2dMovement.handleLeftInput();
-            _2dMovement.moveLeft();
-            yield return new WaitForSeconds(2.5f);
-            Assert.AreEqual(false, _animator.GetBool("walkingLeft"));
         }
 
         private void setUpPlayer()
@@ -87,6 +79,7 @@ namespace Tests
             _2dMovement = _player.GetComponent<Runtime2DMovement>();
             _playerController = _player.GetComponent<PlayerController>();
             _rb = _player.GetComponent<Rigidbody2D>();
+            _movingStateMachine = _player.GetComponent<MovingStateMachine>();
         }
     }
 }
