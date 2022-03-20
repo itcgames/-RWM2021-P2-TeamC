@@ -34,10 +34,11 @@ public class BulletManager : MonoBehaviour
     /// Shoot a bullet in the direction Megaman is looking.
     /// -1 for Left, 1 for Right.
     /// </summary>
-    public void shootBullet()
+    public void shootBullet(int damage)
     {
         if (currentBulletTotal < MAX_BULLETS)
         {
+            bulletPrefab.GetComponent<Bullet>().damage = damage;
             bulletPrefab.GetComponent<Bullet>().bulletManager = this;
             bulletPrefab.GetComponent<Bullet>().speed = bulletMoveSpeed;
             bulletPrefab.GetComponent<Bullet>().lifetime = bulletLifeTime;
