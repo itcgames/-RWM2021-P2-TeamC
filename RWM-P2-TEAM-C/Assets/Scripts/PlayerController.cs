@@ -231,11 +231,11 @@ public class PlayerController : MonoBehaviour
 
                 if (sourcePos.x >= transform.position.x)
                 { // if the source of the damage is to the right
-                    _rb.velocity = new Vector2(-_damagePushback, 0.0f);
+                    _rb.velocity += new Vector2(-_damagePushback, 0.0f);
                 }
                 else
                 { // if the source of the damage is to the left
-                    _rb.velocity = new Vector2(_damagePushback, 0.0f);
+                    _rb.velocity += new Vector2(_damagePushback, 0.0f);
                 }
 
                 StartCoroutine(damagedStateTime());

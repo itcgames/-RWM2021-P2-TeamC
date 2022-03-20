@@ -12,7 +12,7 @@ public class GameState
     public int deathCount = 0;
     public int defeatedEnemies = 0;
     public int level = 0;
-    public string version = "week_2";
+    public string version = "week_3";
     public string playerID;
 }
 
@@ -65,7 +65,7 @@ public class AnalyticsManager : MonoBehaviour
         }
 
 
-        Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSdyB2iIWCDJUw1CcVaUpp9dwKszN6fsfdIzsD6x6pgqlnc1RA/viewform?usp=pp_url&entry.560347647=" + data.playerID);
+        Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSckN6E4a-Z5jLL9Yu828BNgmV0mUPzltHn8PFXKqpDgev8LaQ/viewform?usp=pp_url&entry.1212825994=" + data.playerID);
     }
 
     void Start() { }

@@ -1038,7 +1038,7 @@ MonoBehaviour:
   _invincibleTimer: 2
   _damagedFlashRate: 0.25
   _damagePushback: 20
-  megaManHealthText: {fileID: 0}
+  megaManHealthText: {fileID: 480886888}
 --- !u!95 &835459876
 Animator:
   serializedVersion: 3

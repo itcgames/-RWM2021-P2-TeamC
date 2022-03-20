@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndTutorial : MonoBehaviour
 {
@@ -8,8 +9,7 @@ public class EndTutorial : MonoBehaviour
     {
         if (t_other.gameObject.tag == "Player")
         {
-            Debug.Log("Player touched exit door");
-            //SceneManager.LoadScene("Game");
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }
