@@ -20,6 +20,9 @@ TextureImporter:
   - first:
       213: 805116341699362927
     second: Megaman-Title-Idle_5
+  - first:
+      213: 2877471580529523173
+    second: 
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -110,10 +113,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 22
-        height: 30
+        width: 20
+        height: 26
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -131,10 +134,10 @@ TextureImporter:
         serializedVersion: 2
         x: 23
         y: 0
-        width: 22
-        height: 30
+        width: 20
+        height: 26
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -150,10 +153,10 @@ TextureImporter:
       name: Megaman-Title-Idle_2
       rect:
         serializedVersion: 2
-        x: 54
+        x: 55
         y: 0
-        width: 8
-        height: 30
+        width: 6
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,9 +175,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 14
+        y: 0
         width: 22
-        height: 9
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,10 +195,10 @@ TextureImporter:
       name: Megaman-Title-Idle_4
       rect:
         serializedVersion: 2
-        x: 64
+        x: 90
         y: 0
-        width: 22
-        height: 12
+        width: 20
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,31 +212,10 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Megaman-Title-Idle_5
-      rect:
-        serializedVersion: 2
-        x: 90
-        y: 0
-        width: 21
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f604add0c095c2b00800000000000000
-      internalID: 805116341699362927
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 3ebf6cfcdb579a3498217e21fb002e95
     internalID: 0
     vertices: []
     indices: 
