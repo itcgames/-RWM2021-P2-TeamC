@@ -15,6 +15,7 @@ TagManager:
   - end
   - Boss
   - bossbullet
+  - menu
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - MenuAnimation
   - 
   - 
   - 
