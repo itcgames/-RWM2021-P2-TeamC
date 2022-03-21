@@ -33,7 +33,6 @@ public class Bomb : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         health = maxHealth;
-        rb.velocity = new Vector2(-this.GetComponentInParent<Bomber>().speed, rb.velocity.y);
     }
 
     // Update is called once per frame
@@ -41,9 +40,9 @@ public class Bomb : MonoBehaviour
     {
         if (!_timerStarted)
         {
-            if (dropped && rb.gravityScale != 1)
+            if (dropped && rb.gravityScale != 2.0f)
             {
-                rb.gravityScale = 1;
+                rb.gravityScale = 2.0f;
             }
         }
 
@@ -73,7 +72,7 @@ public class Bomb : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().sprite = cracked;
             for (int i = 0; i < 3; i++)
             {
-                shrapnel = Instantiate(ShrapnelPassed, new Vector3(rb.position.x, rb.position.y + i, 0), Quaternion.identity);
+                shrapnel = Instantiate(ShrapnelPassed, new Vector3(rb.position.x, (rb.position.y + 1) + i, 0), Quaternion.identity);
                 if(rb.position.x < player.GetComponent<Rigidbody2D>().position.x)
                 {
                     shrapnel.GetComponent<Rigidbody2D>().velocity = new Vector2(this.GetComponentInParent<Bomber>().speed, 0.0f);
@@ -103,6 +102,17 @@ public class Bomb : MonoBehaviour
                 }
             }
         }
+    }
+
+    void OnBecameVisible()
+    {
+        this.enabled = true;
+        rb.velocity = new Vector2(-this.GetComponentInParent<Bomber>().speed, rb.velocity.y);
+    }
+
+    void OnBecameInvisible()
+    {
+        this.gameObject.SetActive(false);
     }
 
     public void Damage(float damage)

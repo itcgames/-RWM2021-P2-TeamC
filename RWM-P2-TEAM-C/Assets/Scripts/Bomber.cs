@@ -32,13 +32,13 @@ public class Bomber : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         health = maxHealth;
         // Movement
-        rb.velocity = new Vector2(-speed, rb.velocity.y);
         bomb = Instantiate(bombPassed, new Vector3(rb.position.x, rb.position.y - 1.5f, 0), Quaternion.identity);
         bomb.transform.parent = this.transform;
         if (!player)
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
+        this.enabled = false;
     }
 
     // Update is called once per frame
@@ -67,6 +67,17 @@ public class Bomber : MonoBehaviour
                 col.gameObject.GetComponent<PlayerController>().decreseHealth(1, transform.position);
             }
         }
+    }
+
+    void OnBecameVisible()
+    {
+        this.enabled = true;
+        rb.velocity = new Vector2(-speed, rb.velocity.y);
+    }
+
+    void OnBecameInvisible()
+    {
+        this.gameObject.SetActive(false);
     }
 
     public void Damage(float damage)
