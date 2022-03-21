@@ -41,9 +41,9 @@ public class Bomb : MonoBehaviour
     {
         if (!_timerStarted)
         {
-            if (dropped && rb.gravityScale != 1)
+            if (dropped && rb.gravityScale != 2.0f)
             {
-                rb.gravityScale = 1;
+                rb.gravityScale = 2.0f;
             }
         }
 
