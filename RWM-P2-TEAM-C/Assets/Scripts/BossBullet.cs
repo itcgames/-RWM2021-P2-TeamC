@@ -24,7 +24,7 @@ public class BossBullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Player" && col.gameObject.tag == "Ledge")
+        if (col.gameObject.tag == "Player" )
         {
             Debug.Log("Hit!");
             col.gameObject.GetComponent<PlayerController>().decreseHealth(5, transform.position);

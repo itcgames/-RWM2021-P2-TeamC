@@ -88,7 +88,7 @@ public class Boss : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.gameObject.name == "Player")
+		if (collision.gameObject.tag == "Player")
 		{
 			
 			if(hit)
