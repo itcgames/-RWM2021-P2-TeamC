@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public float _hurtTimer = 0.25f;
     public float _invincibleTimer = 2.0f;
     public float _damagedFlashRate = 0.25f;
-    public float _damagePushback = 2.0f; // amount of force to push megaman back by
+    public float _damagePushback = 200.0f; // amount of force to push megaman back by
     public Text megaManHealthText;
 
     void Start()
@@ -229,13 +229,17 @@ public class PlayerController : MonoBehaviour
                     this.GetComponent<MovingStateMachine>().movementController.setWalkRight(false);
                 }
 
+                _rb.velocity = new Vector2(0, _rb.velocity.y);
+
                 if (sourcePos.x >= transform.position.x)
                 { // if the source of the damage is to the right
                     _rb.velocity += new Vector2(-_damagePushback, 0.0f);
+                    this.GetComponent<MovingStateMachine>().movementController.setRigidBodyVelocity(_rb.velocity);
                 }
                 else
                 { // if the source of the damage is to the left
                     _rb.velocity += new Vector2(_damagePushback, 0.0f);
+                    this.GetComponent<MovingStateMachine>().movementController.setRigidBodyVelocity(_rb.velocity);
                 }
 
                 StartCoroutine(damagedStateTime());
@@ -260,23 +264,29 @@ public class PlayerController : MonoBehaviour
         _2dMovement.setWalkLeft(false);
         _2dMovement.setWalkRight(false);
         _2dMovement.enabled = false;
-        
+        this.GetComponent<MovingStateMachine>().enabled = false;
+        this.GetComponent<MovingStateMachine>().movementController.setWalkLeft(false);
+        this.GetComponent<MovingStateMachine>().movementController.setWalkRight(false);
 
         yield return new WaitForSeconds(_hurtTimer);
 
         if(Input.GetKey(KeyCode.A))
         {
-            _2dMovement.setWalkLeft(true);
+            this.GetComponent<MovingStateMachine>().ChangeState(this.GetComponent<MovingStateMachine>().movementLeft);
         }
-
-        if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
-            _2dMovement.setWalkRight(true);
+            this.GetComponent<MovingStateMachine>().ChangeState(this.GetComponent<MovingStateMachine>().movementRight);
+        }
+        else
+        {
+            this.GetComponent<MovingStateMachine>().ChangeState(this.GetComponent<MovingStateMachine>().idleState);
         }
 
 
         _animator.SetBool("isHurt", false); // now that a second has elapsed, Megaman will no longer be damaged.
         _2dMovement.enabled = true;
+        this.GetComponent<MovingStateMachine>().enabled = true;
 
         StartCoroutine(invincibilityTime());
     }

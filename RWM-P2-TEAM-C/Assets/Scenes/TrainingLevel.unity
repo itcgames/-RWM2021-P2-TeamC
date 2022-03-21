@@ -1824,6 +1824,7 @@ MonoBehaviour:
   m_moving: 0
   m_farLeftBoundary: {fileID: 500584512}
   m_farRightBoundary: {fileID: 675284730}
+  m_boundaryDist: 20
   m_lastDoor: {fileID: 0}
   player: {fileID: 0}
 --- !u!81 &1333086715
