@@ -9,6 +9,7 @@ public class CameraMover : MonoBehaviour
     public bool m_moving;
     public GameObject m_farLeftBoundary;
     public GameObject m_farRightBoundary;
+    public int m_boundaryDist = 20;
 
     public GameObject m_lastDoor;
 
@@ -32,8 +33,8 @@ public class CameraMover : MonoBehaviour
         // so while we're not transitioning, follow megaman
         if (m_farLeftBoundary != null && m_farRightBoundary != null)
         {
-            if (!m_moving && GameObject.FindWithTag("Player").transform.position.x > m_farLeftBoundary.transform.position.x + 40
-                && GameObject.FindWithTag("Player").transform.position.x < m_farRightBoundary.transform.position.x - 40)
+            if (!m_moving && GameObject.FindWithTag("Player").transform.position.x > m_farLeftBoundary.transform.position.x + m_boundaryDist
+                && GameObject.FindWithTag("Player").transform.position.x < m_farRightBoundary.transform.position.x - m_boundaryDist)
             {
                 mainCam.transform.position = new Vector3(GameObject.FindWithTag("Player").transform.position.x, mainCam.transform.position.y, mainCam.transform.position.z);
             }

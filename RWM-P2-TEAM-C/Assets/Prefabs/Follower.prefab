@@ -163,7 +163,7 @@ MonoBehaviour:
   speed: 2
   player: {fileID: 0}
   invincible: 1
-  stateDist: 5
+  stateDist: 10
 --- !u!114 &8250944791375136935
 MonoBehaviour:
   m_ObjectHideFlags: 0

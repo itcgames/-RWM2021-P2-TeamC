@@ -33,7 +33,6 @@ public class Bomb : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         health = maxHealth;
-        rb.velocity = new Vector2(-this.GetComponentInParent<Bomber>().speed, rb.velocity.y);
     }
 
     // Update is called once per frame
@@ -103,6 +102,17 @@ public class Bomb : MonoBehaviour
                 }
             }
         }
+    }
+
+    void OnBecameVisible()
+    {
+        this.enabled = true;
+        rb.velocity = new Vector2(-this.GetComponentInParent<Bomber>().speed, rb.velocity.y);
+    }
+
+    void OnBecameInvisible()
+    {
+        this.gameObject.SetActive(false);
     }
 
     public void Damage(float damage)

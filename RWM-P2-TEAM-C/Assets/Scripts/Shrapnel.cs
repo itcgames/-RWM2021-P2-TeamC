@@ -7,16 +7,24 @@ public class Shrapnel : MonoBehaviour
     // player gameobject
     private GameObject player;
 
+    // Shrapnel Rigidbody
+    Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void OnBecameInvisible()
+    {
+        this.gameObject.SetActive(false);
     }
 
     void OnTriggerStay2D(Collider2D col)
