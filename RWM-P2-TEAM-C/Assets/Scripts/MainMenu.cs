@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
 
     public void train()
     {
-        Debug.Log("DOESNT EXIST YET");
+        SceneManager.LoadScene("TrainingLevel");
     }
     public void Quit()
     {

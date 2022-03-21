@@ -2455,7 +2455,7 @@ MonoBehaviour:
     deathCount: 0
     defeatedEnemies: 0
     level: 0
-    version: week_1
+    version: week_3
     playerID: 
 --- !u!4 &1482684144
 Transform:

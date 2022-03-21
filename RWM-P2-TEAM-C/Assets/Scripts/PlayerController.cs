@@ -231,11 +231,11 @@ public class PlayerController : MonoBehaviour
 
                 if (sourcePos.x >= transform.position.x)
                 { // if the source of the damage is to the right
-                    _rb.velocity = new Vector2(-_damagePushback, 0.0f);
+                    _rb.velocity += new Vector2(-_damagePushback, 0.0f);
                 }
                 else
                 { // if the source of the damage is to the left
-                    _rb.velocity = new Vector2(_damagePushback, 0.0f);
+                    _rb.velocity += new Vector2(_damagePushback, 0.0f);
                 }
 
                 StartCoroutine(damagedStateTime());
@@ -257,9 +257,22 @@ public class PlayerController : MonoBehaviour
     {
         // Tell Megaman's Animator to display the Damaged animation state
         _animator.SetBool("isHurt", true);
+        _2dMovement.setWalkLeft(false);
+        _2dMovement.setWalkRight(false);
         _2dMovement.enabled = false;
+        
 
         yield return new WaitForSeconds(_hurtTimer);
+
+        if(Input.GetKey(KeyCode.A))
+        {
+            _2dMovement.setWalkLeft(true);
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            _2dMovement.setWalkRight(true);
+        }
 
 
         _animator.SetBool("isHurt", false); // now that a second has elapsed, Megaman will no longer be damaged.

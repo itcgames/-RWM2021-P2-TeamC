@@ -79,7 +79,7 @@ namespace Tests
             _playerController.handleIdlePlayerShooting();
             GameObject bullet = GameObject.Find("Bullet(Clone)");
             Assert.NotNull(bullet);
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(2.5f);
             bullet = GameObject.Find("Bullet(Clone)");
             Assert.Null(bullet);
         }
@@ -93,7 +93,7 @@ namespace Tests
             _playerController.handleIdlePlayerShooting();
             GameObject bullet = GameObject.Find("Bullet(Clone)");
             Assert.NotNull(bullet);
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(1.5f);
             bullet = GameObject.Find("Bullet(Clone)");
             Assert.Null(bullet);
         }
