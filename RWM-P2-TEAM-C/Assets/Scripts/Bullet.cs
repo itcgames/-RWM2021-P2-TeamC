@@ -33,13 +33,13 @@ public class Bullet : MonoBehaviour
 
         if (t_other.tag != "Player")
         {
-            if (t_other.gameObject.tag == "Bomb") { Destroy(t_other.gameObject); SoundManagerScript.instance.PlaySound("bhit"); collSuccess = true; }
+            if (t_other.gameObject.tag == "Bomb") { t_other.gameObject.GetComponent<ItemDrop>().drop(); Destroy(t_other.gameObject); SoundManagerScript.instance.PlaySound("bhit"); collSuccess = true; }
             else if(t_other.gameObject.tag == "bossbullet") { Destroy(t_other.gameObject); SoundManagerScript.instance.PlaySound("bhit"); collSuccess = true; }
             else if (t_other.gameObject.tag == "Shrapnel") { Destroy(t_other.gameObject); SoundManagerScript.instance.PlaySound("bhit"); collSuccess = true; }
-            else if (t_other.gameObject.tag == "Bomber") { t_other.gameObject.GetComponent<Bomber>().Damage(1); SoundManagerScript.instance.PlaySound("bhit"); collSuccess = true; }
-            else if (t_other.gameObject.tag == "Follower" && !t_other.gameObject.GetComponent<FlyingFollower>().invincible) { t_other.gameObject.GetComponent<FlyingFollower>().damage(1); SoundManagerScript.instance.PlaySound("bhit"); collSuccess = true; }
+            else if (t_other.gameObject.tag == "Bomber") { t_other.gameObject.GetComponent<Bomber>().Damage(1); t_other.gameObject.GetComponent<ItemDrop>().drop(); SoundManagerScript.instance.PlaySound("bhit"); collSuccess = true; }
+            else if (t_other.gameObject.tag == "Follower" && !t_other.gameObject.GetComponent<FlyingFollower>().invincible) { t_other.gameObject.GetComponent<FlyingFollower>().damage(1); t_other.gameObject.GetComponent<ItemDrop>().drop(); SoundManagerScript.instance.PlaySound("bhit"); collSuccess = true; }
             else if (t_other.gameObject.tag == "Follower" && t_other.gameObject.GetComponent<FlyingFollower>().invincible) { SoundManagerScript.instance.PlaySound("dink"); collSuccess = true; }
-            else if (t_other.gameObject.tag == "Boss") { t_other.gameObject.GetComponent<Boss>().damage(3); SoundManagerScript.instance.PlaySound("bhit"); collSuccess = true; }
+            else if (t_other.gameObject.tag == "Boss") { t_other.gameObject.GetComponent<Boss>().damage(3); t_other.gameObject.GetComponent<ItemDrop>().drop(); SoundManagerScript.instance.PlaySound("bhit"); collSuccess = true; }
             else if (t_other.gameObject.tag == "dummy") {
                 if(!t_other.GetComponent<TutorialDummyScript>()._invincible)
                 {

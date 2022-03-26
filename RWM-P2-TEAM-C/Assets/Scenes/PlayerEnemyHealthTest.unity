@@ -1013,7 +1013,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementController: {fileID: 0}
-  _animator: {fileID: 0}
+  _animator: {fileID: 706003887}
 --- !u!1 &769825506
 GameObject:
   m_ObjectHideFlags: 0
