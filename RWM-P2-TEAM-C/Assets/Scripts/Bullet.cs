@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
     public float bulletDirection;
     public float speed;
     public float lifetime;
+    public int damage;
+    
 
     // Update is called once per frame
 
@@ -30,16 +32,59 @@ public class Bullet : MonoBehaviour
      void OnTriggerEnter2D(Collider2D t_other)
     {
         bool collSuccess = false;
-
         if (t_other.tag != "Player")
         {
-            if (t_other.gameObject.tag == "Bomb") { t_other.gameObject.GetComponent<ItemDrop>().drop(); Destroy(t_other.gameObject); SoundManagerScript.instance.PlaySound("bhit"); collSuccess = true; }
-            else if(t_other.gameObject.tag == "bossbullet") { Destroy(t_other.gameObject); SoundManagerScript.instance.PlaySound("bhit"); collSuccess = true; }
-            else if (t_other.gameObject.tag == "Shrapnel") { Destroy(t_other.gameObject); SoundManagerScript.instance.PlaySound("bhit"); collSuccess = true; }
-            else if (t_other.gameObject.tag == "Bomber") { t_other.gameObject.GetComponent<Bomber>().Damage(1); t_other.gameObject.GetComponent<ItemDrop>().drop(); SoundManagerScript.instance.PlaySound("bhit"); collSuccess = true; }
-            else if (t_other.gameObject.tag == "Follower" && !t_other.gameObject.GetComponent<FlyingFollower>().invincible) { t_other.gameObject.GetComponent<FlyingFollower>().damage(1); t_other.gameObject.GetComponent<ItemDrop>().drop(); SoundManagerScript.instance.PlaySound("bhit"); collSuccess = true; }
-            else if (t_other.gameObject.tag == "Follower" && t_other.gameObject.GetComponent<FlyingFollower>().invincible) { SoundManagerScript.instance.PlaySound("dink"); collSuccess = true; }
-            else if (t_other.gameObject.tag == "Boss") { t_other.gameObject.GetComponent<Boss>().damage(3); t_other.gameObject.GetComponent<ItemDrop>().drop(); SoundManagerScript.instance.PlaySound("bhit"); collSuccess = true; }
+            if (t_other.gameObject.tag == "Bomb") 
+            { 
+                t_other.gameObject.GetComponent<ItemDrop>().drop(); 
+                Destroy(t_other.gameObject); 
+                SoundManagerScript.instance.PlaySound("bhit"); 
+                collSuccess = true;
+                AnalyticsManager.instance.data.defeatedEnemies++;
+            }
+            else if(t_other.gameObject.tag == "bossbullet") 
+            { 
+                Destroy(t_other.gameObject); 
+                SoundManagerScript.instance.PlaySound("bhit"); 
+                collSuccess = true;
+                AnalyticsManager.instance.data.defeatedEnemies++;
+            }
+            else if (t_other.gameObject.tag == "Shrapnel") 
+            { 
+                Destroy(t_other.gameObject); 
+                SoundManagerScript.instance.PlaySound("bhit"); 
+                collSuccess = true;
+                AnalyticsManager.instance.data.defeatedEnemies++;
+            }
+            else if (t_other.gameObject.tag == "Bomber") 
+            { 
+                t_other.gameObject.GetComponent<Bomber>().Damage(damage);
+                if (t_other.gameObject.GetComponent<Bomber>().getHealth() <= 0){AnalyticsManager.instance.data.defeatedEnemies++;}
+                t_other.gameObject.GetComponent<ItemDrop>().drop(); 
+                SoundManagerScript.instance.PlaySound("bhit"); 
+                collSuccess = true; 
+            }
+            else if (t_other.gameObject.tag == "Follower" && !t_other.gameObject.GetComponent<FlyingFollower>().invincible) 
+            { 
+                t_other.gameObject.GetComponent<FlyingFollower>().damage(damage);
+                if (t_other.gameObject.GetComponent<FlyingFollower>().getHealth() <= 0) { AnalyticsManager.instance.data.defeatedEnemies++; }
+                t_other.gameObject.GetComponent<ItemDrop>().drop(); 
+                SoundManagerScript.instance.PlaySound("bhit"); 
+                collSuccess = true; 
+            }
+            else if (t_other.gameObject.tag == "Follower" && t_other.gameObject.GetComponent<FlyingFollower>().invincible) 
+            { 
+                SoundManagerScript.instance.PlaySound("dink"); 
+                collSuccess = true; 
+            }
+            else if (t_other.gameObject.tag == "Boss") 
+            { 
+                t_other.gameObject.GetComponent<Boss>().damage(damage);
+                if (t_other.gameObject.GetComponent<Boss>().getHealth() <= 0) { AnalyticsManager.instance.data.defeatedEnemies++; }
+                t_other.gameObject.GetComponent<ItemDrop>().drop(); 
+                SoundManagerScript.instance.PlaySound("bhit"); 
+                collSuccess = true; 
+            }
             else if (t_other.gameObject.tag == "dummy") {
                 if(!t_other.GetComponent<TutorialDummyScript>()._invincible)
                 {

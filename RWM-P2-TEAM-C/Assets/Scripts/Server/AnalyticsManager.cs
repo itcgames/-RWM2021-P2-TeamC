@@ -12,7 +12,7 @@ public class GameState
     public int deathCount = 0;
     public int defeatedEnemies = 0;
     public int level = 0;
-    public string version = "week_3";
+    public string version = "week_4";
     public string playerID;
 }
 
