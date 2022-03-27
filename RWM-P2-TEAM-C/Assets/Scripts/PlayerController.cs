@@ -345,7 +345,7 @@ public class PlayerController : MonoBehaviour
         {
             SoundManagerScript.instance.PlaySound("land");
         }
-        if(collision.gameObject.tag == "HealthDrop" && _health < _MAX_HEALTH)
+        if(collision.gameObject.tag == "HealthDrop")
         {
             _health += _healthHealed;
             _healthOverflow = _health - _MAX_HEALTH;
@@ -356,7 +356,7 @@ public class PlayerController : MonoBehaviour
             megaManHealthText.text = "MEGAMAN HEALTH " + _health;
             Destroy(collision.gameObject);
         }
-        if (collision.gameObject.tag == "AmmoDrop" && GetComponent<BulletManager>().steamAmmo < GetComponent<BulletManager>().getMaxSteamAmmo())
+        if (collision.gameObject.tag == "AmmoDrop")
         {
             GetComponent<BulletManager>().steamAmmo += _healthHealed;
             _ammoOverflow = GetComponent<BulletManager>().steamAmmo - GetComponent<BulletManager>().getMaxSteamAmmo();
