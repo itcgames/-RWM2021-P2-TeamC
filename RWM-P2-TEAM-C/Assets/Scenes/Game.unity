@@ -2135,8 +2135,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &1392612451
-BoxCollider2D:
+--- !u!60 &1392612451
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2148,7 +2148,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.05335939, y: -1.0816567}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2158,9 +2158,21 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 6.68, y: 0.14668226}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 3.2092147, y: -1.0621006}
+      - {x: 2.8078632, y: -0.98591435}
+      - {x: -2.9109974, y: -1.0156308}
+      - {x: -3.2213817, y: -1.1928521}
+      - {x: -3.2612693, y: -1.3018324}
+      - {x: -3.2785203, y: -1.4855522}
+      - {x: -2.834473, y: -1.4863421}
+      - {x: -2.785316, y: -1.3444514}
+      - {x: 0.85773116, y: -1.3270557}
+      - {x: 3.01694, y: -1.3211349}
+      - {x: 3.021416, y: -1.480169}
+      - {x: 3.38234, y: -1.4727167}
+      - {x: 3.3739069, y: -1.2045928}
 --- !u!61 &1392612452
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2471,6 +2483,9 @@ MonoBehaviour:
     level: 0
     version: week_4
     playerID: 
+    killedBy: 
+    defaultBulletsShoot: 0
+    steamPunkBulletsShoot: 0
 --- !u!4 &1482684144
 Transform:
   m_ObjectHideFlags: 0

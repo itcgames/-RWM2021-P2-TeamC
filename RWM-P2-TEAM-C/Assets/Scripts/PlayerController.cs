@@ -65,11 +65,11 @@ public class PlayerController : MonoBehaviour
         { 
             getShootInput(); 
         }
-        if (_2dMovement.getIsMovingLeft() && _2dMovement.getIsGrounded() && !_animator.GetBool("movingLeft"))
+        if (_rb.velocity.SqrMagnitude() > 0 && _2dMovement.getIsMovingLeft() && _2dMovement.getIsGrounded() && !_animator.GetBool("movingLeft"))
         {
             handleLeftAnimation();
         }
-        else if (_2dMovement.getIsMovingRight() && _2dMovement.getIsGrounded() && !_animator.GetBool("movingRight"))
+        else if (_rb.velocity.SqrMagnitude() > 0 && _2dMovement.getIsMovingRight() && _2dMovement.getIsGrounded() && !_animator.GetBool("movingRight"))
         {
             handleRightAnimation();
         }
@@ -129,6 +129,8 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool("movingLeft", false);
         _animator.SetBool("grounded", true);
         _animator.SetBool("idle", true);
+        //this.GetComponent<MovingStateMachine>().movementController.setWalkLeft(false);
+        //this.GetComponent<MovingStateMachine>().movementController.setWalkRight(false);
     }
 
     public void handleJunpAnimationWhileWalking()
