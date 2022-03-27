@@ -33,7 +33,7 @@ namespace Tests
             int intialHealth = _player.GetComponent<PlayerController>().getHealth();
             yield return new WaitForSeconds(1.0f);
             Assert.AreEqual(true, _animator.GetBool("idle"));
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitForSeconds(3.0f);
             Assert.Less(_player.GetComponent<PlayerController>().getHealth(), intialHealth);
             Assert.AreEqual(true, _player.GetComponent<PlayerController>().getIsInvincible());
         }

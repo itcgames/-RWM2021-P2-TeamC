@@ -17,6 +17,8 @@ TagManager:
   - bossbullet
   - dummy
   - menu
+  - HealthDrop
+  - AmmoDrop
   layers:
   - Default
   - TransparentFX
