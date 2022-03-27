@@ -129,6 +129,24 @@ namespace Tests
             Assert.IsNotNull(ammoDrop);
         }
 
+        [UnityTest]
+        public IEnumerator RecoverAmmoOnPickUp()
+        {
+            setUpPlayer();
+            Enemy = GameObject.FindGameObjectWithTag("Follower");
+            Enemy.GetComponent<FlyingFollower>().damage(4);
+            Enemy.GetComponent<ItemDrop>().alwaysAmmo = true;
+            bullet = GameObject.FindGameObjectWithTag("Bullet");
+            bullet.transform.position = Enemy.transform.position;
+            yield return new WaitForSeconds(0.1f);
+            ammoDrop = GameObject.FindGameObjectWithTag("AmmoDrop");
+            player.GetComponent<BulletManager>().steamAmmo--;
+            int initialAmmo = player.GetComponent<BulletManager>().steamAmmo;
+            ammoDrop.transform.position = player.transform.position;
+            yield return new WaitForSeconds(0.1f);
+            Assert.Greater(player.GetComponent<BulletManager>().steamAmmo, initialAmmo);
+        }
+
         private void setUpPlayer()
         {
             player = GameObject.Find("Player");

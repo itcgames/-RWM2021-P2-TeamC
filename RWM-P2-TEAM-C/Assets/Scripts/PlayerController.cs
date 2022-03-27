@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     public Text megaManHealthText;
     public int _healthHealed = 3;
     private int _healthOverflow;
+    public int _ammoRecovered = 3;
+    private int _ammoOverflow;
 
     void Start()
     {
@@ -352,6 +354,20 @@ public class PlayerController : MonoBehaviour
                 _health -= _healthOverflow;
             }
             megaManHealthText.text = "MEGAMAN HEALTH " + _health;
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "AmmoDrop" && GetComponent<BulletManager>().steamAmmo < GetComponent<BulletManager>().getMaxSteamAmmo())
+        {
+            GetComponent<BulletManager>().steamAmmo += _healthHealed;
+            _ammoOverflow = GetComponent<BulletManager>().steamAmmo - GetComponent<BulletManager>().getMaxSteamAmmo();
+            if (_ammoOverflow > 0)
+            {
+                GetComponent<BulletManager>().steamAmmo -= _ammoOverflow;
+            }
+            if(_gunManager.getCurrentGun() == Gun.SteamPunk)
+            {
+                GetComponent<BulletManager>().steamAmmoText.text = "STEAM AMMO: " + GetComponent<BulletManager>().steamAmmo;
+            }
             Destroy(collision.gameObject);
         }
     }

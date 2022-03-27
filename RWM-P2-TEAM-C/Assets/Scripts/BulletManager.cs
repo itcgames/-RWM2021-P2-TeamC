@@ -70,4 +70,9 @@ public class BulletManager : MonoBehaviour
     {
         return currentBulletTotal < MAX_BULLETS;
     }
+
+    public int getMaxSteamAmmo()
+    {
+        return maxSteamAmmo;
+    }
 }

@@ -1255,6 +1255,7 @@ MonoBehaviour:
   _damagePushback: 20
   megaManHealthText: {fileID: 1277291920}
   _healthHealed: 3
+  _ammoRecovered: 3
 --- !u!50 &706003890
 Rigidbody2D:
   serializedVersion: 4
