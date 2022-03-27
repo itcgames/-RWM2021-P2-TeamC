@@ -59,6 +59,7 @@ public class BulletManager : MonoBehaviour
                 Instantiate(bulletPrefab);
                 SoundManagerScript.instance.PlaySound("buster");
                 AnalyticsManager.instance.data.bulletsFired++;
+                AnalyticsManager.instance.data.defaultBulletsShoot++;
             }
             if(state == "Steam" && steamAmmo > 0)
             {
@@ -71,6 +72,7 @@ public class BulletManager : MonoBehaviour
                 AnalyticsManager.instance.data.bulletsFired++;
                 steamAmmo--;
                 steamAmmoText.text = "STEAM AMMO: " + steamAmmo;
+                AnalyticsManager.instance.data.steamPunkBulletsShoot++;
             }
         }
     }

@@ -15,6 +15,8 @@ public class GameState
     public string version = "week_4";
     public string playerID;
     public string killedBy = "Nothing";
+    public int defaultBulletsShoot = 0;
+    public int steamPunkBulletsShoot = 0;
 }
 
 public class AnalyticsManager : MonoBehaviour
