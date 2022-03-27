@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BulletManager : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class BulletManager : MonoBehaviour
     public float bulletLifeTime;
     public int MAX_BULLETS;
     public int currentBulletTotal = 0;
+    private const int maxSteamAmmo = 15;
+    public int steamAmmo = maxSteamAmmo;
+    public Text steamAmmoText;
+    public string state = "Normal";
 
     /// <summary>
     /// Decrease the number of active bullets
@@ -38,12 +43,26 @@ public class BulletManager : MonoBehaviour
     {
         if (currentBulletTotal < MAX_BULLETS)
         {
-            bulletPrefab.GetComponent<Bullet>().bulletManager = this;
-            bulletPrefab.GetComponent<Bullet>().speed = bulletMoveSpeed;
-            bulletPrefab.GetComponent<Bullet>().lifetime = bulletLifeTime;
-            Instantiate(bulletPrefab);
-            SoundManagerScript.instance.PlaySound("buster");
-            AnalyticsManager.instance.data.bulletsFired++;
+            if (state == "Normal")
+            {
+                bulletPrefab.GetComponent<Bullet>().bulletManager = this;
+                bulletPrefab.GetComponent<Bullet>().speed = bulletMoveSpeed;
+                bulletPrefab.GetComponent<Bullet>().lifetime = bulletLifeTime;
+                Instantiate(bulletPrefab);
+                SoundManagerScript.instance.PlaySound("buster");
+                AnalyticsManager.instance.data.bulletsFired++;
+            }
+            if(state == "Steam" && steamAmmo > 0)
+            {
+                bulletPrefab.GetComponent<Bullet>().bulletManager = this;
+                bulletPrefab.GetComponent<Bullet>().speed = bulletMoveSpeed;
+                bulletPrefab.GetComponent<Bullet>().lifetime = bulletLifeTime;
+                Instantiate(bulletPrefab);
+                SoundManagerScript.instance.PlaySound("buster");
+                AnalyticsManager.instance.data.bulletsFired++;
+                steamAmmo--;
+                steamAmmoText.text = "STEAM AMMO: " + steamAmmo;
+            }
         }
     }
 

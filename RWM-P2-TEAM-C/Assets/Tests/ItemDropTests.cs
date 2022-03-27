@@ -64,6 +64,7 @@ namespace Tests
             healthDrop = GameObject.FindGameObjectWithTag("HealthDrop");
             Assert.IsNotNull(healthDrop);
         }
+
         [UnityTest]
         public IEnumerator HealingOnPickUp()
         {

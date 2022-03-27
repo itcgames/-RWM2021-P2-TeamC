@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour
         _isShooting = true;
         idleshoot = true;
         _2dMovement.setStopMovement(true);
-        if (_gunManager.getCurrentGun() == Gun.SteamPunk)
+        if (_gunManager.getCurrentGun() == Gun.SteamPunk && GetComponent<BulletManager>().steamAmmo > 0)
         {
             Vector2 temp = _rb.velocity;
             temp.x = (direction * -1) * 10;

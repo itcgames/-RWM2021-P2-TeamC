@@ -36,11 +36,15 @@ public class GunManager : MonoBehaviour
                 bulletManager.MAX_BULLETS = 3;
                 bulletManager.bulletMoveSpeed = 20.0f;
                 bulletManager.bulletLifeTime = 2.0f;
+                bulletManager.steamAmmoText.text = null;
+                bulletManager.state = "Normal";
                 break;
             case Gun.SteamPunk:
                 bulletManager.MAX_BULLETS = 1;
                 bulletManager.bulletMoveSpeed = 40.0f;
                 bulletManager.bulletLifeTime = 1.0f;
+                bulletManager.steamAmmoText.text = "STEAM AMMO: " + bulletManager.steamAmmo;
+                bulletManager.state = "Steam";
                 break;
         }
     }
