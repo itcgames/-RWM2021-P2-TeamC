@@ -10,9 +10,9 @@ namespace Tests
     public class ItemDropTests
     {
         GameObject Enemy;
-        GameObject bomb;
         GameObject bullet;
         GameObject healthDrop;
+        GameObject ammoDrop;
         private GameObject player;
 
         [SetUp]
@@ -27,6 +27,10 @@ namespace Tests
             SceneManager.UnloadSceneAsync("AITestScene");
         }
 
+        /// <summary>
+        /// Ammo Drop Tests
+        /// </summary>
+        /// <returns></returns>
         [UnityTest]
         public IEnumerator FollowerHealthDropTest()
         {
@@ -81,6 +85,48 @@ namespace Tests
             healthDrop.transform.position = player.transform.position;
             yield return new WaitForSeconds(0.1f);
             Assert.Greater(player.GetComponent<PlayerController>().getHealth(), initialHealth);
+        }
+
+        /// <summary>
+        /// Ammo Drop Tests
+        /// </summary>
+        /// <returns></returns>
+        [UnityTest]
+        public IEnumerator FollowerAmmoDropTest()
+        {
+            Enemy = GameObject.FindGameObjectWithTag("Follower");
+            Enemy.GetComponent<FlyingFollower>().damage(4);
+            Enemy.GetComponent<ItemDrop>().alwaysAmmo = true;
+            bullet = GameObject.FindGameObjectWithTag("Bullet");
+            bullet.transform.position = Enemy.transform.position;
+            yield return new WaitForSeconds(0.5f);
+            ammoDrop = GameObject.FindGameObjectWithTag("AmmoDrop");
+            Assert.IsNotNull(ammoDrop);
+        }
+
+        [UnityTest]
+        public IEnumerator BomberAmmoDropTest()
+        {
+            Enemy = GameObject.FindGameObjectWithTag("Bomber");
+            Enemy.GetComponent<Bomber>().Damage(4);
+            Enemy.GetComponent<ItemDrop>().alwaysAmmo = true;
+            bullet = GameObject.FindGameObjectWithTag("Bullet");
+            bullet.transform.position = Enemy.transform.position;
+            yield return new WaitForSeconds(0.5f);
+            ammoDrop = GameObject.FindGameObjectWithTag("AmmoDrop");
+            Assert.IsNotNull(ammoDrop);
+        }
+
+        [UnityTest]
+        public IEnumerator BombAmmoDropTest()
+        {
+            Enemy = GameObject.FindGameObjectWithTag("Bomb");
+            Enemy.GetComponent<ItemDrop>().alwaysAmmo = true;
+            bullet = GameObject.FindGameObjectWithTag("Bullet");
+            bullet.transform.position = Enemy.transform.position;
+            yield return new WaitForSeconds(0.5f);
+            ammoDrop = GameObject.FindGameObjectWithTag("AmmoDrop");
+            Assert.IsNotNull(ammoDrop);
         }
 
         private void setUpPlayer()

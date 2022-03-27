@@ -1950,11 +1950,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6111917602898285953, guid: dec1a0501962ae04bb32201805ca78c3,
-        type: 3}
-      propertyPath: alwaysHealth
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dec1a0501962ae04bb32201805ca78c3, type: 3}
 --- !u!1001 &2581665535450095594
@@ -1969,11 +1964,6 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 0c6be22b1a5ba1f43a8634df94e8c14a, type: 2}
-    - target: {fileID: 2570101729098847502, guid: 9ab170db3611677469f6a9fdb39cc557,
-        type: 3}
-      propertyPath: alwaysHealth
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2581665534947295289, guid: 9ab170db3611677469f6a9fdb39cc557,
         type: 3}
       propertyPath: m_Name

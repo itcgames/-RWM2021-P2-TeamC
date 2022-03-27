@@ -18,6 +18,7 @@ TagManager:
   - dummy
   - menu
   - HealthDrop
+  - AmmoDrop
   layers:
   - Default
   - TransparentFX
