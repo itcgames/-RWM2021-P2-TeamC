@@ -14,7 +14,6 @@ public class CameraMover : MonoBehaviour
     public GameObject m_lastDoor;
 
     private TransitionPoint chosenPoint;
-    private List<Behaviour> heldComponents;
     private ScreenTransition sT;
 
     [SerializeField]
@@ -48,6 +47,10 @@ public class CameraMover : MonoBehaviour
     public void StartMovement(int point)
     {
         chosenPoint = sT.transitionPoints[point];
+
+        // disable all enemies and scripts
+        setEnemiesActive(false);
+
         foreach (Behaviour behaviour in GetComponents<Behaviour>())
         {
             if(behaviour.enabled)
@@ -62,7 +65,76 @@ public class CameraMover : MonoBehaviour
         // re-enable these afterwards
         mainCam.enabled = true;
         GetComponent<AudioListener>().enabled = true;
-        StartCoroutine(movement()); 
+        StartCoroutine(movement());
+    }
+
+    public void setEnemiesActive(bool t_active)
+    {
+        GameObject[] bombers = GameObject.FindGameObjectsWithTag("Bomber");
+        GameObject[] followers = GameObject.FindGameObjectsWithTag("Follower");
+        GameObject[] shrapnel = GameObject.FindGameObjectsWithTag("Shrapnel");
+        GameObject boss = GameObject.FindGameObjectWithTag("Boss");
+
+        List<GameObject> putBack = new List<GameObject>();
+
+        foreach (GameObject go in bombers)
+        {
+            if(!t_active)
+            {
+                if (go.GetComponent<Bomber>().enabled)
+                    putBack.Add(go);
+            }
+
+            go.GetComponent<Bomber>().enabled = t_active;
+            go.GetComponent<Bomber>().bomb.GetComponent<Bomb>().enabled = t_active;
+            go.GetComponent<Bomber>().bomb.GetComponent<BoxCollider2D>().enabled = t_active;
+            go.GetComponent<BoxCollider2D>().enabled = t_active;
+
+            if(!t_active)
+            {
+                go.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+                go.GetComponent<Bomber>().bomb.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+            }          
+            else
+            {
+                go.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                go.GetComponent<Rigidbody2D>().velocity = new Vector2(-go.GetComponent<Bomber>().speed, go.GetComponent<Rigidbody2D>().velocity.y);
+                go.GetComponent<Bomber>().bomb.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+            }
+        }
+
+        foreach (GameObject go in followers)
+        {
+            if (!t_active)
+            {
+                if (go.GetComponent<FlyingFollower>().enabled)
+                    putBack.Add(go);
+            }
+
+            print("processing " + go);
+            go.GetComponent<BoxCollider2D>().enabled = t_active;
+
+            if (!t_active)
+                go.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+            else
+                go.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+        }
+
+        foreach (GameObject go in shrapnel)
+        { // don't deal with shrapnel, just destroy any that exist
+            Destroy(go);                
+        }
+
+        if(!t_active)
+        {
+            putBack.Add(boss.gameObject);
+        }
+
+        boss.GetComponent<Boss>().enabled = t_active;
+        if (!t_active)
+            boss.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+        else
+            boss.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
     }
 
     IEnumerator movement()
@@ -140,6 +212,8 @@ public class CameraMover : MonoBehaviour
         
 
         m_moving = false;
+        // re-enable all enemies after
+        setEnemiesActive(true);
         yield break;
     }
 }
