@@ -245,11 +245,9 @@ public class PlayerController : MonoBehaviour
                     _rb.velocity += new Vector2(_damagePushback, 0.0f);
                     this.GetComponent<MovingStateMachine>().movementController.setRigidBodyVelocity(_rb.velocity);
                 }
-
                 StartCoroutine(damagedStateTime());
             }
         }
-
     }
 
     IEnumerator invincibilityTime()

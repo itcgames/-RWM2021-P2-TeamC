@@ -14,6 +14,7 @@ public class GameState
     public int level = 0;
     public string version = "week_4";
     public string playerID;
+    public string killedBy = "Nothing";
 }
 
 public class AnalyticsManager : MonoBehaviour

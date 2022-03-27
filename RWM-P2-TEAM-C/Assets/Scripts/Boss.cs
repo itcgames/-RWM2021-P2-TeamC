@@ -90,14 +90,14 @@ public class Boss : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Player")
 		{
-			
 			if(hit)
             {
 				collision.gameObject.GetComponent<PlayerController>().decreseHealth(1,transform.position);
-				Debug.Log("player detected");
+				if (collision.gameObject.GetComponent<PlayerController>().getHealth() <= 0)
+				{
+					AnalyticsManager.instance.data.killedBy = "Boss";
+				}
 			}
-		
-			
 		}        
 	}
 }

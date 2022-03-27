@@ -49,7 +49,7 @@ public class BulletManager : MonoBehaviour
     {
         if (currentBulletTotal < MAX_BULLETS)
         {
-            int damage = (_gunManager.getCurrentGun() == Gun.SteamPunk) ? 6 : 1;
+            int damage = (_gunManager.getCurrentGun() == Gun.SteamPunk) ? 2000 : 1;
             if (state == "Normal")
             {
                 bulletPrefab.GetComponent<Bullet>().bulletManager = this;
