@@ -13,7 +13,7 @@ namespace Tests
         GameObject bomb;
         GameObject bullet;
         GameObject healthDrop;
-        private GameObject _player;
+        private GameObject player;
 
         [SetUp]
         public void Setup()
@@ -64,10 +64,27 @@ namespace Tests
             healthDrop = GameObject.FindGameObjectWithTag("HealthDrop");
             Assert.IsNotNull(healthDrop);
         }
+        [UnityTest]
+        public IEnumerator HealingOnPickUp()
+        {
+            setUpPlayer();
+            Enemy = GameObject.FindGameObjectWithTag("Follower");
+            Enemy.GetComponent<FlyingFollower>().damage(4);
+            Enemy.GetComponent<ItemDrop>().alwaysHealth = true;
+            bullet = GameObject.FindGameObjectWithTag("Bullet");
+            bullet.transform.position = Enemy.transform.position;
+            yield return new WaitForSeconds(0.1f);
+            healthDrop = GameObject.FindGameObjectWithTag("HealthDrop");
+            player.GetComponent<PlayerController>().decreseHealth(1, new Vector2(0, 0));
+            int initialHealth = player.GetComponent<PlayerController>().getHealth();
+            healthDrop.transform.position = player.transform.position;
+            yield return new WaitForSeconds(0.1f);
+            Assert.Greater(player.GetComponent<PlayerController>().getHealth(), initialHealth);
+        }
 
         private void setUpPlayer()
         {
-            _player = GameObject.Find("Player");
+            player = GameObject.Find("Player");
         }
     }
 }

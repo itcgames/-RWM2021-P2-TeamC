@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class ItemDrop : MonoBehaviour
 {
-    //If true, health always drops
-    public bool alwaysHealth;
+    public bool alwaysHealth;   //If true, health always drops
     public GameObject healthDrop;
+    public int dropChance = 5;  // Higher numbers mean less of a chance of an item dropping 
 
     private Rigidbody2D rb;
+    private int healthOverflow;
 
     void Start()
     {

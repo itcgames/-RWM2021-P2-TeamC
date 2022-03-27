@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public float _damagedFlashRate = 0.25f;
     public float _damagePushback = 200.0f; // amount of force to push megaman back by
     public Text megaManHealthText;
+    public int _healthHealed = 3;
+    private int _healthOverflow;
 
     void Start()
     {
@@ -315,6 +317,11 @@ public class PlayerController : MonoBehaviour
     {
         return _health;
     }
+
+    public int getMaxHealth()
+    {
+        return _MAX_HEALTH;
+    }
     
     public void setUpDeadAnimation()
     {
@@ -335,6 +342,17 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Ground" && !_animator.GetBool("grounded"))
         {
             SoundManagerScript.instance.PlaySound("land");
+        }
+        if(collision.gameObject.tag == "HealthDrop" && _health < _MAX_HEALTH)
+        {
+            _health += _healthHealed;
+            _healthOverflow = _health - _MAX_HEALTH;
+            if(_healthOverflow > 0)
+            {
+                _health -= _healthOverflow;
+            }
+            megaManHealthText.text = "MEGAMAN HEALTH " + _health;
+            Destroy(collision.gameObject);
         }
     }
 }

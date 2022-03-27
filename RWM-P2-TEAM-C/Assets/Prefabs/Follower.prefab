@@ -211,3 +211,4 @@ MonoBehaviour:
   alwaysHealth: 0
   healthDrop: {fileID: 4932777857964005233, guid: 3ee0157ac93cb5b49aefd10653f7f5bb,
     type: 3}
+  dropChance: 5
