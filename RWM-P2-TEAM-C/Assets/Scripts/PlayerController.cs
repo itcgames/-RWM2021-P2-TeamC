@@ -348,25 +348,24 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.tag == "HealthDrop")
         {
             _health += _healthHealed;
-            _healthOverflow = _health - _MAX_HEALTH;
-            if(_healthOverflow > 0)
+            if(_health > _MAX_HEALTH)
             {
-                _health -= _healthOverflow;
+                _health = _MAX_HEALTH;
             }
             megaManHealthText.text = "MEGAMAN HEALTH " + _health;
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "AmmoDrop")
         {
-            GetComponent<BulletManager>().steamAmmo += _healthHealed;
-            _ammoOverflow = GetComponent<BulletManager>().steamAmmo - GetComponent<BulletManager>().getMaxSteamAmmo();
-            if (_ammoOverflow > 0)
+            _bulletManager = GetComponent<BulletManager>();
+            _bulletManager.steamAmmo += _ammoRecovered;
+
+            if (_bulletManager.steamAmmo > _bulletManager.getMaxSteamAmmo())
+                _bulletManager.steamAmmo = _bulletManager.getMaxSteamAmmo();
+
+            if (_gunManager.getCurrentGun() == Gun.SteamPunk)
             {
-                GetComponent<BulletManager>().steamAmmo -= _ammoOverflow;
-            }
-            if(_gunManager.getCurrentGun() == Gun.SteamPunk)
-            {
-                GetComponent<BulletManager>().steamAmmoText.text = "STEAM AMMO: " + GetComponent<BulletManager>().steamAmmo;
+                _bulletManager.steamAmmoText.text = "STEAM AMMO: " + _bulletManager.steamAmmo;
             }
             Destroy(collision.gameObject);
         }
