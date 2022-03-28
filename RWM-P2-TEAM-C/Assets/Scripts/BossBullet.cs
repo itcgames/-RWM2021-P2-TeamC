@@ -29,7 +29,10 @@ public class BossBullet : MonoBehaviour
             if (!col.gameObject.GetComponent<PlayerController>().getIsInvincible())
             {
                 Debug.Log("Hit!");
+
                 col.gameObject.GetComponent<PlayerController>().decreseHealth(3, transform.position);
+
+              
                 Destroy(this.gameObject);
             }
         }

@@ -22,6 +22,10 @@ public class PlayerController : MonoBehaviour
     public float _damagedFlashRate = 0.25f;
     public float _damagePushback = 200.0f; // amount of force to push megaman back by
     public Text megaManHealthText;
+    public int _healthHealed = 3;
+    private int _healthOverflow;
+    public int _ammoRecovered = 3;
+    private int _ammoOverflow;
 
     void Start()
     {
@@ -171,7 +175,7 @@ public class PlayerController : MonoBehaviour
         _isShooting = true;
         idleshoot = true;
         _2dMovement.setStopMovement(true);
-        if (_gunManager.getCurrentGun() == Gun.SteamPunk)
+        if (_gunManager.getCurrentGun() == Gun.SteamPunk && GetComponent<BulletManager>().steamAmmo > 0)
         {
             Vector2 temp = _rb.velocity;
             temp.x = (direction * -1) * 10;
@@ -315,6 +319,11 @@ public class PlayerController : MonoBehaviour
     {
         return _health;
     }
+
+    public int getMaxHealth()
+    {
+        return _MAX_HEALTH;
+    }
     
     public void setUpDeadAnimation()
     {
@@ -335,6 +344,30 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Ground" && !_animator.GetBool("grounded"))
         {
             SoundManagerScript.instance.PlaySound("land");
+        }
+        if(collision.gameObject.tag == "HealthDrop")
+        {
+            _health += _healthHealed;
+            if(_health > _MAX_HEALTH)
+            {
+                _health = _MAX_HEALTH;
+            }
+            megaManHealthText.text = "MEGAMAN HEALTH " + _health;
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "AmmoDrop")
+        {
+            _bulletManager = GetComponent<BulletManager>();
+            _bulletManager.steamAmmo += _ammoRecovered;
+
+            if (_bulletManager.steamAmmo > _bulletManager.getMaxSteamAmmo())
+                _bulletManager.steamAmmo = _bulletManager.getMaxSteamAmmo();
+
+            if (_gunManager.getCurrentGun() == Gun.SteamPunk)
+            {
+                _bulletManager.steamAmmoText.text = "STEAM AMMO: " + _bulletManager.steamAmmo;
+            }
+            Destroy(collision.gameObject);
         }
     }
 }

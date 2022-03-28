@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2581665534947295294}
   - component: {fileID: 8250944791375136935}
   - component: {fileID: -7828016613961019964}
+  - component: {fileID: 2570101729098847502}
   m_Layer: 0
   m_Name: Follower
   m_TagString: Follower
@@ -195,3 +196,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2570101729098847502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2581665534947295289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e9882743366334eb94a0521881b4e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alwaysHealth: 0
+  healthDrop: {fileID: 4932777857964005233, guid: 3ee0157ac93cb5b49aefd10653f7f5bb,
+    type: 3}
+  alwaysAmmo: 0
+  AmmoDrop: {fileID: 3998614060552948665, guid: 8af078ffbd35c7542bb7bdb828a02b3d,
+    type: 3}
+  dropChance: 5

@@ -123,6 +123,19 @@ namespace Tests
             Assert.AreNotEqual(initalPos, newPos);
         }
 
+        [UnityTest]
+        public IEnumerator SteamAmmoTest()
+        {
+            setUpPlayer();
+            yield return new WaitForSeconds(0.1f);
+            int initialAmmo = _player.GetComponent<BulletManager>().steamAmmo;
+            _gunManager.handleSwap();
+            _playerController.handleIdlePlayerShooting();
+            yield return new WaitForSeconds(0.5f);
+            int newAmmo = _player.GetComponent<BulletManager>().steamAmmo;
+            Assert.Less(newAmmo, initialAmmo);
+        }
+
         private void setUpPlayer()
         {
             _player = GameObject.Find("Player");
