@@ -848,7 +848,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -68.84, y: -0.22, z: -10}
+  m_LocalPosition: {x: -76.5, y: -0.22, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1320,7 +1320,7 @@ MonoBehaviour:
   _MAX_WALKING_SPEED: 10
   acclearation: 17
   _LOWEST_WALKING_SPEED: 2
-  _health: 10
+  _health: 15
   _MAX_HEALTH: 15
   _hurtTimer: 0.25
   _invincibleTimer: 2
@@ -1403,7 +1403,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 706003884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -84.54, y: -6.9, z: -1}
+  m_LocalPosition: {x: -77.1, y: -6.9, z: -1}
   m_LocalScale: {x: 12, y: 12, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1488,7 +1488,6 @@ MonoBehaviour:
   end: {fileID: 0}
   deathOrbPrefab: {fileID: 2349235026821315469, guid: 657438a943269f54a9b7f401ca30cfe9,
     type: 3}
-  willRestartLevel: 1
   timeToRestart: 2
   orbSpeed: 2
 --- !u!114 &706003893

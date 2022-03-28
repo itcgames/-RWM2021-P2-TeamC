@@ -14,7 +14,10 @@ public class OnDeath : MonoBehaviour
 
     public void Start()
     {
-        _levelEnd = GameObject.Find("end").GetComponent<levelover>();
+        if(GameObject.Find("end"))
+        {
+            _levelEnd = GameObject.Find("end").GetComponent<levelover>();
+        }
     }
     public void hasDied()
     {
