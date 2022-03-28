@@ -98,12 +98,16 @@ public class Boss : MonoBehaviour
 			
 			if(hit)
             {
-				collision.gameObject.GetComponent<PlayerController>().decreseHealth(1,transform.position);
-				Debug.Log("player detected");
-			}
-		
-			
-		}        
+                if (!collision.gameObject.GetComponent<PlayerController>().getIsInvincible())
+                {
+                    collision.gameObject.GetComponent<PlayerController>().decreseHealth(1, transform.position);
+                    Debug.Log("player detected");
+                }
+
+            }
+
+
+        }        
 	}
 
 }
