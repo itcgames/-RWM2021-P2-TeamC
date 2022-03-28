@@ -129,8 +129,6 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool("movingLeft", false);
         _animator.SetBool("grounded", true);
         _animator.SetBool("idle", true);
-        //this.GetComponent<MovingStateMachine>().movementController.setWalkLeft(false);
-        //this.GetComponent<MovingStateMachine>().movementController.setWalkRight(false);
     }
 
     public void handleJunpAnimationWhileWalking()
