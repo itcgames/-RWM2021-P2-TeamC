@@ -12,8 +12,11 @@ public class GameState
     public int deathCount = 0;
     public int defeatedEnemies = 0;
     public int level = 0;
-    public string version = "week_3";
+    public string version = "week_4";
     public string playerID;
+    public string killedBy = "Nothing";
+    public int defaultBulletsShoot = 0;
+    public int steamPunkBulletsShoot = 0;
 }
 
 public class AnalyticsManager : MonoBehaviour
@@ -65,7 +68,7 @@ public class AnalyticsManager : MonoBehaviour
         }
 
 
-        Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSckN6E4a-Z5jLL9Yu828BNgmV0mUPzltHn8PFXKqpDgev8LaQ/viewform?usp=pp_url&entry.1212825994=" + data.playerID);
+        Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSdf28n_147BIOExFTyYBBb9EXV6rbUReaRHwXkwtvN_fK8X0Q/viewform?usp=pp_url&entry.1212825994=" + data.playerID);
     }
 
     void Start() { }
