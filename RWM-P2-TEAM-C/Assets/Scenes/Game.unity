@@ -444,13 +444,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59d7488a3b8fe8439a45b7b0b448076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  death: {fileID: 0}
+  death: {fileID: 1511468865}
   m_amiator: {fileID: 272403679}
   bulletPrefab: {fileID: 9222956782382747569, guid: ee2614cd56148f44e993c9516f427eee,
     type: 3}
   door: {fileID: 1822607370}
   player: {fileID: 706003888}
-  maxHealth: 30
+  maxHealth: 10
   direction: 1
   isFlipped: 1
   playerdetected: 1
@@ -2512,8 +2512,9 @@ GameObject:
   - component: {fileID: 1511468864}
   - component: {fileID: 1511468863}
   - component: {fileID: 1511468862}
+  - component: {fileID: 1511468865}
   m_Layer: 0
-  m_Name: death spritesheet_0
+  m_Name: death
   m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2603,6 +2604,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1511468865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511468861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecb4a60b93f7183428d1aacee4da2015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_amiator: {fileID: 1511468862}
+  m_boss: {fileID: 272403678}
+  gone: 0
 --- !u!1001 &1553417284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2975,7 +2991,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointOne: 1
   pointTwo: 0
-  m_boss: {fileID: 0}
+  m_boss: {fileID: 272403678}
 --- !u!61 &1822607369
 BoxCollider2D:
   m_ObjectHideFlags: 0
