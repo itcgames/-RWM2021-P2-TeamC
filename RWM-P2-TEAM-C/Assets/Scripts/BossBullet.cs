@@ -26,13 +26,19 @@ public class BossBullet : MonoBehaviour
     {
         if (col.gameObject.tag == "Player" )
         {
-            Debug.Log("Hit!");
-            col.gameObject.GetComponent<PlayerController>().decreseHealth(5, transform.position);
-            if (col.gameObject.GetComponent<PlayerController>().getHealth() <= 0)
+            if (!col.gameObject.GetComponent<PlayerController>().getIsInvincible())
             {
-                AnalyticsManager.instance.data.killedBy = "Boss";
+                Debug.Log("Hit!");
+
+                col.gameObject.GetComponent<PlayerController>().decreseHealth(3, transform.position);
+
+                if (col.gameObject.GetComponent<PlayerController>().getHealth() <= 0)
+                {
+                    AnalyticsManager.instance.data.killedBy = "Boss";
+                }
+              
+                Destroy(this.gameObject);
             }
-            Destroy(this.gameObject);
         }
     }
 
