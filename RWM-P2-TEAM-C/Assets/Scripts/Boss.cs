@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
+	public boss_death death;
+	public Animator m_amiator;
 	// Start is called before the first frame update
 	public GameObject bulletPrefab;
 	public DoorHandler door;
@@ -19,6 +21,7 @@ public class Boss : MonoBehaviour
 
 	private void Start()
     {
+		m_amiator = this.GetComponent<Animator>();
 		transform.Rotate(0f, 180f, 0f);
 		fireRate = 1f;
 		nextFire = Time.time;
@@ -42,8 +45,9 @@ public class Boss : MonoBehaviour
 		{
 			Instantiate(bulletPrefab,transform.position, Quaternion.identity);
 			nextFire = Time.time + fireRate;
+			m_amiator.SetBool("shooting", true);
 		}
-
+		m_amiator.SetBool("shooting", true);
 	}
 
 	public void damage(float t_damage)
@@ -52,6 +56,7 @@ public class Boss : MonoBehaviour
 			health -= t_damage;
 			if (health <= 0.0f)
 			{
+				death.death_start(true);
 				Destroy(this.gameObject);
 			}
 		Debug.Log("Health:" + health);
@@ -100,4 +105,5 @@ public class Boss : MonoBehaviour
 			
 		}        
 	}
+
 }
