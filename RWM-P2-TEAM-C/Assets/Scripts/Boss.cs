@@ -18,11 +18,12 @@ public class Boss : MonoBehaviour
 	float fireRate;
 	float nextFire;
 	public bool hit = true;
+	public bool play = false;
 
 	private void Start()
     {
 		m_amiator = this.GetComponent<Animator>();
-		transform.Rotate(0f, 180f, 0f);
+		//transform.Rotate(0f, 180f, 0f);
 		fireRate = 1f;
 		nextFire = Time.time;
 		health = maxHealth;
@@ -31,11 +32,11 @@ public class Boss : MonoBehaviour
     {
 		
 		
-		if(door.playerthrough)
+		if(play)
         {
 			CheckIfTimeToFire();
 		}
-		LookAtPlayer();
+		//LookAtPlayer();
 	
 		
 	}
