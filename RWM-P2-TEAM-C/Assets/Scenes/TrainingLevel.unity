@@ -1075,7 +1075,7 @@ MonoBehaviour:
   bulletLifeTime: 1.5
   MAX_BULLETS: 0
   currentBulletTotal: 0
-  steamAmmo: 15
+  steamAmmo: 5
   steamAmmoText: {fileID: 325309892}
   state: Normal
 --- !u!50 &835459874

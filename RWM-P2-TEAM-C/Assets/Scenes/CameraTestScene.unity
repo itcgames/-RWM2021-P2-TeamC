@@ -297,6 +297,9 @@ MonoBehaviour:
     level: 0
     version: week_1
     playerID: 
+    killedBy: Nothing
+    defaultBulletsShoot: 0
+    steamPunkBulletsShoot: 0
 --- !u!4 &417491782
 Transform:
   m_ObjectHideFlags: 0
@@ -867,6 +870,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointOne: 0
   pointTwo: 1
+  m_boss: {fileID: 0}
 --- !u!4 &936331644
 Transform:
   m_ObjectHideFlags: 0
@@ -1572,7 +1576,6 @@ MonoBehaviour:
   end: {fileID: 0}
   deathOrbPrefab: {fileID: 2349235026821315469, guid: 657438a943269f54a9b7f401ca30cfe9,
     type: 3}
-  willRestartLevel: 1
   timeToRestart: 2
   orbSpeed: 2
 --- !u!114 &2137209727
@@ -1593,7 +1596,7 @@ MonoBehaviour:
   bulletLifeTime: 1.5
   MAX_BULLETS: 0
   currentBulletTotal: 0
-  steamAmmo: 15
+  steamAmmo: 5
   steamAmmoText: {fileID: 1444580513}
   state: Normal
 --- !u!50 &2137209728
@@ -1638,6 +1641,7 @@ MonoBehaviour:
   _damagePushback: 200
   megaManHealthText: {fileID: 723294527}
   _healthHealed: 3
+  _ammoRecovered: 3
 --- !u!95 &2137209730
 Animator:
   serializedVersion: 3

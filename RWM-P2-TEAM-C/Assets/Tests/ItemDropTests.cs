@@ -133,8 +133,7 @@ namespace Tests
         public IEnumerator RecoverAmmoOnPickUp()
         {
             setUpPlayer();
-            Enemy = GameObject.FindGameObjectWithTag("Follower");
-            Enemy.GetComponent<FlyingFollower>().damage(4);
+            Enemy = GameObject.FindGameObjectWithTag("Bomb");
             Enemy.GetComponent<ItemDrop>().alwaysAmmo = true;
             bullet = GameObject.FindGameObjectWithTag("Bullet");
             bullet.transform.position = Enemy.transform.position;

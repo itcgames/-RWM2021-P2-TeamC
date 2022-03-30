@@ -190,6 +190,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bomber
       objectReference: {fileID: 0}
+    - target: {fileID: 1622205576178837872, guid: dec1a0501962ae04bb32201805ca78c3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1622205576178837879, guid: dec1a0501962ae04bb32201805ca78c3,
         type: 3}
       propertyPath: player
@@ -203,12 +208,12 @@ PrefabInstance:
     - target: {fileID: 1622205576178837883, guid: dec1a0501962ae04bb32201805ca78c3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.5
+      value: 6.46
       objectReference: {fileID: 0}
     - target: {fileID: 1622205576178837883, guid: dec1a0501962ae04bb32201805ca78c3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.93
+      value: 5.87
       objectReference: {fileID: 0}
     - target: {fileID: 1622205576178837883, guid: dec1a0501962ae04bb32201805ca78c3,
         type: 3}
@@ -1510,7 +1515,7 @@ MonoBehaviour:
   bulletLifeTime: 1.5
   MAX_BULLETS: 0
   currentBulletTotal: 0
-  steamAmmo: 15
+  steamAmmo: 5
   steamAmmoText: {fileID: 1919361389}
   state: Normal
 --- !u!114 &706003892
@@ -2034,6 +2039,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Follower
       objectReference: {fileID: 0}
+    - target: {fileID: 2581665534947295289, guid: 9ab170db3611677469f6a9fdb39cc557,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2581665534947295293, guid: 9ab170db3611677469f6a9fdb39cc557,
         type: 3}
       propertyPath: m_RootOrder
@@ -2042,12 +2052,12 @@ PrefabInstance:
     - target: {fileID: 2581665534947295293, guid: 9ab170db3611677469f6a9fdb39cc557,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.85
+      value: 1.95
       objectReference: {fileID: 0}
     - target: {fileID: 2581665534947295293, guid: 9ab170db3611677469f6a9fdb39cc557,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.84
+      value: 3.04
       objectReference: {fileID: 0}
     - target: {fileID: 2581665534947295293, guid: 9ab170db3611677469f6a9fdb39cc557,
         type: 3}
