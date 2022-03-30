@@ -50,7 +50,6 @@ public class Boss : MonoBehaviour
 		else if (!invincible)
 		{ 
 		
-
 			CheckIfTimeToFire();
 		}
 
@@ -72,8 +71,11 @@ public class Boss : MonoBehaviour
 
 	public void damage(float t_damage)
 	{
-
+		if(!invincible)
+        {
 			health -= t_damage;
+		}
+		
 			if (health <= 0.0f)
 			{
 				death.death_start(true);
