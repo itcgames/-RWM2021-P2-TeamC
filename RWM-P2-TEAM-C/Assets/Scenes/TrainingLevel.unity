@@ -1055,7 +1055,6 @@ MonoBehaviour:
   end: {fileID: 0}
   deathOrbPrefab: {fileID: 2349235026821315469, guid: 657438a943269f54a9b7f401ca30cfe9,
     type: 3}
-  willRestartLevel: 1
   timeToRestart: 2
   orbSpeed: 2
 --- !u!114 &835459873
@@ -1121,6 +1120,7 @@ MonoBehaviour:
   _damagePushback: 20
   megaManHealthText: {fileID: 480886888}
   _healthHealed: 3
+  _ammoRecovered: 3
 --- !u!95 &835459876
 Animator:
   serializedVersion: 3
@@ -1464,6 +1464,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1090448841}
+  - component: {fileID: 1090448842}
   m_Layer: 0
   m_Name: Instructions
   m_TagString: Untagged
@@ -1490,6 +1491,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1090448842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090448840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de3eae7d759b50e40aad852f0d03f83c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P: {fileID: 1147467789}
+  PS:
+  - {fileID: 4282967069319031255, guid: 4724b9ed2088b5f48b399fc47afb2b82, type: 3}
+  - {fileID: -3605773293703486232, guid: 4724b9ed2088b5f48b399fc47afb2b82, type: 3}
 --- !u!1 &1147467787
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,7 +1598,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147467787}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: ea2a9c82203e17d4ab9bf763179bf729, type: 2}
   m_CullingMode: 0
@@ -2088,6 +2105,9 @@ MonoBehaviour:
     level: 0
     version: week_3
     playerID: 
+    killedBy: Nothing
+    defaultBulletsShoot: 0
+    steamPunkBulletsShoot: 0
 --- !u!4 &1400934915
 Transform:
   m_ObjectHideFlags: 0
