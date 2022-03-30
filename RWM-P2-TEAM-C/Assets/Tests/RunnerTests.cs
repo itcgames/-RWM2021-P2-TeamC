@@ -34,5 +34,14 @@ namespace Tests
             yield return new WaitForSeconds(0.2f);
             Assert.Less(Enemy.GetComponent<Rigidbody2D>().position.x, initialPos);
         }
+
+        [UnityTest]
+        public IEnumerator JumpTest()
+        {
+            Enemy = GameObject.FindGameObjectWithTag("Runner");
+            float initialPos = Enemy.GetComponent<Rigidbody2D>().position.y;
+            yield return new WaitForSeconds(0.6f);
+            Assert.Greater(Enemy.GetComponent<Rigidbody2D>().position.y, initialPos);
+        }
     }
 }
