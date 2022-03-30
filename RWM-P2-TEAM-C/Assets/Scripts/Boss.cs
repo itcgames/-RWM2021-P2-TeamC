@@ -19,28 +19,47 @@ public class Boss : MonoBehaviour
 	float nextFire;
 	public bool hit = true;
 
+	public bool play = false;
+
+
+	public bool invincible = true;
+	// Distance from the player for the enemy to change state
+	public float stateDist = 35.0f;
+
 	private void Start()
     {
 		m_amiator = this.GetComponent<Animator>();
-		transform.Rotate(0f, 180f, 0f);
+		//transform.Rotate(0f, 180f, 0f);
 		fireRate = 1f;
 		nextFire = Time.time;
+		invincible = true;
 		health = maxHealth;
+		m_amiator.SetBool("shooting", false);
 	}
     private void Update()
     {
+
 		
 		
-		if(door.playerthrough)
-        {
+		print(Vector2.Distance(player.GetComponent<Rigidbody2D>().position, this.transform.position));
+		if (invincible && Vector2.Distance(player.GetComponent<Rigidbody2D>().position, this.transform.position) <= stateDist)
+		{
+			invincible = false;
+	
+		}
+		else if (!invincible)
+		{ 
+		
 			CheckIfTimeToFire();
 		}
-		LookAtPlayer();
+
+		//LookAtPlayer();
 	
 		
 	}
 	public void CheckIfTimeToFire()
 	{
+
 		if (Time.time > nextFire)
 		{
 			Instantiate(bulletPrefab,transform.position, Quaternion.identity);
@@ -52,8 +71,11 @@ public class Boss : MonoBehaviour
 
 	public void damage(float t_damage)
 	{
-
+		if(!invincible)
+        {
 			health -= t_damage;
+		}
+		
 			if (health <= 0.0f)
 			{
 				death.death_start(true);
