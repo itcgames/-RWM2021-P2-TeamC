@@ -10,7 +10,7 @@ public class BulletManager : MonoBehaviour
     public float bulletLifeTime;
     public int MAX_BULLETS;
     public int currentBulletTotal = 0;
-    private const int maxSteamAmmo = 15;
+    private const int maxSteamAmmo = 5;
     public int steamAmmo = maxSteamAmmo;
     public Text steamAmmoText;
     public string state = "Normal";
@@ -49,7 +49,7 @@ public class BulletManager : MonoBehaviour
     {
         if (currentBulletTotal < MAX_BULLETS)
         {
-            int damage = (_gunManager.getCurrentGun() == Gun.SteamPunk) ? 2000 : 1;
+            int damage = (_gunManager.getCurrentGun() == Gun.SteamPunk) ? 4 : 1;
             if (state == "Normal")
             {
                 bulletPrefab.GetComponent<Bullet>().bulletManager = this;
