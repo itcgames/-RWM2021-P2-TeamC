@@ -93,6 +93,11 @@ public class Bullet : MonoBehaviour
                     collSuccess = true;
                 }
             }
+            else if(t_other.gameObject.tag == "Ledge")
+            {
+                SoundManagerScript.instance.PlaySound("dink");
+                collSuccess = true;
+            }
 
             if(collSuccess)
             {
