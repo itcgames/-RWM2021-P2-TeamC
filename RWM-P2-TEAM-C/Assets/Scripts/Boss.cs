@@ -18,14 +18,14 @@ public class Boss : MonoBehaviour
 	float fireRate;
 	float nextFire;
 	public bool hit = true;
-<<<<<<< Updated upstream
+
 	public bool play = false;
 
-=======
+
 	public bool invincible = true;
 	// Distance from the player for the enemy to change state
 	public float stateDist = 35.0f;
->>>>>>> Stashed changes
+
 	private void Start()
     {
 		m_amiator = this.GetComponent<Animator>();
@@ -38,12 +38,9 @@ public class Boss : MonoBehaviour
 	}
     private void Update()
     {
-<<<<<<< Updated upstream
+
 		
 		
-		if(play)
-        {
-=======
 		print(Vector2.Distance(player.GetComponent<Rigidbody2D>().position, this.transform.position));
 		if (invincible && Vector2.Distance(player.GetComponent<Rigidbody2D>().position, this.transform.position) <= stateDist)
 		{
@@ -51,10 +48,12 @@ public class Boss : MonoBehaviour
 	
 		}
 		else if (!invincible)
-		{
->>>>>>> Stashed changes
+		{ 
+		
+
 			CheckIfTimeToFire();
 		}
+
 		//LookAtPlayer();
 	
 		
