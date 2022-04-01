@@ -148,7 +148,7 @@ public class Runner : MonoBehaviour
             if (Camera.current.name == "SceneCamera")
                 return;
 #endif
-        this.enabled = false;
+        this.gameObject.SetActive(false);
     }
 
     public void Damage(float damage)
