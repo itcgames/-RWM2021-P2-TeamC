@@ -24,6 +24,11 @@ public class Shrapnel : MonoBehaviour
 
     void OnBecameInvisible()
     {
+#if UNITY_EDITOR
+        if (Camera.current)
+            if (Camera.current.name == "SceneCamera")
+                return;
+#endif
         this.gameObject.SetActive(false);
     }
 

@@ -75,12 +75,22 @@ public class Bomber : MonoBehaviour
 
     void OnBecameVisible()
     {
+#if UNITY_EDITOR
+        if (Camera.current)
+            if (Camera.current.name == "SceneCamera")
+                return;
+#endif
         this.enabled = true;
         rb.velocity = new Vector2(-speed, rb.velocity.y);
     }
 
     void OnBecameInvisible()
     {
+#if UNITY_EDITOR
+        if (Camera.current)
+            if (Camera.current.name == "SceneCamera")
+                return;
+#endif
         this.gameObject.SetActive(false);
     }
 

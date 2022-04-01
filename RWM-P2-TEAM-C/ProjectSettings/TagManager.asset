@@ -19,6 +19,7 @@ TagManager:
   - menu
   - HealthDrop
   - AmmoDrop
+  - Runner
   layers:
   - Default
   - TransparentFX

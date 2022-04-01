@@ -214,6 +214,9 @@ MonoBehaviour:
     level: 0
     version: week_1
     playerID: 
+    killedBy: Nothing
+    defaultBulletsShoot: 0
+    steamPunkBulletsShoot: 0
 --- !u!4 &45507624
 Transform:
   m_ObjectHideFlags: 0
@@ -491,6 +494,50 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6608486, y: 1.7604475}
   m_EdgeRadius: 0
+--- !u!1001 &402007107
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4986549329008032213, guid: 3e022e87b0a417842abc1c0ea6c4d3cb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4986549329008032213, guid: 3e022e87b0a417842abc1c0ea6c4d3cb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -77.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4986549329008032213, guid: 3e022e87b0a417842abc1c0ea6c4d3cb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4986549329008032213, guid: 3e022e87b0a417842abc1c0ea6c4d3cb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4986549329008032213, guid: 3e022e87b0a417842abc1c0ea6c4d3cb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4986549329008032213, guid: 3e022e87b0a417842abc1c0ea6c4d3cb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5968929758303559369, guid: 3e022e87b0a417842abc1c0ea6c4d3cb,
+        type: 3}
+      propertyPath: m_Name
+      value: Runner
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3e022e87b0a417842abc1c0ea6c4d3cb, type: 3}
 --- !u!1 &458500459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,6 +1178,7 @@ MonoBehaviour:
   _damagePushback: 2
   megaManHealthText: {fileID: 615373382}
   _healthHealed: 3
+  _ammoRecovered: 3
 --- !u!50 &706003890
 Rigidbody2D:
   serializedVersion: 4
@@ -1170,7 +1218,7 @@ MonoBehaviour:
   bulletLifeTime: 1.5
   MAX_BULLETS: 0
   currentBulletTotal: 0
-  steamAmmo: 15
+  steamAmmo: 5
   steamAmmoText: {fileID: 1635076961}
   state: Normal
 --- !u!114 &706003892
@@ -1188,7 +1236,6 @@ MonoBehaviour:
   end: {fileID: 0}
   deathOrbPrefab: {fileID: 2349235026821315469, guid: 657438a943269f54a9b7f401ca30cfe9,
     type: 3}
-  willRestartLevel: 1
   timeToRestart: 5
   orbSpeed: 2
 --- !u!114 &706003893
