@@ -15,9 +15,10 @@ public class BossBullet : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        transform.Rotate(0f, 0f, 180f);
         rb = GetComponent<Rigidbody2D>();
         target = GameObject.FindObjectOfType<PlayerController>();
-        moveDirection = (target.transform.position - transform.position).normalized * moveSpeed;
+        moveDirection = (target.transform.position - transform.position).normalized * moveSpeed;//brings it to player
         rb.velocity = new Vector2(moveDirection.x, moveDirection.y);
        
     }
@@ -26,9 +27,19 @@ public class BossBullet : MonoBehaviour
     {
         if (col.gameObject.tag == "Player" )
         {
-            Debug.Log("Hit!");
-            col.gameObject.GetComponent<PlayerController>().decreseHealth(5, transform.position);
-            Destroy(this.gameObject);
+            if (!col.gameObject.GetComponent<PlayerController>().getIsInvincible())
+            {
+                Debug.Log("Hit!");
+
+                col.gameObject.GetComponent<PlayerController>().decreseHealth(3, transform.position);
+
+                if (col.gameObject.GetComponent<PlayerController>().getHealth() <= 0)
+                {
+                    AnalyticsManager.instance.data.killedBy = "Boss";
+                }
+              
+                Destroy(this.gameObject);
+            }
         }
     }
 

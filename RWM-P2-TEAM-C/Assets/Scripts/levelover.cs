@@ -41,11 +41,14 @@ public class levelover : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            Debug.Log("player detected ending");
-            ended = true;
-            Debug.Log(AnalyticsManager.instance);
-            StartCoroutine(AnalyticsManager.instance.PostMethod());
-            over.SetActive(true);
+            levelEnded();
         }
+    }
+
+    public void levelEnded()
+    {
+        ended = true;
+        StartCoroutine(AnalyticsManager.instance.PostMethod());
+        over.SetActive(true);
     }
 }

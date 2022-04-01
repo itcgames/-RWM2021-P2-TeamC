@@ -7,25 +7,18 @@ public class OnDeath : MonoBehaviour
 {
     public GameObject end;
     public GameObject deathOrbPrefab;
-    public bool willRestartLevel;
     public float timeToRestart;
     public float orbSpeed;
-    private bool restartLevel;
     private bool isDead = false;
+    private levelover _levelEnd;
 
-
-    public void LateUpdate()
+    public void Start()
     {
-        if (willRestartLevel)
+        if(GameObject.Find("end"))
         {
-            if (restartLevel)
-            { 
-                SceneManager.LoadScene("Game");
-              
-            }
+            _levelEnd = GameObject.Find("end").GetComponent<levelover>();
         }
     }
-
     public void hasDied()
     {
         AnalyticsManager.instance.data.deathCount++;
@@ -104,8 +97,7 @@ public class OnDeath : MonoBehaviour
         // now wait a few seconds in order to restart the level
         yield return new WaitForSeconds(timeToRestart);
 
-        restartLevel = willRestartLevel; // if this death script will restart the level, let it do it
-        // this is done because the code will be re-used for our boss, and we don't want the level restarting abruptly.
+        _levelEnd.levelEnded();
 
         yield break; // stop the co-routine
     }

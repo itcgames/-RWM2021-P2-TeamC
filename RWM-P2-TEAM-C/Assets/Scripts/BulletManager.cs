@@ -10,10 +10,16 @@ public class BulletManager : MonoBehaviour
     public float bulletLifeTime;
     public int MAX_BULLETS;
     public int currentBulletTotal = 0;
-    private const int maxSteamAmmo = 15;
+    private const int maxSteamAmmo = 5;
     public int steamAmmo = maxSteamAmmo;
     public Text steamAmmoText;
     public string state = "Normal";
+    private GunManager _gunManager;
+
+    private void Start()
+    {
+        _gunManager = this.GetComponent<GunManager>();
+    }
 
     /// <summary>
     /// Decrease the number of active bullets
@@ -43,25 +49,30 @@ public class BulletManager : MonoBehaviour
     {
         if (currentBulletTotal < MAX_BULLETS)
         {
+            int damage = (_gunManager.getCurrentGun() == Gun.SteamPunk) ? 4 : 1;
             if (state == "Normal")
             {
                 bulletPrefab.GetComponent<Bullet>().bulletManager = this;
                 bulletPrefab.GetComponent<Bullet>().speed = bulletMoveSpeed;
                 bulletPrefab.GetComponent<Bullet>().lifetime = bulletLifeTime;
+                bulletPrefab.GetComponent<Bullet>().damage = damage;
                 Instantiate(bulletPrefab);
                 SoundManagerScript.instance.PlaySound("buster");
                 AnalyticsManager.instance.data.bulletsFired++;
+                AnalyticsManager.instance.data.defaultBulletsShoot++;
             }
             if(state == "Steam" && steamAmmo > 0)
             {
                 bulletPrefab.GetComponent<Bullet>().bulletManager = this;
                 bulletPrefab.GetComponent<Bullet>().speed = bulletMoveSpeed;
                 bulletPrefab.GetComponent<Bullet>().lifetime = bulletLifeTime;
+                bulletPrefab.GetComponent<Bullet>().damage = damage;
                 Instantiate(bulletPrefab);
                 SoundManagerScript.instance.PlaySound("buster");
                 AnalyticsManager.instance.data.bulletsFired++;
                 steamAmmo--;
                 steamAmmoText.text = "STEAM AMMO: " + steamAmmo;
+                AnalyticsManager.instance.data.steamPunkBulletsShoot++;
             }
         }
     }

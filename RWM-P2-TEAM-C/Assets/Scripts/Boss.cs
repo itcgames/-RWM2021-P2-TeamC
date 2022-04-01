@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
+	public boss_death death;
+	public Animator m_amiator;
 	// Start is called before the first frame update
 	public GameObject bulletPrefab;
 	public DoorHandler door;
@@ -17,41 +19,66 @@ public class Boss : MonoBehaviour
 	float nextFire;
 	public bool hit = true;
 
+	public bool play = false;
+
+
+	public bool invincible = true;
+	// Distance from the player for the enemy to change state
+	public float stateDist = 35.0f;
+
 	private void Start()
     {
-		transform.Rotate(0f, 180f, 0f);
+		m_amiator = this.GetComponent<Animator>();
+		//transform.Rotate(0f, 180f, 0f);
 		fireRate = 1f;
 		nextFire = Time.time;
+		invincible = true;
 		health = maxHealth;
+		m_amiator.SetBool("shooting", false);
 	}
     private void Update()
     {
+
 		
 		
-		if(door.playerthrough)
-        {
+		print(Vector2.Distance(player.GetComponent<Rigidbody2D>().position, this.transform.position));
+		if (invincible && Vector2.Distance(player.GetComponent<Rigidbody2D>().position, this.transform.position) <= stateDist)
+		{
+			invincible = false;
+	
+		}
+		else if (!invincible)
+		{ 
+		
 			CheckIfTimeToFire();
 		}
-		LookAtPlayer();
+
+		//LookAtPlayer();
 	
 		
 	}
 	public void CheckIfTimeToFire()
 	{
+
 		if (Time.time > nextFire)
 		{
 			Instantiate(bulletPrefab,transform.position, Quaternion.identity);
 			nextFire = Time.time + fireRate;
+			m_amiator.SetBool("shooting", true);
 		}
-
+		m_amiator.SetBool("shooting", true);
 	}
 
 	public void damage(float t_damage)
 	{
-
+		if(!invincible)
+        {
 			health -= t_damage;
+		}
+		
 			if (health <= 0.0f)
 			{
+				death.death_start(true);
 				Destroy(this.gameObject);
 			}
 		Debug.Log("Health:" + health);
@@ -90,14 +117,24 @@ public class Boss : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Player")
 		{
-			
 			if(hit)
             {
-				collision.gameObject.GetComponent<PlayerController>().decreseHealth(1,transform.position);
-				Debug.Log("player detected");
-			}
-		
-			
-		}        
-	}
+                if (!collision.gameObject.GetComponent<PlayerController>().getIsInvincible())
+                {
+                    collision.gameObject.GetComponent<PlayerController>().decreseHealth(1, transform.position);
+                    
+                    if (collision.gameObject.GetComponent<PlayerController>().getHealth() <= 0)
+                    {
+                      AnalyticsManager.instance.data.killedBy = "Boss";
+                    }
+                    
+                    Debug.Log("player detected");
+                }
+
+            }
+
+
+        } 
+
+    }
 }

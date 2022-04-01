@@ -65,11 +65,11 @@ public class PlayerController : MonoBehaviour
         { 
             getShootInput(); 
         }
-        if (_2dMovement.getIsMovingLeft() && _2dMovement.getIsGrounded() && !_animator.GetBool("movingLeft"))
+        if (_rb.velocity.SqrMagnitude() > 0 && _2dMovement.getIsMovingLeft() && _2dMovement.getIsGrounded() && !_animator.GetBool("movingLeft"))
         {
             handleLeftAnimation();
         }
-        else if (_2dMovement.getIsMovingRight() && _2dMovement.getIsGrounded() && !_animator.GetBool("movingRight"))
+        else if (_rb.velocity.SqrMagnitude() > 0 && _2dMovement.getIsMovingRight() && _2dMovement.getIsGrounded() && !_animator.GetBool("movingRight"))
         {
             handleRightAnimation();
         }
@@ -245,11 +245,9 @@ public class PlayerController : MonoBehaviour
                     _rb.velocity += new Vector2(_damagePushback, 0.0f);
                     this.GetComponent<MovingStateMachine>().movementController.setRigidBodyVelocity(_rb.velocity);
                 }
-
                 StartCoroutine(damagedStateTime());
             }
         }
-
     }
 
     IEnumerator invincibilityTime()
