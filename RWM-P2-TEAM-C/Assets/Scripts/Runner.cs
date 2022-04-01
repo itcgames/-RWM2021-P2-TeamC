@@ -25,7 +25,7 @@ public class Runner : MonoBehaviour
     private Transform wallDetection;
     private RaycastHit2D wallInfo;
     // Distance from the wall that the enemy turns
-    public float distance;
+    public float distance = -1;
 
     // Start is called before the first frame update
     void Start()
@@ -64,7 +64,6 @@ public class Runner : MonoBehaviour
         {
             if (!left)
             {
-                Debug.Log("Hit Right Wall");
                 transform.eulerAngles = new Vector3(0, 0, 0);
                 left = true;
             }
@@ -76,7 +75,6 @@ public class Runner : MonoBehaviour
         {
             if (left)
             {
-                Debug.Log("Hit Left Wall");
                 transform.eulerAngles = new Vector3(0, -180, 0);
                 left = false;
             }
@@ -96,6 +94,10 @@ public class Runner : MonoBehaviour
                     AnalyticsManager.instance.data.killedBy = "Runner";
                 }
             }
+        }
+        if (col.gameObject.tag == "Ground")
+        {
+            rb.velocity = new Vector2(rb.velocity.y, 0.0f);
         }
     }
 
