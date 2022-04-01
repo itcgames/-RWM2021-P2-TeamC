@@ -73,6 +73,14 @@ public class Bullet : MonoBehaviour
                 SoundManagerScript.instance.PlaySound("bhit"); 
                 collSuccess = true; 
             }
+            else if (t_other.gameObject.tag == "Runner")
+            {
+                t_other.gameObject.GetComponent<Runner>().Damage(damage);
+                if (t_other.gameObject.GetComponent<Runner>().getHealth() <= 0) { AnalyticsManager.instance.data.defeatedEnemies++; }
+                t_other.gameObject.GetComponent<ItemDrop>().drop();
+                SoundManagerScript.instance.PlaySound("bhit");
+                collSuccess = true;
+            }
             else if (t_other.gameObject.tag == "Follower" && !t_other.gameObject.GetComponent<FlyingFollower>().invincible) 
             { 
                 t_other.gameObject.GetComponent<FlyingFollower>().damage(damage);

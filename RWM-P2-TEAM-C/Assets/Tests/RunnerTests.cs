@@ -13,6 +13,8 @@ namespace Tests
         GameObject Enemy;
         // player Object
         GameObject Player;
+        // Bullet Object
+        GameObject bullet;
 
         [SetUp]
         public void SetUp()
@@ -56,6 +58,17 @@ namespace Tests
             Enemy.transform.localPosition = new Vector3(Enemy.transform.localPosition.x * -1, Enemy.transform.localPosition.y, Enemy.transform.localPosition.x);
             yield return new WaitForSeconds(0.1f);
             Assert.AreNotEqual(Enemy.GetComponent<Runner>().left, initialDirection);
+        }
+
+        [UnityTest]
+        public IEnumerator RunnerDamageTest()
+        {
+            Enemy = GameObject.FindGameObjectWithTag("Runner");
+            float initialHealth = Enemy.GetComponent<Runner>().getHealth();
+            bullet = GameObject.FindGameObjectWithTag("Bullet");
+            bullet.transform.position = Enemy.transform.position;
+            yield return new WaitForSeconds(0.1f);
+            Assert.Less(Enemy.GetComponent<Runner>().getHealth(), initialHealth);
         }
     }
 }
