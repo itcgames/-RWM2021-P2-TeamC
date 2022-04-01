@@ -297,6 +297,9 @@ MonoBehaviour:
     level: 0
     version: week_1
     playerID: 
+    killedBy: Nothing
+    defaultBulletsShoot: 0
+    steamPunkBulletsShoot: 0
 --- !u!4 &417491782
 Transform:
   m_ObjectHideFlags: 0
@@ -867,6 +870,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointOne: 0
   pointTwo: 1
+  m_boss: {fileID: 0}
 --- !u!4 &936331644
 Transform:
   m_ObjectHideFlags: 0
@@ -1154,6 +1158,90 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444580511}
   m_CullTransparentMesh: 0
+--- !u!1001 &1585607749
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2581665534947295289, guid: 9ab170db3611677469f6a9fdb39cc557,
+        type: 3}
+      propertyPath: m_Name
+      value: Follower
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581665534947295293, guid: 9ab170db3611677469f6a9fdb39cc557,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581665534947295293, guid: 9ab170db3611677469f6a9fdb39cc557,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581665534947295293, guid: 9ab170db3611677469f6a9fdb39cc557,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581665534947295293, guid: 9ab170db3611677469f6a9fdb39cc557,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581665534947295293, guid: 9ab170db3611677469f6a9fdb39cc557,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581665534947295293, guid: 9ab170db3611677469f6a9fdb39cc557,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581665534947295293, guid: 9ab170db3611677469f6a9fdb39cc557,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581665534947295293, guid: 9ab170db3611677469f6a9fdb39cc557,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581665534947295293, guid: 9ab170db3611677469f6a9fdb39cc557,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581665534947295293, guid: 9ab170db3611677469f6a9fdb39cc557,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581665534947295293, guid: 9ab170db3611677469f6a9fdb39cc557,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581665534947295294, guid: 9ab170db3611677469f6a9fdb39cc557,
+        type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581665534947295294, guid: 9ab170db3611677469f6a9fdb39cc557,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2137209725}
+    - target: {fileID: 2581665534947295294, guid: 9ab170db3611677469f6a9fdb39cc557,
+        type: 3}
+      propertyPath: stateDist
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9ab170db3611677469f6a9fdb39cc557, type: 3}
 --- !u!1 &1635205926
 GameObject:
   m_ObjectHideFlags: 0
@@ -1572,7 +1660,6 @@ MonoBehaviour:
   end: {fileID: 0}
   deathOrbPrefab: {fileID: 2349235026821315469, guid: 657438a943269f54a9b7f401ca30cfe9,
     type: 3}
-  willRestartLevel: 1
   timeToRestart: 2
   orbSpeed: 2
 --- !u!114 &2137209727
@@ -1638,6 +1725,7 @@ MonoBehaviour:
   _damagePushback: 200
   megaManHealthText: {fileID: 723294527}
   _healthHealed: 3
+  _ammoRecovered: 3
 --- !u!95 &2137209730
 Animator:
   serializedVersion: 3
