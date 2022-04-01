@@ -9,8 +9,10 @@ namespace Tests
 {
     public class RunnerTests
     {
-        // Bomber Enemy Object
+        // Runner Enemy Object
         GameObject Enemy;
+        // Runner Animation Controller
+        Animator EnemyAnimator;
         // player Object
         GameObject Player;
         // Bullet Object
@@ -69,6 +71,24 @@ namespace Tests
             bullet.transform.position = Enemy.transform.position;
             yield return new WaitForSeconds(0.1f);
             Assert.Less(Enemy.GetComponent<Runner>().getHealth(), initialHealth);
+        }
+
+        [UnityTest]
+        public IEnumerator RunningAnimationTest()
+        {
+            Enemy = GameObject.FindGameObjectWithTag("Runner");
+            EnemyAnimator = Enemy.GetComponent<Animator>();
+            yield return new WaitForSeconds(0.2f);
+            Assert.AreEqual(false, EnemyAnimator.GetBool("jumped"));
+        }
+
+        [UnityTest]
+        public IEnumerator JumpAnimationTest()
+        {
+            Enemy = GameObject.FindGameObjectWithTag("Runner");
+            EnemyAnimator = Enemy.GetComponent<Animator>();
+            yield return new WaitForSeconds(0.6f);
+            Assert.AreEqual(true, EnemyAnimator.GetBool("jumped"));
         }
     }
 }

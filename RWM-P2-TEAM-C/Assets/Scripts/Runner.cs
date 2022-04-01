@@ -6,6 +6,8 @@ public class Runner : MonoBehaviour
 {
     // Enemy's rigidbody
     Rigidbody2D rb;
+    // Enemy's Animation Controller
+    private Animator animator;
 
     // Enemy Health
     public float maxHealth = 5.0f;
@@ -30,6 +32,7 @@ public class Runner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = this.GetComponent<Animator>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         health = maxHealth;
         this.enabled = false;
@@ -48,6 +51,7 @@ public class Runner : MonoBehaviour
             jumpTimer = 0.5f;
             rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
             jumped = true;
+            animator.SetBool("jumped", true);
         }
         if (left)
         {
@@ -95,10 +99,6 @@ public class Runner : MonoBehaviour
                 }
             }
         }
-        if (col.gameObject.tag == "Ground")
-        {
-            rb.velocity = new Vector2(rb.velocity.y, 0.0f);
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -106,6 +106,8 @@ public class Runner : MonoBehaviour
         if(collision.gameObject.tag == "Ground")
         {
             jumped = false;
+            rb.velocity = new Vector2(rb.velocity.x, 0.0f);
+            animator.SetBool("jumped", false);
         }
     }
 
