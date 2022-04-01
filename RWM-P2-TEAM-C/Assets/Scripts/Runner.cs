@@ -29,6 +29,8 @@ public class Runner : MonoBehaviour
     // Distance from the wall that the enemy turns
     public float distance = -1;
 
+    private bool disabledPlayerCollision = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +44,23 @@ public class Runner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!disabledPlayerCollision)
+        {
+            // We want the enemy to not get stuck on top of the player
+            // so we can disable collisions between the non-trigger collider and the player.
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            BoxCollider2D playerCol = player.gameObject.GetComponent<BoxCollider2D>();
+            BoxCollider2D[] colliders = GetComponents<BoxCollider2D>();
+
+            if(playerCol)
+            {
+                Physics2D.IgnoreCollision(colliders[1], playerCol, true);
+                disabledPlayerCollision = true;
+            }
+            
+        }
+
+
         if (!jumped)
         {
             jumpTimer -= Time.deltaTime;
@@ -113,13 +132,23 @@ public class Runner : MonoBehaviour
 
     void OnBecameVisible()
     {
+#if UNITY_EDITOR
+        if (Camera.current)
+            if (Camera.current.name == "SceneCamera")
+                return;
+#endif
         this.enabled = true;
         rb.velocity = new Vector2(-speed, rb.velocity.y);
     }
 
     void OnBecameInvisible()
     {
-        this.gameObject.SetActive(false);
+#if UNITY_EDITOR
+        if (Camera.current)
+            if (Camera.current.name == "SceneCamera")
+                return;
+#endif
+        this.enabled = false;
     }
 
     public void Damage(float damage)
