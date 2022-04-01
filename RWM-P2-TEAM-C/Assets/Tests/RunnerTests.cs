@@ -43,5 +43,19 @@ namespace Tests
             yield return new WaitForSeconds(0.6f);
             Assert.Greater(Enemy.GetComponent<Rigidbody2D>().position.y, initialPos);
         }
+
+        [UnityTest]
+        public IEnumerator WallTurnTest()
+        {
+            Enemy = GameObject.FindGameObjectWithTag("Runner");
+            bool initialDirection = Enemy.GetComponent<Runner>().left;
+            Enemy.transform.localPosition = new Vector3(Enemy.transform.localPosition.x * -1, Enemy.transform.localPosition.y, Enemy.transform.localPosition.x);
+            yield return new WaitForSeconds(0.1f);
+            Assert.AreNotEqual(Enemy.GetComponent<Runner>().left, initialDirection);
+            initialDirection = Enemy.GetComponent<Runner>().left;
+            Enemy.transform.localPosition = new Vector3(Enemy.transform.localPosition.x * -1, Enemy.transform.localPosition.y, Enemy.transform.localPosition.x);
+            yield return new WaitForSeconds(0.1f);
+            Assert.AreNotEqual(Enemy.GetComponent<Runner>().left, initialDirection);
+        }
     }
 }

@@ -19,6 +19,13 @@ public class Runner : MonoBehaviour
     public float jumpHeight = 20.0f;
     // Bool to tell if the runner is airborne
     private bool jumped = false;
+    // Bool to control direction the enemy is facing
+    public bool left = true;
+    // Child Transform used to check what's in front of the Runner
+    private Transform wallDetection;
+    private RaycastHit2D wallInfo;
+    // Distance from the wall that the enemy turns
+    public float distance;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +33,7 @@ public class Runner : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         health = maxHealth;
         this.enabled = false;
+        wallDetection = this.transform.GetChild(0);
     }
 
     // Update is called once per frame
@@ -41,7 +49,39 @@ public class Runner : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
             jumped = true;
         }
-        rb.velocity = new Vector2(-speed, rb.velocity.y);
+        if (left)
+        {
+            rb.velocity = new Vector2(-speed, rb.velocity.y);
+        }
+        else
+        {
+            rb.velocity = new Vector2(speed, rb.velocity.y);
+        }
+
+        // Right Wall Detection
+        wallInfo = Physics2D.Raycast(wallDetection.position, Vector2.right, distance);
+        if (wallInfo.collider != null && (wallInfo.collider.tag == "Ledge" || wallInfo.collider.tag == "Boundary" || wallInfo.collider.name == "Door"))
+        {
+            if (!left)
+            {
+                Debug.Log("Hit Right Wall");
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                left = true;
+            }
+        }
+
+        // Left Wall Detection
+        wallInfo = Physics2D.Raycast(wallDetection.position, Vector2.left, distance);
+        if (wallInfo.collider != null && (wallInfo.collider.tag == "Ledge" || wallInfo.collider.tag == "Boundary" || wallInfo.collider.name == "Door"))
+        {
+            if (left)
+            {
+                Debug.Log("Hit Left Wall");
+                transform.eulerAngles = new Vector3(0, -180, 0);
+                left = false;
+            }
+        }
+
     }
 
     void OnTriggerStay2D(Collider2D col)
