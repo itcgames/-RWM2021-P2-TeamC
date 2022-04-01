@@ -266,6 +266,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 83494456}
+  - component: {fileID: 83494457}
   m_Layer: 0
   m_Name: Runners
   m_TagString: Untagged
@@ -289,6 +290,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &83494457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83494455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dd915e59dc617347a4b4830eab9eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &117742438 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1622205576178837883, guid: dec1a0501962ae04bb32201805ca78c3,
@@ -1409,6 +1422,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Runner (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5968929758303559369, guid: 3e022e87b0a417842abc1c0ea6c4d3cb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e022e87b0a417842abc1c0ea6c4d3cb, type: 3}
