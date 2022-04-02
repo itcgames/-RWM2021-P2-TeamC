@@ -115,7 +115,6 @@ public class Bomb : MonoBehaviour
             if (Camera.current.name == "SceneCamera")
                 return;
 #endif
-
         this.enabled = true;
         rb.velocity = new Vector2(-this.GetComponentInParent<Bomber>().speed, rb.velocity.y);
     }
@@ -127,7 +126,6 @@ public class Bomb : MonoBehaviour
             if (Camera.current.name == "SceneCamera")
                 return;
 #endif
-
         this.gameObject.SetActive(false);
     }
 

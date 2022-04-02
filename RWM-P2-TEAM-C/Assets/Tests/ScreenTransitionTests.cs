@@ -124,7 +124,40 @@ namespace Tests
             Assert.Less(mainCam.transform.position.x, mainCam.GetComponent<ScreenTransition>().transitionPoints[1].transitionPoint.x + 0.1f);
             Assert.GreaterOrEqual(mainCam.transform.position.x, mainCam.GetComponent<ScreenTransition>().transitionPoints[0].transitionPoint.x);
 
-        } 
+        }
+
+        [UnityTest]
+        public IEnumerator DestroysEnemyOnTransition()
+        {
+            setupCamera();
+
+            TransitionPoint test = new TransitionPoint();
+            test.transitionPoint = new Vector2(2.0f, 0.0f);
+            test.type = TransitionTypes.HORIZONTAL;
+
+            TransitionPoint test2 = new TransitionPoint();
+            test2.transitionPoint = new Vector2(3.0f, 0.0f);
+            test2.type = TransitionTypes.HORIZONTAL;
+
+            mainCam.GetComponent<ScreenTransition>().AddPoint(test);
+            mainCam.GetComponent<ScreenTransition>().AddPoint(test2);
+
+            GameObject follower = GameObject.FindGameObjectWithTag("Follower");
+            GameObject bomber = GameObject.FindGameObjectWithTag("Bomber");
+            GameObject runner = GameObject.FindGameObjectWithTag("Runner");
+            GameObject bomb = GameObject.FindGameObjectWithTag("Bomb");
+            
+            mainCam.GetComponent<CameraMover>().StartMovement(0);
+
+            yield return new WaitForSeconds(0.2f);
+
+            // now check and see if they exist
+            Assert.AreEqual(true, !follower);
+            Assert.AreEqual(true, !bomber);
+            Assert.AreEqual(true, !runner);
+            Assert.AreEqual(true, !bomb);
+
+        }
 
         private void setupCamera()
         {

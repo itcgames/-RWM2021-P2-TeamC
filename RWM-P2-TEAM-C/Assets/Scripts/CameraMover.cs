@@ -14,7 +14,6 @@ public class CameraMover : MonoBehaviour
     public GameObject m_lastDoor;
 
     private TransitionPoint chosenPoint;
-    private List<Behaviour> heldComponents;
     private ScreenTransition sT;
 
     [SerializeField]
@@ -48,6 +47,10 @@ public class CameraMover : MonoBehaviour
     public void StartMovement(int point)
     {
         chosenPoint = sT.transitionPoints[point];
+
+        // disable all enemies and scripts
+        destroyActiveEnemies();
+
         foreach (Behaviour behaviour in GetComponents<Behaviour>())
         {
             if(behaviour.enabled)
@@ -62,7 +65,41 @@ public class CameraMover : MonoBehaviour
         // re-enable these afterwards
         mainCam.enabled = true;
         GetComponent<AudioListener>().enabled = true;
-        StartCoroutine(movement()); 
+        StartCoroutine(movement());
+    }
+
+    public void destroyActiveEnemies()
+    {
+        GameObject[] runners = GameObject.FindGameObjectsWithTag("Runner");
+        GameObject[] bombers = GameObject.FindGameObjectsWithTag("Bomber");
+        GameObject[] bombs = GameObject.FindGameObjectsWithTag("Bomb");
+        GameObject[] followers = GameObject.FindGameObjectsWithTag("Follower");
+        GameObject[] shrapnel = GameObject.FindGameObjectsWithTag("Shrapnel");
+
+        foreach (GameObject go in runners)
+        {
+            Destroy(go);
+        }
+
+        foreach (GameObject go in bombers)
+        {
+            Destroy(go);
+        }
+
+        foreach (GameObject go in bombs)
+        {
+            Destroy(go);
+        }
+
+        foreach (GameObject go in followers)
+        {
+            Destroy(go);
+        }
+
+        foreach (GameObject go in shrapnel)
+        {
+            Destroy(go);                
+        }
     }
 
     IEnumerator movement()

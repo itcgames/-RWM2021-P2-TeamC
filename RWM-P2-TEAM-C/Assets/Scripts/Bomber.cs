@@ -14,7 +14,7 @@ public class Bomber : MonoBehaviour
     // Player GameObject
     public GameObject player;
     // Bomb GameObject
-    private GameObject bomb;
+    public GameObject bomb;
     // Current Health
     private float health;
 
@@ -87,7 +87,7 @@ public class Bomber : MonoBehaviour
     void OnBecameInvisible()
     {
 #if UNITY_EDITOR
-        if (Camera.current)
+        if(Camera.current)
             if (Camera.current.name == "SceneCamera")
                 return;
 #endif
