@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 9396a4059be39184a90bce9181969cfa
+guid: 1d0b19642d7d083428a5f10d2b1261ab
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5653299363948127980
-    second: health_ammo_0
+      213: -3702899858485066250
+    second: health-ammo_0
   - first:
-      213: -7697551670358083920
-    second: health_ammo_1
+      213: 4966756123152616767
+    second: health-ammo_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -82,43 +82,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -129,13 +93,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: health_ammo_0
+      name: health-ammo_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 2
-        width: 16
-        height: 12
+        x: 5
+        y: 3
+        width: 13
+        height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +107,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce6e11da1dd847e40800000000000000
-      internalID: 5653299363948127980
+      spriteID: 6f547209238ac9cc0800000000000000
+      internalID: -3702899858485066250
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: health_ammo_1
+      name: health-ammo_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
+        x: 28
+        y: 3
+        width: 23
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b677180a8dcc2590800000000000000
-      internalID: -7697551670358083920
+      spriteID: f3d028601667de440800000000000000
+      internalID: 4966756123152616767
       vertices: []
       indices: 
       edges: []

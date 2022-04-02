@@ -215,6 +215,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59d7488a3b8fe8439a45b7b0b448076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  death: {fileID: 0}
+  m_amiator: {fileID: 0}
   bulletPrefab: {fileID: 2110711431415462046, guid: ee2614cd56148f44e993c9516f427eee,
     type: 3}
   door: {fileID: 564783020}
@@ -224,6 +226,9 @@ MonoBehaviour:
   isFlipped: 0
   playerdetected: 0
   hit: 1
+  play: 0
+  invincible: 1
+  stateDist: 35
 --- !u!212 &41627391
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -621,6 +626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointOne: 1
   pointTwo: 0
+  m_boss: {fileID: 0}
 --- !u!95 &564783023
 Animator:
   serializedVersion: 3
@@ -819,6 +825,9 @@ MonoBehaviour:
     level: 0
     version: week_1
     playerID: 
+    killedBy: Nothing
+    defaultBulletsShoot: 0
+    steamPunkBulletsShoot: 0
 --- !u!4 &735428961
 Transform:
   m_ObjectHideFlags: 0
@@ -1334,6 +1343,7 @@ MonoBehaviour:
   _damagePushback: 200
   megaManHealthText: {fileID: 729072381}
   _healthHealed: 3
+  _ammoRecovered: 3
 --- !u!4 &1090097819
 Transform:
   m_ObjectHideFlags: 0
@@ -1363,7 +1373,6 @@ MonoBehaviour:
   end: {fileID: 0}
   deathOrbPrefab: {fileID: 2349235026821315469, guid: 657438a943269f54a9b7f401ca30cfe9,
     type: 3}
-  willRestartLevel: 1
   timeToRestart: 2
   orbSpeed: 2
 --- !u!114 &1090097821
@@ -1384,7 +1393,7 @@ MonoBehaviour:
   bulletLifeTime: 1.5
   MAX_BULLETS: 0
   currentBulletTotal: 0
-  steamAmmo: 15
+  steamAmmo: 5
   steamAmmoText: {fileID: 1341023440}
   state: Normal
 --- !u!50 &1090097822
