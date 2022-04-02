@@ -70,10 +70,16 @@ public class CameraMover : MonoBehaviour
 
     public void destroyActiveEnemies()
     {
+        GameObject[] runners = GameObject.FindGameObjectsWithTag("Runner");
         GameObject[] bombers = GameObject.FindGameObjectsWithTag("Bomber");
         GameObject[] bombs = GameObject.FindGameObjectsWithTag("Bomb");
         GameObject[] followers = GameObject.FindGameObjectsWithTag("Follower");
         GameObject[] shrapnel = GameObject.FindGameObjectsWithTag("Shrapnel");
+
+        foreach (GameObject go in runners)
+        {
+            Destroy(go);
+        }
 
         foreach (GameObject go in bombers)
         {
