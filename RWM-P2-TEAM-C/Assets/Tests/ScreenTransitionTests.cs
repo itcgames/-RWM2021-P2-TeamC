@@ -139,15 +139,23 @@ namespace Tests
             test2.transitionPoint = new Vector2(3.0f, 0.0f);
             test2.type = TransitionTypes.HORIZONTAL;
 
-            GameObject enemy = GameObject.FindGameObjectWithTag("Follower");
-
             mainCam.GetComponent<ScreenTransition>().AddPoint(test);
             mainCam.GetComponent<ScreenTransition>().AddPoint(test2);
+
+            GameObject follower = GameObject.FindGameObjectWithTag("Follower");
+            GameObject bomber = GameObject.FindGameObjectWithTag("Bomber");
+            GameObject runner = GameObject.FindGameObjectWithTag("Runner");
+            GameObject bomb = GameObject.FindGameObjectWithTag("Bomb");
+            
             mainCam.GetComponent<CameraMover>().StartMovement(0);
 
             yield return new WaitForSeconds(0.2f);
 
-            Assert.AreEqual(true, !enemy);
+            // now check and see if they exist
+            Assert.AreEqual(true, !follower);
+            Assert.AreEqual(true, !bomber);
+            Assert.AreEqual(true, !runner);
+            Assert.AreEqual(true, !bomb);
 
         }
 
