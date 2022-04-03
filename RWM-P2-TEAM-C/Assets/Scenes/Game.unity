@@ -1586,7 +1586,7 @@ MonoBehaviour:
   _hurtTimer: 0.25
   _invincibleTimer: 2
   _damagedFlashRate: 0.25
-  _damagePushback: 20
+  _damagePushback: 10
   megaManHealthText: {fileID: 1277291920}
   _healthHealed: 3
   _ammoRecovered: 3
@@ -1675,6 +1675,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementController: {fileID: 0}
   _animator: {fileID: 0}
+  _MovingWhileJumpingSpeed: 0
+  _isMovingRight: 0
+  _isIdle: 0
+  _isJumping: 0
+  _isMovingLeft: 0
 --- !u!1 &794939022
 GameObject:
   m_ObjectHideFlags: 0

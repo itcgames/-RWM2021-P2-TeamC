@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public float _hurtTimer = 0.25f;
     public float _invincibleTimer = 2.0f;
     public float _damagedFlashRate = 0.25f;
-    public float _damagePushback = 200.0f; // amount of force to push megaman back by
+    public float _damagePushback = 10.0f; // amount of force to push megaman back by
     public Text megaManHealthText;
     public int _healthHealed = 3;
     private int _healthOverflow;
