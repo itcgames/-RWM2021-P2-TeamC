@@ -112,6 +112,8 @@ public class Runner : MonoBehaviour
             if (!col.gameObject.GetComponent<PlayerController>().getIsInvincible())
             {
                 col.gameObject.GetComponent<PlayerController>().decreseHealth(1, transform.position);
+                AnalyticsManager.instance.data.enemyDamage[2]++;
+
                 if (col.gameObject.GetComponent<PlayerController>().getHealth() <= 0)
                 {
                     AnalyticsManager.instance.data.killedBy = "Runner";

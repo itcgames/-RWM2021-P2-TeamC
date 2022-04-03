@@ -32,6 +32,7 @@ public class BossBullet : MonoBehaviour
                 Debug.Log("Hit!");
 
                 col.gameObject.GetComponent<PlayerController>().decreseHealth(3, transform.position);
+                AnalyticsManager.instance.data.enemyDamage[3] += 3;
 
                 if (col.gameObject.GetComponent<PlayerController>().getHealth() <= 0)
                 {

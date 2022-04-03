@@ -15,8 +15,13 @@ public class GameState
     public string version = "week_4";
     public string playerID;
     public string killedBy = "Nothing";
+    public int completion_time = 0;
+    public int levelDistance = 0;
     public int defaultBulletsShoot = 0;
     public int steamPunkBulletsShoot = 0;
+
+    // Bomber, Follower, Runner, Boss
+    public int[] enemyDamage = { 0, 0, 0, 0 };
 }
 
 public class AnalyticsManager : MonoBehaviour

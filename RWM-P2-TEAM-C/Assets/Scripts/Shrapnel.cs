@@ -39,6 +39,8 @@ public class Shrapnel : MonoBehaviour
             if (!col.gameObject.GetComponent<PlayerController>().getIsInvincible())
             {
                 col.gameObject.GetComponent<PlayerController>().decreseHealth(1, transform.position);
+                AnalyticsManager.instance.data.enemyDamage[0]++; // shrapnel is counted as Bomber damage
+
                 if (col.gameObject.GetComponent<PlayerController>().getHealth() <= 0)
                 {
                     AnalyticsManager.instance.data.killedBy = "Shrapnel";
