@@ -38,6 +38,8 @@ public class GunManager : MonoBehaviour
                 bulletManager.bulletLifeTime = 2.0f;
                 bulletManager.steamAmmoText.text = null;
                 bulletManager.state = "Normal";
+
+                player.GetComponent<SpriteRenderer>().color = new Color(1,1,1);
                 break;
             case Gun.SteamPunk:
                 bulletManager.MAX_BULLETS = 1;
@@ -45,6 +47,8 @@ public class GunManager : MonoBehaviour
                 bulletManager.bulletLifeTime = 1.0f;
                 bulletManager.steamAmmoText.text = "STEAM AMMO: " + bulletManager.steamAmmo;
                 bulletManager.state = "Steam";
+
+                player.GetComponent<SpriteRenderer>().color = new Color(255 / 255f, 110 / 255f, 40 / 255f);
                 break;
         }
     }
