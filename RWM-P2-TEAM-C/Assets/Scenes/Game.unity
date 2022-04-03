@@ -1562,7 +1562,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 706003884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -76.5, y: -6.5, z: -1}
+  m_LocalPosition: {x: 28.6, y: -3.7, z: -1}
   m_LocalScale: {x: 12, y: 12, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1675,6 +1675,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementController: {fileID: 0}
   _animator: {fileID: 0}
+  _MovingWhileJumpingSpeed: 0
+  _isMovingRight: 0
+  _isIdle: 0
+  _isJumping: 0
+  _isMovingLeft: 0
 --- !u!1 &794939022
 GameObject:
   m_ObjectHideFlags: 0
