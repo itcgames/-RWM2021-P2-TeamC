@@ -19,6 +19,9 @@ public class GameState
     public int levelDistance = 0;
     public int defaultBulletsShoot = 0;
     public int steamPunkBulletsShoot = 0;
+
+    // Bomber, Follower, Runner, Boss
+    public int[] enemyDamage = { 0, 0, 0, 0 };
 }
 
 public class AnalyticsManager : MonoBehaviour

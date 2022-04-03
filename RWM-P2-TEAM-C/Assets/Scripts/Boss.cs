@@ -122,8 +122,9 @@ public class Boss : MonoBehaviour
                 if (!collision.gameObject.GetComponent<PlayerController>().getIsInvincible())
                 {
                     collision.gameObject.GetComponent<PlayerController>().decreseHealth(1, transform.position);
-                    
-                    if (collision.gameObject.GetComponent<PlayerController>().getHealth() <= 0)
+					AnalyticsManager.instance.data.enemyDamage[3]++;
+
+					if (collision.gameObject.GetComponent<PlayerController>().getHealth() <= 0)
                     {
                       AnalyticsManager.instance.data.killedBy = "Boss";
                     }
