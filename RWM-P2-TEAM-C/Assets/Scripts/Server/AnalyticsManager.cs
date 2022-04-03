@@ -15,6 +15,7 @@ public class GameState
     public string version = "week_4";
     public string playerID;
     public string killedBy = "Nothing";
+    public int completion_time = 0;
     public int defaultBulletsShoot = 0;
     public int steamPunkBulletsShoot = 0;
 }

@@ -28,7 +28,7 @@ public class levelover : MonoBehaviour
             displayText();
         }
 
-        //if(Input.GetMouseButtonDown(0))
+        
       
     }
     void displayText()
@@ -48,6 +48,9 @@ public class levelover : MonoBehaviour
     public void levelEnded()
     {
         ended = true;
+
+        AnalyticsManager.instance.data.completion_time = (int)timer; // want exact time, so convert to int from float
+
         StartCoroutine(AnalyticsManager.instance.PostMethod());
         over.SetActive(true);
     }
