@@ -49,7 +49,14 @@ public class levelover : MonoBehaviour
     {
         ended = true;
 
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
         AnalyticsManager.instance.data.completion_time = (int)timer; // want exact time, so convert to int from float
+
+        // if the level ended, and they weren't killed, that means they completed the level
+        if (AnalyticsManager.instance.data.killedBy == "" || AnalyticsManager.instance.data.killedBy == "Nothing") AnalyticsManager.instance.data.levelDistance = 0;
+        else AnalyticsManager.instance.data.levelDistance = (int)Vector2.Distance(player.transform.position, this.transform.position);
+        // otherwise calculate distance to the end object, this will tell us how close the Player was to the goal
 
         StartCoroutine(AnalyticsManager.instance.PostMethod());
         over.SetActive(true);
