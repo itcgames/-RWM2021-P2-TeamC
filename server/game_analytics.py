@@ -35,17 +35,30 @@ def add_data(data):
     
 
 def get_dataframe():   
-   print("Initializing cursor in get_dataframe")
    cursor = db.posts.find() # Expand the cursor and construct the DataFrame
    
    print(cursor)
-   
-   print("Creating pandas Dataframe in get_dataframe")
    df = pd.DataFrame(list(cursor))
    pd.set_option('display.max_rows', df.shape[0]+1)
+   pd.set_option('display.max_columns', None)
    
    return df
 
 
+def get_mean_completion_time():
+      
+   df = get_dataframe()
 
+   filtered_df = df[~df['completion_time'].isnull()]
+   mean = filtered_df.loc[:, "completion_time"].mean()
 
+   return mean
+
+def get_mean_distance():
+      
+   df = get_dataframe()
+
+   filtered_df = df[~df['levelDistance'].isnull()]
+   mean = filtered_df.loc[:, "levelDistance"].mean()
+
+   return mean
