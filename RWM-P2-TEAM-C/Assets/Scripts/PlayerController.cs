@@ -61,27 +61,26 @@ public class PlayerController : MonoBehaviour
        
     void updatePlayerAnimationStates()
     {
-        if (!_invincible) 
-        { 
-            getShootInput(); 
-        }
-        if (this.GetComponent<MovingStateMachine>()._isMovingLeft)
+        getShootInput();
+        if (this.GetComponent<MovingStateMachine>() != null)
         {
-            handleLeftAnimation();
+            if (this.GetComponent<MovingStateMachine>()._isMovingLeft)
+            {
+                handleLeftAnimation();
+            }
+            else if (this.GetComponent<MovingStateMachine>()._isMovingRight)
+            {
+                handleRightAnimation();
+            }
+            else if (this.GetComponent<MovingStateMachine>()._isJumping)
+            {
+                handleJumpAnimation();
+            }
+            else if (this.GetComponent<MovingStateMachine>()._isIdle)
+            {
+                handleIdleAnimation();
+            }
         }
-        else if (this.GetComponent<MovingStateMachine>()._isMovingRight)
-        {
-            handleRightAnimation();
-        }
-        else if (this.GetComponent<MovingStateMachine>()._isJumping)
-        {
-            handleJumpAnimation();
-        }
-        else if (this.GetComponent<MovingStateMachine>()._isIdle)
-        {
-            handleIdleAnimation();
-        }
-
         Vector3 temp = transform.localScale;
         if (temp.x < 0) { direction =  1; }
         if (temp.x > 0) { direction = -1;  }

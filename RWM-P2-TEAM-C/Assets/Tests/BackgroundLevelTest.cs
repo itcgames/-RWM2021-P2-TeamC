@@ -40,7 +40,7 @@ namespace Tests
         {
             setUpPlayer();
             yield return new WaitForSeconds(0.5f);
-            _movingStateMachine.setInitalState(_movingStateMachine.movementRight);
+            _movingStateMachine.ChangeState(_movingStateMachine.movementRight);
             _movingStateMachine.movementRight.moveRight();
             _playerController.handleRightAnimation();
             yield return new WaitForSeconds(0.01f);
@@ -52,7 +52,7 @@ namespace Tests
         {
             setUpPlayer();
             yield return new WaitForSeconds(0.5f);
-            _movingStateMachine.setInitalState(_movingStateMachine.movementLeft);
+            _movingStateMachine.ChangeState(_movingStateMachine.movementLeft);
             _movingStateMachine.movementLeft.moveLeft();
             _playerController.handleLeftAnimation();
             yield return new WaitForSeconds(0.01f);
