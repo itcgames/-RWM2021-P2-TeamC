@@ -52,8 +52,9 @@ def get_mean_completion_time():
       
    df = get_dataframe()
 
-   filtered_df = df[~df['completion_time'].isnull()]
-   mean = filtered_df.loc[:, "completion_time"].mean()
+   filtered_df = df[~df[['version','completion_time']].isnull()]
+   versionCorrect = filtered_df[(filtered_df['version'] == "week_5")]
+   mean = versionCorrect.loc[:, "completion_time"].mean()
 
    return mean
 
@@ -61,8 +62,9 @@ def get_mean_distance():
       
    df = get_dataframe()
 
-   filtered_df = df[~df['levelDistance'].isnull()]
-   mean = filtered_df.loc[:, "levelDistance"].mean()
+   filtered_df = df[~df[['version','levelDistance']].isnull()]
+   versionCorrect = filtered_df[(filtered_df['version'] == "week_5")]
+   mean = versionCorrect.loc[:, "levelDistance"].mean()
 
    return mean
 
@@ -70,8 +72,9 @@ def get_mean_damage_dealt():
       
    df = get_dataframe()
 
-   filtered_df = df[~df['enemyDamage'].isnull()]
-   damageSpecific = filtered_df.loc[:, "enemyDamage"]
+   filtered_df = df[~df[['version','enemyDamage']].isnull()]
+   versionCorrect = filtered_df[(filtered_df['version'] == "week_5")]
+   damageSpecific = versionCorrect.loc[:, "enemyDamage"].dropna()
    converted = damageSpecific.tolist() # comes out as an array of all damage arrays
    
    # Damage Calculation
