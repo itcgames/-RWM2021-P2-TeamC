@@ -65,27 +65,19 @@ public class PlayerController : MonoBehaviour
         { 
             getShootInput(); 
         }
-        if (_rb.velocity.SqrMagnitude() > 0 && _2dMovement.getIsMovingLeft() && _2dMovement.getIsGrounded() && !_animator.GetBool("movingLeft"))
+        if (this.GetComponent<MovingStateMachine>()._isMovingLeft)
         {
             handleLeftAnimation();
         }
-        else if (_rb.velocity.SqrMagnitude() > 0 && _2dMovement.getIsMovingRight() && _2dMovement.getIsGrounded() && !_animator.GetBool("movingRight"))
+        else if (this.GetComponent<MovingStateMachine>()._isMovingRight)
         {
             handleRightAnimation();
         }
-        else if (!_2dMovement.getIsGrounded() && _animator.GetBool("idle"))
+        else if (this.GetComponent<MovingStateMachine>()._isJumping)
         {
-            handleJumpAnimationWhileIdle();
+            handleJumpAnimation();
         }
-        else if ((_2dMovement.getIsMovingRight() || _2dMovement.getIsMovingLeft()) && !_2dMovement.getIsGrounded() && _animator.GetBool("grounded"))
-        {
-            handleJunpAnimationWhileWalking();
-        }
-        else if ((_2dMovement.getIsMovingRight() || _2dMovement.getIsMovingLeft()) && !_animator.GetBool("grounded"))
-        {
-            handleDirectionWhileJumping();
-        }
-        else if ((_rb.velocity.SqrMagnitude() <= 0 && !_animator.GetBool("idle")))
+        else if (this.GetComponent<MovingStateMachine>()._isIdle)
         {
             handleIdleAnimation();
         }
@@ -117,7 +109,7 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool("idle", false);
     }
 
-    public void handleJumpAnimationWhileIdle()
+    public void handleJumpAnimation()
     {
         _animator.SetBool("grounded", false);
         _animator.SetBool("idle", false);
@@ -129,14 +121,6 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool("movingLeft", false);
         _animator.SetBool("grounded", true);
         _animator.SetBool("idle", true);
-    }
-
-    public void handleJunpAnimationWhileWalking()
-    {
-        _animator.SetBool("movingLeft", false);
-        _animator.SetBool("movingRight", false);
-        _animator.SetBool("grounded", false);
-        _animator.SetBool("idle", false);
     }
 
     public void handleDirectionWhileJumping()

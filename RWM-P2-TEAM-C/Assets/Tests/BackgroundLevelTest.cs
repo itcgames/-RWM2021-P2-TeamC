@@ -66,7 +66,7 @@ namespace Tests
             yield return new WaitForSeconds(0.5f);
             _movingStateMachine.setInitalState(_movingStateMachine.jumping);
             _movingStateMachine.jumping.handleJumpInput();
-            _playerController.handleJumpAnimationWhileIdle();
+            _playerController.handleJumpAnimation();
             Assert.AreEqual(false, _animator.GetBool("grounded"));
             yield return new WaitForSeconds(0.5f);
             Assert.AreEqual(true, _animator.GetBool("grounded"));
