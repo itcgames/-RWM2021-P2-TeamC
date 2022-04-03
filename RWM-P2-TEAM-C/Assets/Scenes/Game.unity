@@ -1584,8 +1584,8 @@ MonoBehaviour:
   direction: -1
   _health: 15
   _hurtTimer: 0.25
-  _invincibleTimer: 2
-  _damagedFlashRate: 0.25
+  _invincibleTimer: 0.75
+  _damagedFlashRate: 0.1
   _damagePushback: 10
   megaManHealthText: {fileID: 1277291920}
   _healthHealed: 3

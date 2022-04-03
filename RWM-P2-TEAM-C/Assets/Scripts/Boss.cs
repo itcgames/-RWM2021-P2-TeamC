@@ -38,10 +38,6 @@ public class Boss : MonoBehaviour
 	}
     private void Update()
     {
-
-		
-		
-		print(Vector2.Distance(player.GetComponent<Rigidbody2D>().position, this.transform.position));
 		if (invincible && Vector2.Distance(player.GetComponent<Rigidbody2D>().position, this.transform.position) <= stateDist)
 		{
 			invincible = false;
@@ -52,10 +48,6 @@ public class Boss : MonoBehaviour
 		
 			CheckIfTimeToFire();
 		}
-
-		//LookAtPlayer();
-	
-		
 	}
 	public void CheckIfTimeToFire()
 	{
@@ -81,7 +73,6 @@ public class Boss : MonoBehaviour
 				death.death_start(true);
 				Destroy(this.gameObject);
 			}
-		Debug.Log("Health:" + health);
 	}
 
 	public float getHealth()
@@ -99,7 +90,6 @@ public class Boss : MonoBehaviour
 		{
 			transform.localScale = flipped;
 			direction = flipped.z;
-			Debug.Log(direction);
 			transform.Rotate(0f, 180f, 0f);
 			isFlipped = false;
 		}
@@ -107,7 +97,6 @@ public class Boss : MonoBehaviour
 		{
 			transform.localScale = flipped;
 			direction = flipped.z;
-			Debug.Log(direction);
 			transform.Rotate(0f, 180f, 0f);
 			isFlipped = true;
 		}
@@ -128,13 +117,8 @@ public class Boss : MonoBehaviour
                     {
                       AnalyticsManager.instance.data.killedBy = "Boss";
                     }
-                    
-                    Debug.Log("player detected");
                 }
-
             }
-
-
         } 
 
     }
