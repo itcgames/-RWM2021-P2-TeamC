@@ -20,15 +20,26 @@ def test_get_data():
 def test_get_mean_data():
     game_analytics.connect_to_database_outside_docker()
     print()
-    print("*******************************************************")
     
     mean = game_analytics.get_mean_completion_time()
+    print("*******************************************************")
     print("average completion time is " + str(mean))
-    print()
+    print("*******************************************************")
     
     distance = game_analytics.get_mean_distance()
+    print("*******************************************************")
     print("average distance to level exit is " + str(distance))
-    print()
+    print("*******************************************************")
+    
+    #averageDamage = 
+    damage = game_analytics.get_mean_damage_dealt()
+    print("*******************************************************")
+    print("average bomber damage is " + str(damage[0]))
+    print("average follower damage is " + str(damage[1]))
+    print("average runner damage is " + str(damage[2]))
+    print("average boss damage is " + str(damage[3]))
+    print("*******************************************************")
+    
 
 #test_post_data()
 test_get_data()

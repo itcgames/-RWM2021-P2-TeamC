@@ -35,9 +35,12 @@ def add_data(data):
     
 
 def get_dataframe():   
+   print("Initializing cursor in get_dataframe")
    cursor = db.posts.find() # Expand the cursor and construct the DataFrame
    
    print(cursor)
+   
+   print("Creating pandas Dataframe in get_dataframe")
    df = pd.DataFrame(list(cursor))
    pd.set_option('display.max_rows', df.shape[0]+1)
    pd.set_option('display.max_columns', None)
@@ -62,3 +65,30 @@ def get_mean_distance():
    mean = filtered_df.loc[:, "levelDistance"].mean()
 
    return mean
+
+def get_mean_damage_dealt():
+      
+   df = get_dataframe()
+
+   filtered_df = df[~df['enemyDamage'].isnull()]
+   damageSpecific = filtered_df.loc[:, "enemyDamage"]
+   converted = damageSpecific.tolist() # comes out as an array of all damage arrays
+   
+   # Damage Calculation
+   bomberAverage = 0
+   followerAverage = 0
+   runnerAverage = 0
+   bossAverage = 0
+   
+   for list in converted:
+        bomberAverage += list[0]
+        followerAverage += list[1]
+        runnerAverage += list[2]
+        bossAverage += list[3]
+        
+   bomberAverage = bomberAverage / len(converted)
+   followerAverage = followerAverage / len(converted)
+   runnerAverage = runnerAverage / len(converted)
+   bossAverage = bossAverage / len(converted)
+   
+   return [bomberAverage, followerAverage, runnerAverage, bossAverage]
