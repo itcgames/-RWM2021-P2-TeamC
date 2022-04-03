@@ -2675,9 +2675,9 @@ MonoBehaviour:
     deathCount: 0
     defeatedEnemies: 0
     level: 0
-    version: week_4
+    version: week_5
     playerID: 
-    killedBy: 
+    killedBy: Nothing
     completion_time: 0
     levelDistance: 0
     defaultBulletsShoot: 0

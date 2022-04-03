@@ -12,7 +12,7 @@ public class GameState
     public int deathCount = 0;
     public int defeatedEnemies = 0;
     public int level = 0;
-    public string version = "week_4";
+    public string version = "week_5";
     public string playerID;
     public string killedBy = "Nothing";
     public int completion_time = 0;
@@ -73,7 +73,7 @@ public class AnalyticsManager : MonoBehaviour
         }
 
 
-        Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSdf28n_147BIOExFTyYBBb9EXV6rbUReaRHwXkwtvN_fK8X0Q/viewform?usp=pp_url&entry.1212825994=" + data.playerID);
+        Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSerEM-Z6MTf8yBnv4eDWpe-eA9msY6weqgOvsQ0Xn1JiPaHIA/viewform?usp=pp_url&entry.1212825994=" + data.playerID);
     }
 
     void Start() { }
