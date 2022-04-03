@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public int _health = _MAX_HEALTH;
     private bool _invincible = false;
     public float _hurtTimer = 0.25f;
-    public float _invincibleTimer = 2.0f;
+    public float _invincibleTimer = 0.75f;
     public float _damagedFlashRate = 0.25f;
     public float _damagePushback = 10.0f; // amount of force to push megaman back by
     public Text megaManHealthText;
@@ -55,8 +55,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        updatePlayerAnimationStates();
-        setUpDeadAnimation();
+        if (_health > 0)
+        {
+            updatePlayerAnimationStates();
+        }
+        else
+        {
+            setUpDeadAnimation();
+        }
     }
        
     void updatePlayerAnimationStates()
@@ -308,17 +314,16 @@ public class PlayerController : MonoBehaviour
     
     public void setUpDeadAnimation()
     {
-        if (_health <= 0)
-        {
-            gameObject.GetComponent<OnDeath>().hasDied();
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            gameObject.GetComponent<Runtime2DMovement>().enabled = false;
-            gameObject.GetComponent<BulletManager>().enabled = false;
-            gameObject.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
-            SoundManagerScript.instance.PlaySound("death");
-            this.enabled = false;
-        }
+        StopAllCoroutines();
+        gameObject.GetComponent<OnDeath>().hasDied();
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        gameObject.GetComponent<Runtime2DMovement>().enabled = false;
+        gameObject.GetComponent<BulletManager>().enabled = false;
+        gameObject.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+        gameObject.GetComponent<MovingStateMachine>().enabled = false;
+        SoundManagerScript.instance.PlaySound("death");
+        this.enabled = false;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
