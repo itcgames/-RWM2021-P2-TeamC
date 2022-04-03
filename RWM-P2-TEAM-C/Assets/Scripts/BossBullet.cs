@@ -18,7 +18,7 @@ public class BossBullet : MonoBehaviour
         transform.Rotate(0f, 0f, 180f);
         rb = GetComponent<Rigidbody2D>();
         target = GameObject.FindObjectOfType<PlayerController>();
-        transform.position = new Vector3(transform.position.x - 1.25f, transform.position.y - 0.8f, transform.position.z);
+        transform.position = new Vector3(transform.position.x - 1.25f, transform.position.y, transform.position.z);
         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
         rb.velocity = new Vector2(-transform.position.x, transform.position.y);
        
